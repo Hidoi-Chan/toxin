@@ -1,0 +1,15 @@
+@import "../../local_modules/normalize.css/normalize";
+
+@import "utils/fonts";
+
+@import "../utils/variables";
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: white;
+    color: $purple;
+    font-family: "Conv_quicksandbold", "OpenSans", sans-serif;
+}
