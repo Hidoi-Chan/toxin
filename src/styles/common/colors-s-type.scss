@@ -1,0 +1,16 @@
+.ui-kit {
+    margin: 140px 0;
+
+    &_color {
+        display: flex;
+        align-items: center;
+
+        &_block {
+            display: block;
+            width: 70px;
+            height: 70px;
+            background-color: $dark100;
+            border-radius: 6px;
+        }
+    }
+}
