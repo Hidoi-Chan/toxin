@@ -8,10 +8,10 @@ html,
 body {
     margin: 0;
     padding: 0;
-    width: 100%;
+    width: 1440px;
     background-color: white;
     color: $dark75;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat-Light", sans-serif;
     font-size: 14px;
     line-height: 24px;
 }
@@ -26,27 +26,59 @@ body {
     justify-content: space-between;
 }
 
-h1 {
+h1,
+h2,
+h3,
+p {
     margin: 0;
+}
+
+h1 {
     color: $dark100;
-    font-family: "Quicksandbold", "OpenSans", sans-serif;
+    font-family: "Quicksand-SemiBold", "OpenSans", sans-serif;
     font-size: 24px;
     line-height: 30px;
 }
 
 h2 {
-    margin: 0;
     color: $dark100;
-    font-family: "Quicksandbold", "OpenSans", sans-serif;
+    font-family: "Quicksand-SemiBold", "OpenSans", sans-serif;
     font-size: 19px;
     line-height: 24px;
 }
 
 h3 {
-    margin: 0;
     color: $dark100;
-    font-family: "Montserratbold", sans-serif;
+    font-family: "Montserrat-SemiBold", sans-serif;
     font-size: 12px;
     line-height: 15px;
     text-transform: uppercase;
+}
+
+.bgc-dark100 {
+    background-color: $dark100;
+}
+
+.bgc-dark75 {
+    background-color: $dark75;
+}
+
+.bgc-dark50 {
+    background-color: $dark50;
+}
+
+.bgc-dark25 {
+    background-color: $dark25;
+}
+
+.bgc-dark5 {
+    background-color: $dark5;
+}
+
+.bgc-green {
+    background-color: $green;
+}
+
+.bgc-purple {
+    background-color: $purple;
 }

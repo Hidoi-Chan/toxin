@@ -1,16 +1,70 @@
 .ui-kit {
-    margin: 140px 0;
+    margin: 139px 0;
+
+    &_column-colors {
+        margin-left: 10px;
+    }
 
     &_color {
         display: flex;
         align-items: center;
+        margin-top: 20px;
+
+        &:first-child {
+            margin-top: 0;
+        }
 
         &_block {
             display: block;
             width: 70px;
             height: 70px;
-            background-color: $dark100;
             border-radius: 6px;
+        }
+
+        &_text {
+            padding: 0 40px;
+            font-family: "Quicksand-SemiBold", sans-serif;
+            font-size: 19px;
+            line-height: 29px;
+            color: $dark100;
+
+            &_num {
+                font-family: "Quicksand-Light", sans-serif;
+            }
+        }
+    }
+
+    &_column-text {
+        margin-right: 50px;
+    }
+
+    &_text {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 50px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &_title {
+            font-family: "Montserrat-Light", sans-serif;
+            text-transform: capitalize;
+            color: $dark25;
+            text-align: right;
+
+            &_h1 {
+                line-height: 29px;
+            }
+
+            &_h2 {
+                line-height: 23px;
+            }
+        }
+
+        &_example {
+            width: 336px;
+            padding-left: 30px;
         }
     }
 }
