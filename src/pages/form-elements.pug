@@ -1,0 +1,12 @@
+extends common/layout
+
+block content
+    div.ui-kit
+        div.container.columns
+            div
+                input(type="text" name="name" placeholder="Имя" required)
+                p Hello
+                select(name="guests")
+                    option(value="Гость 1") Взрослые
+                    option(value="Гость 2") Дети
+                    option(value="Гость 3") Младенцы

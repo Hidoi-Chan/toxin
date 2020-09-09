@@ -1,0 +1,49 @@
+.form-elements {
+    width: 320px;
+    height: 44px;
+    outline: none;
+    background: none;
+    border: 1px solid $dark25;
+    box-sizing: border-box;
+    border-radius: 4px;
+    transition: 400ms ease;
+    color: $dark75;
+    font-family: "Montserrat-Light", sans-serif;
+    font-size: 14px;
+}
+
+input,
+textarea {
+
+    @extend .form-elements;
+
+    padding: 0 15px;
+    line-height: 18px;
+
+    &::placeholder {
+        color: $dark25;
+    }
+
+    &:focus,
+    &:hover {
+        border: 1px solid $dark50;
+        color: $dark75;
+        line-height: 24px;
+
+        &::placeholder {
+            color: $dark50;
+        }
+    }
+}
+
+select {
+
+    @extend .form-elements;
+
+    padding: 0 44px 0 13px;
+    line-height: 24px;
+}
+
+// option {
+//     padding: 0;
+// }

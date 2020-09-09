@@ -8,6 +8,8 @@
     "stylelint-config-htmlacademy"
   ],
   "rules": {
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
     "indentation": 4,
     "at-rule-no-vendor-prefix": true,
     "at-rule-empty-line-before": "always",
