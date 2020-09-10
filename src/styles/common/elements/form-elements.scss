@@ -1,11 +1,9 @@
 .form-elements {
     width: 320px;
-    height: 44px;
     outline: none;
     background: none;
-    border: 1px solid $dark25;
     box-sizing: border-box;
-    border-radius: 4px;
+    border: 1px solid $dark25;
     transition: 400ms ease;
     color: $dark75;
     font-family: "Montserrat-Light", sans-serif;
@@ -17,8 +15,8 @@ textarea {
 
     @extend .form-elements;
 
-    padding: 0 15px;
-    line-height: 18px;
+    border-radius: 4px;
+    padding: 12px 15px;
 
     &::placeholder {
         color: $dark25;
@@ -28,7 +26,6 @@ textarea {
     &:hover {
         border: 1px solid $dark50;
         color: $dark75;
-        line-height: 24px;
 
         &::placeholder {
             color: $dark50;
@@ -36,14 +33,68 @@ textarea {
     }
 }
 
-select {
+.dropdown {
 
     @extend .form-elements;
 
-    padding: 0 44px 0 13px;
-    line-height: 24px;
+    position: relative;
+    display: block;
+    border-radius: 2px;
+
+    &__btn {
+        padding: 12px 44px 13px 15px;
+        box-sizing: border-box;
+        border-bottom: 1px solid $dark25;
+        cursor: pointer;
+    }
+
+    &__list {
+        padding: 7px 7px 0 15px;
+
+        &__item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &__counter-block {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 92px;
+                padding-bottom: 7px;
+            }
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+
+        &__btn {
+            padding: 12px 0;
+
+            &:first-child {
+                h3 {
+                    color: $dark50;
+                }
+            }
+
+            &:last-child {
+                h3 {
+                    color: $purple;
+                }
+            }
+        }
+    }
 }
 
-// option {
-//     padding: 0;
-// }
+.btn {
+    &__counter {
+        width: 30px;
+        height: 30px;
+        box-sizing: border-box;
+        border-radius: 22px;
+        border: 1px solid $dark25;
+        color: $dark25;
+    }
+}

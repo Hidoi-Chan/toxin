@@ -5,8 +5,31 @@ block content
         div.container.columns
             div
                 input(type="text" name="name" placeholder="Имя" required)
-                p Hello
-                select(name="guests")
-                    option(value="Гость 1") Взрослые
-                    option(value="Гость 2") Дети
-                    option(value="Гость 3") Младенцы
+                br
+                br
+                div.dropdown
+                    div.dropdown__btn Сколько гостей
+                    div.dropdown__list
+                        div.dropdown__list__item
+                            h3 Взрослые
+                            div.dropdown__list__item__counter-block
+                                button.btn__counter -
+                                h3 0
+                                button.btn__counter +
+                        div.dropdown__list__item
+                            h3 Дети
+                            div.dropdown__list__item__counter-block
+                                button.btn__counter -
+                                h3 0
+                                button.btn__counter +
+                        div.dropdown__list__item
+                            h3 Младенцы
+                            div.dropdown__list__item__counter-block
+                                button.btn__counter -
+                                h3 0
+                                button.btn__counter +
+                        div.dropdown__footer
+                            button.dropdown__footer__btn 
+                                h3 Очистить
+                            button.dropdown__footer__btn 
+                                h3 Применить
