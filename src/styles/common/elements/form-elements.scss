@@ -3,7 +3,6 @@
     outline: none;
     background: none;
     box-sizing: border-box;
-    border: 1px solid $dark25;
     transition: 400ms ease;
     color: $dark75;
     font-family: "Montserrat-Light", sans-serif;
@@ -17,6 +16,7 @@ textarea {
 
     border-radius: 4px;
     padding: 12px 15px;
+    border: 1px solid $dark25;
 
     &::placeholder {
         color: $dark25;
@@ -39,17 +39,38 @@ textarea {
 
     position: relative;
     display: block;
-    border-radius: 2px;
 
     &__btn {
+        position: relative;
         padding: 12px 44px 13px 15px;
         box-sizing: border-box;
-        border-bottom: 1px solid $dark25;
+        border: 1px solid $dark25;
+        border-radius: 2px 2px 0 0;
         cursor: pointer;
+
+        &__icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: $dark75;
+        }
     }
 
     &__list {
         padding: 7px 7px 0 15px;
+        position: absolute;
+        top: 44px;
+        background-color: white;
+        z-index: 10;
+        border: 1px solid $dark25;
+        border-radius: 0 0 2px 2px;
+
+        @extend .form-elements;
 
         &__item {
             display: flex;
@@ -62,6 +83,15 @@ textarea {
                 align-items: center;
                 width: 92px;
                 padding-bottom: 7px;
+
+                &__btn {
+                    width: 30px;
+                    height: 30px;
+                    box-sizing: border-box;
+                    border-radius: 22px;
+                    border: 1px solid $dark25;
+                    color: $dark25;
+                }
             }
         }
     }
@@ -85,16 +115,5 @@ textarea {
                 }
             }
         }
-    }
-}
-
-.btn {
-    &__counter {
-        width: 30px;
-        height: 30px;
-        box-sizing: border-box;
-        border-radius: 22px;
-        border: 1px solid $dark25;
-        color: $dark25;
     }
 }

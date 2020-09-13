@@ -5,6 +5,7 @@ const pug2html = require('./gulp/tasks/pug2html')
 const styles = require('./gulp/tasks/styles')
 const script = require('./gulp/tasks/script')
 const fonts = require('./gulp/tasks/fonts')
+const icons = require('./gulp/tasks/icons')
 const imageMinify = require('./gulp/tasks/imageMinify')
 const clean = require('./gulp/tasks/clean')
 const copyDependencies = require('./gulp/tasks/copyDependencies')
@@ -18,7 +19,7 @@ function setMode(isProduction = false) {
   }
 }
 
-const dev = gulp.parallel(pug2html, styles, script, fonts, imageMinify, svgSprite)
+const dev = gulp.parallel(pug2html, styles, script, fonts, icons, imageMinify, svgSprite)
 
 const build = gulp.series(clean, copyDependencies, dev)
 
