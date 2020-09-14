@@ -8,29 +8,30 @@ block content
                 br
                 br
                 div.dropdown
-                    div.dropdown__btn#jsDropdownGuestsBtn Сколько гостей
-                        i.dropdown__btn__icon.material-icons keyboard_arrow_down
-                    div.dropdown__list#jsDropdownGuestsList
-                        div.dropdown__list__item.jsDropdownGuestsListItem
-                            h3 Взрослые
-                            div.dropdown__list__item__counter-block
-                                button.dropdown__list__item__counter-block__btn.jsDropdownGuestsDecrement -
-                                h3 0
-                                button.dropdown__list__item__counter-block__btn.jsDropdownGuestsIncrement +
-                        div.dropdown__list__item.jsDropdownGuestsListItem
-                            h3 Дети
-                            div.dropdown__list__item__counter-block
-                                button.dropdown__list__item__counter-block__btn.jsDropdownGuestsDecrement -
-                                h3 0
-                                button.dropdown__list__item__counter-block__btn.jsDropdownGuestsIncrement +
-                        div.dropdown__list__item.jsDropdownGuestsListItem
-                            h3 Младенцы
-                            div.dropdown__list__item__counter-block
-                                button.dropdown__list__item__counter-block__btn.jsDropdownGuestsDecrement -
-                                h3 0
-                                button.dropdown__list__item__counter-block__btn.jsDropdownGuestsIncrement +
+                    div.dropdown__btn
+                        p Сколько гостей
+                        i.dropdown__btn-icon.material-icons keyboard_arrow_down
+                    div.dropdown__list
+                        div.dropdown__list-item
+                            h3.dropdown__list-item-name Взрослые
+                            div.dropdown__counter-block
+                                button.dropdown__counter-block-btn -
+                                h3.dropdown__counter-block-counter 0
+                                button.dropdown__counter-block-btn +
+                        div.dropdown__list-item
+                            h3.dropdown__list-item-name Дети
+                            div.dropdown__counter-block
+                                button.dropdown__counter-block-btn -
+                                h3.dropdown__counter-block-counter 0
+                                button.dropdown__counter-block-btn +
+                        div.dropdown__list-item
+                            h3.dropdown__list-item-name Младенцы
+                            div.dropdown__counter-block
+                                button.dropdown__counter-block-btn -
+                                h3.dropdown__counter-block-counter 0
+                                button.dropdown__counter-block-btn +
                         div.dropdown__footer
-                            button.dropdown__footer__btn 
+                            button.dropdown__footer-btn.dropdown__footer-btn_clean
                                 h3 Очистить
-                            button.dropdown__footer__btn 
+                            button.dropdown__footer-btn.dropdown__footer-btn_check
                                 h3 Применить
