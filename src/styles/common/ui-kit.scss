@@ -24,8 +24,8 @@
         &_text {
             padding: 0 40px;
             font-family: "Quicksand-SemiBold", sans-serif;
-            font-size: 19px;
-            line-height: 29px;
+            font-size: torem(19);
+            line-height: torem(29);
             color: $dark100;
 
             &_num {
@@ -54,16 +54,16 @@
             text-align: right;
 
             &_h1 {
-                line-height: 29px;
+                line-height: torem(29);
             }
 
             &_h2 {
-                line-height: 23px;
+                line-height: torem(23);
             }
         }
 
         &_example {
-            width: 336px;
+            width: torem(336);
             padding-left: 30px;
         }
     }

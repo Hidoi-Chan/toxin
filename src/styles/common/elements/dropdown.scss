@@ -7,7 +7,7 @@
 
     &__btn {
         position: relative;
-        padding: 12px 44px 13px 15px;
+        padding: torem(12) torem(44) torem(13) torem(15);
         box-sizing: border-box;
         border: 1px solid $dark25;
         border-radius: 2px 2px 0 0;
@@ -17,8 +17,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 44px;
-            height: 44px;
+            width: torem(44);
+            height: torem(44);
             position: absolute;
             top: 0;
             right: 0;
@@ -27,9 +27,9 @@
     }
 
     &__list {
-        padding: 7px 7px 0 15px;
+        padding: torem(7) torem(7) 0 torem(15);
         position: absolute;
-        top: 44px;
+        top: torem(44);
         background-color: white;
         z-index: 10;
         border: 1px solid $dark25;
@@ -48,37 +48,16 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 92px;
-        padding-bottom: 7px;
-
-        &-btn {
-            width: 30px;
-            height: 30px;
-            box-sizing: border-box;
-            border-radius: 22px;
-            border: 1px solid $dark25;
-            color: $dark25;
-        }
+        width: torem(92);
+        padding-bottom: torem(7);
     }
 
     &__footer {
         display: flex;
         justify-content: space-between;
 
-        &-btn {
-            padding: 12px 0;
-
-            &_clean {
-                h3 {
-                    color: $dark50;
-                }
-            }
-
-            &_check {
-                h3 {
-                    color: $purple;
-                }
-            }
+        &_button {
+            padding: torem(12) 0;
         }
     }
 }

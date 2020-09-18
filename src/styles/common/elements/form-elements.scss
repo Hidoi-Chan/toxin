@@ -1,12 +1,12 @@
 .form-elements {
-    width: 320px;
+    width: torem(320);
     outline: none;
     background: none;
     box-sizing: border-box;
     transition: 400ms ease;
     color: $dark75;
     font-family: "Montserrat-Light", sans-serif;
-    font-size: 14px;
+    font-size: torem(14);
 }
 
 input,
@@ -15,7 +15,7 @@ textarea {
     @extend .form-elements;
 
     border-radius: 4px;
-    padding: 12px 15px;
+    padding: torem(12) torem(15);
     border: 1px solid $dark25;
 
     &::placeholder {

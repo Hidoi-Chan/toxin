@@ -10,16 +10,16 @@ html,
 body {
     margin: 0;
     padding: 0;
-    width: 1440px;
+    width: torem(1440);
     background-color: white;
     color: $dark75;
     font-family: "Montserrat-Light", sans-serif;
     font-size: 14px;
-    line-height: 24px;
+    line-height: torem(24);
 }
 
 .container {
-    max-width: 1160px;
+    max-width: torem(1160);
     margin: auto;
     display: flex;
 }
@@ -42,33 +42,25 @@ li {
     list-style: none;
 }
 
-button {
-    background-color: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-family: "Montserrat-SemiBold", sans-serif;
-}
-
 h1 {
     color: $dark100;
     font-family: "Quicksand-SemiBold", "OpenSans", sans-serif;
-    font-size: 24px;
-    line-height: 30px;
+    font-size: torem(24);
+    line-height: torem(30);
 }
 
 h2 {
     color: $dark100;
     font-family: "Quicksand-SemiBold", "OpenSans", sans-serif;
-    font-size: 19px;
-    line-height: 24px;
+    font-size: torem(19);
+    line-height: torem(24);
 }
 
 h3 {
     color: $dark100;
     font-family: "Montserrat-SemiBold", sans-serif;
-    font-size: 12px;
-    line-height: 15px;
+    font-size: torem(12);
+    line-height: torem(15);
     text-transform: uppercase;
 }
 
@@ -98,4 +90,8 @@ h3 {
 
 .bgc-purple {
     background-color: $purple;
+}
+
+.display-none {
+    display: none;
 }
