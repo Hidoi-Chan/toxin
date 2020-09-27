@@ -1,0 +1,13 @@
+@import '~normalize.css';
+@import 'fonts';
+
+body {
+    background-image: url('@img/IMG_20171202_132326.jpg');
+    background-size: cover;
+    color: coral;
+}
+
+h1 {
+    font-family: "Quicksand";
+    font-weight: 500;
+}
