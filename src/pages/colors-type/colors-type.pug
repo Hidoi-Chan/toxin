@@ -1,7 +1,20 @@
 extends ../../layout
+include ../../blocks/colors-variables/colors-variables.pug
+include ../../blocks/fonts-variables/fonts-variables.pug
 
 block content
-    h1 This is the body text which is used for most of the design, like paragraphs, lists, etc.
-    h2 This is the body text which is used for most of the design, like paragraphs, lists, etc.
-    h3 This is the body text which is used for most of the design, like paragraphs, lists, etc.
-    p This is the body text which is used for most of the design, like paragraphs, lists, etc.
+    div.colors-type
+        div.colors-type__column-colors
+            +colors-variables("Dark Shade 100%", "#1F2041")(class="colors-type__colors-variables")
+            +colors-variables("Dark Shade 75%", "#1F2041")(class="colors-type__colors-variables")
+            +colors-variables("Dark Shade 50%", "#1F2041")(class="colors-type__colors-variables")
+            +colors-variables("Dark Shade 25%", "#1F2041")(class="colors-type__colors-variables")
+            +colors-variables("Dark Shade 5%", "#1F2041")(class="colors-type__colors-variables")
+            +colors-variables("Purple", "#BC9CFF")(class="colors-type__colors-variables")
+            +colors-variables("Green", "#6FCF97")(class="colors-type__colors-variables")
+        div.colors-type__column-text
+            +fonts-variables("h1", "This one is the sub-section or widget title")(class="colors-type__fonts-variables")
+            +fonts-variables("h2", "Next one is the item title inside widgets")(class="colors-type__fonts-variables")
+            +fonts-variables("h3", "This is a label or CTA text")(class="colors-type__fonts-variables")
+            +fonts-variables("body", "This is the body text which is used for most of the design, like paragraphs, lists, etc.")(class="colors-type__fonts-variables")
+    

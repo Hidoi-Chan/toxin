@@ -1,3 +1,4 @@
 import '@style/global'
-
-console.log(1)
+import '@pages/colors-type/colors-type'
+import '@blocks/colors-variables/colors-variables'
+import '@blocks/fonts-variables/fonts-variables'

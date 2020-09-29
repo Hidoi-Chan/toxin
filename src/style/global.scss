@@ -1,13 +1,76 @@
 @import '~normalize.css';
 @import 'fonts';
+@import 'variables';
 
+html,
 body {
-    background-image: url('@img/IMG_20171202_132326.jpg');
-    background-size: cover;
-    color: coral;
+    width: 1440px;
+    background-color: white;
+    color: $dark75;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: torem(24);
 }
 
-h1 {
-    font-family: "Quicksand";
-    font-weight: 500;
+// .container {
+//     width: 1160px;
+//     margin: auto;
+//     display: flex;
+// }
+
+h1,
+h2,
+h3,
+p,
+ul,
+button {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+h1,
+.h1 {
+    color: $dark100;
+    font-family: "Quicksand", "OpenSans", sans-serif;
+    font-weight: 700;
+    font-size: torem(24);
+    line-height: torem(30);
+}
+
+h2,
+.h2 {
+    color: $dark100;
+    font-family: "Quicksand", "OpenSans", sans-serif;
+    font-weight: 700;
+    font-size: torem(19);
+    line-height: torem(24);
+}
+
+h3,
+.h3 {
+    color: $dark100;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: torem(12);
+    line-height: torem(15);
+    text-transform: uppercase;
+}
+
+input,
+textarea,
+button {
+    outline: none;
+    border: none;
+    background-color: none;
+    box-sizing: border-box;
+}
+
+button {
+    background: none;
+    cursor: pointer;
 }

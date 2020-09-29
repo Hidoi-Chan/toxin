@@ -95,6 +95,8 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.scss'],
         alias: {
+            '@pages': path.resolve(__dirname, 'src/pages'),
+            '@blocks': path.resolve(__dirname, 'src/blocks'),
             '@style': path.resolve(__dirname, 'src/style'),
             '@img': path.resolve(__dirname, 'src/img'),
             '@': path.resolve(__dirname, 'src')

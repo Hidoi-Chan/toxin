@@ -1,0 +1,65 @@
+@import '../../style/variables';
+
+.button {
+    width: 99px;
+    height: 44px;
+    position: relative;
+    border-radius: 22px;
+    background: $gradient;
+    transition: 400ms ease;
+
+    &__text {
+        color: white;
+
+        &_color {
+            &_purple {
+                color: $purple;
+            }
+
+            &_dark50 {
+                color: $dark50;
+            }
+        }
+    }
+
+    &__border-gradient {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 95px;
+        height: 40px;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        color: $purple;
+        background-color: white;
+        border-radius: 22px;
+
+    }
+
+    &:hover {
+        background: $gradient2;
+    }
+
+    &_disabled {
+        opacity: 0.5;
+        cursor: default;
+
+        &:hover {
+            background: $gradient;
+        }
+    }
+}
+
+.button_round {                             // перенести
+    width: 30px;
+    height: 30px;
+    border: 1px solid $dark25;
+    border-radius: 22px;
+    color: $dark50;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size: torem(18);
+    line-height: torem(22);
+}

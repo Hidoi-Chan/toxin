@@ -1,0 +1,33 @@
+@import '../../style/variables';
+
+.field {
+    width: 320px;
+    padding: 12px 15px;
+    border-radius: 4px;
+    border: 1px solid $dark25;
+    transition: 400ms ease;
+    color: $dark75;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size: torem(14);
+    line-height: torem(18);
+
+    &::placeholder {
+        color: $dark25;
+        transition: 400ms ease;
+    }
+
+    &:focus,
+    &:hover {
+        border: 1px solid $dark50;
+        color: $dark75;
+
+        &::placeholder {
+            color: $dark75;
+        }
+    }
+
+    &__title {
+        margin-bottom: 5px;
+    }
+}

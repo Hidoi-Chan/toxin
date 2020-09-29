@@ -1,0 +1,15 @@
+mixin fonts-variables(title, example)
+    div.fonts-variables(class!=attributes.class)
+        case title
+            when "h1"
+                h1.fonts-variables__title=title
+                h1.fonts-variables__example=example
+            when "h2"
+                h2.fonts-variables__title=title
+                h2.fonts-variables__example=example
+            when "h3"
+                h3.fonts-variables__title=title
+                h3.fonts-variables__example=example
+            when "body"
+                p.fonts-variables__title=title
+                p.fonts-variables__example=example

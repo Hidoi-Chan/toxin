@@ -1,3 +1,3 @@
 import '@style/global'
-
-console.log(2)
+import '@blocks/input/input'
+import '@blocks/button/button'

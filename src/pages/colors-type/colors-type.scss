@@ -1,0 +1,32 @@
+@import '../../style/variables';
+
+.colors-type {
+    margin: 145px auto;
+    width: 1160px;
+    display: flex;
+    justify-content: space-between;
+
+    &__column-colors {
+        margin-left: 10px;
+    }
+
+    &__colors-variables {
+        margin-top: 20px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    &__column-text {
+        margin-right: 50px;
+    }
+
+    &__fonts-variables {
+        margin-top: 50px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+}

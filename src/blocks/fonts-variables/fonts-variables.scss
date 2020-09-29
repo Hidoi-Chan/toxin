@@ -1,0 +1,19 @@
+@import '../../style/variables';
+
+.fonts-variables {
+    display: flex;
+    justify-content: flex-end;
+
+    &__title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 300;
+        text-transform: capitalize;
+        color: $dark25;
+        text-align: right;
+    }
+
+    &__example {
+        width: 336px;
+        padding-left: 30px;
+    }
+}

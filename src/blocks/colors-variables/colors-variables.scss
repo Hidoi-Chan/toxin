@@ -1,0 +1,51 @@
+@import '../../style/variables';
+
+.colors-variables {
+    display: flex;
+    align-items: center;
+
+    &__square {
+        display: block;
+        width: 70px;
+        height: 70px;
+        border-radius: 6px;
+
+        &_color_dark100 {
+            background-color: $dark100;
+        }
+
+        &_color_dark75 {
+            background-color: $dark75;
+        }
+
+        &_color_dark50 {
+            background-color: $dark50;
+        }
+
+        &_color_dark25 {
+            background-color: $dark25;
+        }
+
+        &_color_dark5 {
+            background-color: $dark5;
+        }
+
+        &_color_purple {
+            background-color: $purple;
+        }
+
+        &_color_green {
+            background-color: $green;
+        }
+    }
+
+    &__text-block {
+        padding: 0 40px;
+        line-height: torem(29);
+        color: $dark100;
+    }
+
+    &__text-num {
+        font-weight: 400;
+    }
+}
