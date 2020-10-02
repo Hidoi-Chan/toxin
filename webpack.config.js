@@ -93,7 +93,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     resolve: {
-        extensions: ['.js', '.scss'],
+        // extensions: ['.js', '.scss'],
         alias: {
             '@pages': path.resolve(__dirname, 'src/pages'),
             '@blocks': path.resolve(__dirname, 'src/blocks'),
@@ -172,9 +172,10 @@ module.exports = {
                 }
             },
             {
-                test: /\.(woff(2)?|ttf|eot|svg)$/,
+                test: /\.(woff2|woff|ttf|eot|svg)$/,
                 include: [
                     path.resolve(__dirname, './src/fonts'),    // include - будет брать только из данных каталогов
+                    path.resolve(__dirname, './src/icons'),
                     path.resolve(__dirname, 'node_modules'), // Для подключения шрифтов из пакетов если на них есть ссылка
                 ],
                 use: {

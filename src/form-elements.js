@@ -1,3 +1,8 @@
-import '@style/global'
-import '@blocks/input/input'
-import '@blocks/button/button'
+import '@style/global.scss'
+import '@blocks/input/input.scss'
+import '@blocks/input/input.js'
+import '@blocks/button/button.scss'
+import '@blocks/dropdown/dropdown.scss'
+import '@blocks/dropdown/dropdown.js'
+
+// import * as $ from 'jquery'

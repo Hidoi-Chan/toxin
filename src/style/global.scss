@@ -1,6 +1,7 @@
 @import '~normalize.css';
-@import 'fonts';
-@import 'variables';
+@import 'fonts.scss';
+@import 'icons.scss';
+@import 'variables.scss';
 
 html,
 body {
@@ -73,4 +74,8 @@ button {
 button {
     background: none;
     cursor: pointer;
+}
+
+.display_none {
+    display: none;
 }
