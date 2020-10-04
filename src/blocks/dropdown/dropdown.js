@@ -1,7 +1,7 @@
-function dropdown(id) {
+export default function dropdown(id) {
     const dropdown = document.getElementById(id)
     const dropdownBtn = dropdown.querySelector('.dropdown__btn')
-    let dropdownBtnText = dropdownBtn.firstElementChild
+    const dropdownBtnText = dropdownBtn.firstElementChild
     const dropdownList = dropdown.querySelector('.dropdown__list')
     const listArr = dropdown.querySelectorAll('.dropdown__list-item')
     const dropdownBtnClean = dropdown.querySelector('.dropdown__footer_button:first-child')
@@ -21,120 +21,173 @@ function dropdown(id) {
             counter: listArr[i].querySelector('.dropdown__counter-block-counter').innerText
         })
     }
-    let sum = 0
 
-    // console.log(newListArr)
+    if (dropdown === document.getElementById('guests')) {
 
-    newListArr.map((item, index) => {
-        item.btnDecrement.addEventListener('click', decrement)
-        item.btnIncrement.addEventListener('click', increment)
-        dropdownBtnClean.addEventListener('click', clean)
-        dropdownBtnCheck.addEventListener('click', check);
-        let value = item.counter * 1
-
-        function decrement() {
-            if (value > 0) {
-                value -= 1
-                sum -= 1
-                listArr[index].querySelector('.dropdown__counter-block-counter').innerText = value
+        let title = dropdownBtnText.innerText = 'Сколько гостей'
+        let sum = 0
+    
+        newListArr.map((item, index) => {
+            item.btnDecrement.addEventListener('click', decrement)
+            item.btnIncrement.addEventListener('click', increment)
+            dropdownBtnClean.addEventListener('click', clean)
+            item.counter *= 1
+    
+            function decrement() {
+                if (item.counter) {
+                    item.counter -= 1
+                    sum -= 1
+                    listArr[index].querySelector('.dropdown__counter-block-counter').innerText = item.counter
+                    if (!sum) {
+                        dropdownBtnClean.classList.add('dropdown__footer_button_disabled')
+                    }
+                }
             }
-        }
-
-        function increment() {
-            if (sum < 20) {
-                value += 1
-                sum += 1
-                listArr[index].querySelector('.dropdown__counter-block-counter').innerText = value
+    
+            function increment() {
+                if (item.counter < 10) {
+                    item.counter += 1
+                    sum+= 1
+                    listArr[index].querySelector('.dropdown__counter-block-counter').innerText = item.counter
+                    dropdownBtnClean.classList.remove('dropdown__footer_button_disabled')
+                }
             }
-        }
-
-        function clean() {
-            listArr.forEach(i => {
-                i.querySelector('.dropdown__counter-block-counter').innerText = '0';
-                value = sum = 0;
-            })
-            dropdownBtnText.innerText = 'Сколько гостей';
-        }
-
+    
+            function clean() {
+                listArr.forEach(i => {
+                    i.querySelector('.dropdown__counter-block-counter').innerText = item.counter = 0
+                })
+                dropdownBtnText.innerText = title
+                dropdownBtnClean.classList.add('dropdown__footer_button_disabled')
+            }
+        })
+        
+        dropdownBtnCheck.addEventListener('click', check)
+    
         function check() {
-            console.log(newListArr)
-            // switch (sum) {
-            //     case 0:
-            //         break;
-            //     case 1:
-            //         dropdownBtnText.innerText = sum + ' гость';
-            //         break;
-            //         break;
-            //     case 2:
-            //     case 3:
-            //     case 4:
-            //         dropdownBtnText.innerText = sum + ' гостя';
-            //         break;
-            //     default:
-            //         dropdownBtnText.innerText = sum + ' гостей';
-            //         break;
-            // }
+            let guests = newListArr[0].counter + newListArr[1].counter
+            let babies = newListArr[2].counter
+    
+            let guestsString = ''
+            switch (guests) {
+                case 0:
+                    break;
+                case 1:
+                    guestsString = guests + ' гость';
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    guestsString = guests + ' гостя';
+                    break;
+                default:
+                    guestsString = guests + ' гостей';
+                    break;
+            }
+            let babiesString = ''
+            switch (babies) {
+                case 0:
+                    break;
+                case 1:
+                    babiesString = babies + ' младенец';
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    babiesString = babies + ' младенца';
+                    break;
+                default:
+                    babiesString = babies + ' младенцев';
+                    break;
+            }
+    
+            if (guestsString && babiesString) {
+                dropdownBtnText.innerText = guestsString + ', ' + babiesString
+            } else if (!guestsString) {
+                dropdownBtnText.innerText = title
+            } else {
+                dropdownBtnText.innerText = guestsString
+            }
         }
-    })
 
-      // let dropdownListItem = document.querySelectorAll('.jsDropdownGuestsListItem');
-      // let dropdownBtnClean = document.querySelector('.jsDropdownGuestsBtnClean');
-      // let dropdownBtnCheck = document.querySelector('.jsDropdownGuestsBtnCheck');
-      // let sum = 0;
-      // dropdownListItem.forEach(item => {
-      //     let counter = item.querySelector('.jsDropdownGuestsCounter').innerText * 1;
-      //     let buttonDecrement = item.querySelector('.jsDropdownGuestsDecrement');
-      //     let buttonIncrement = item.querySelector('.jsDropdownGuestsIncrement');
+    }
 
-      //     buttonDecrement.addEventListener('click', decrement);
-      //     buttonIncrement.addEventListener('click', increment);
-      //     dropdownBtnClean.addEventListener('click', clean);
+    if (dropdown === document.getElementById('rooms')) {
+        
+        console.log(newListArr)
+    
+        newListArr.map((item, index) => {
 
-      // function decrement() {
-      //     if (counter>0) {
-      //         counter-= 1;
-      //         sum-= 1;
-      //         item.querySelector('.jsDropdownGuestsCounter').innerText = counter;
-      //     }
-      // }
+            item.btnDecrement.addEventListener('click', decrement)
+            item.btnIncrement.addEventListener('click', increment)
+            item.counter *= 1
 
-      // function increment() {
-      //     if (sum<20) {
-      //         counter+=1;
-      //         sum+= 1;
-      //         item.querySelector('.jsDropdownGuestsCounter').innerText = counter;
-      //     }
-      // }
+            if (index < 2) {
+                listArr[index].querySelector('.dropdown__counter-block-counter').innerText = item.counter = 2
+            }
+    
+            function decrement() {
+                if (item.counter) {
+                    item.counter -= 1
+                    listArr[index].querySelector('.dropdown__counter-block-counter').innerText = item.counter
+                }
+            }
+    
+            function increment() {
+                if (item.counter < 10) {
+                    item.counter += 1
+                    listArr[index].querySelector('.dropdown__counter-block-counter').innerText = item.counter
+                }
+            }
 
-      //     function clean() {
-      //         document.querySelectorAll('.jsDropdownGuestsCounter').forEach(item => {
-      //             item.innerText = '0';
-      //             counter = sum = 0;
-      //         })
-      //         dropdownBtn.firstElementChild.innerText = 'Сколько гостей';
-      //     }
-      // })
-
-      // dropdownBtnCheck.addEventListener('click', check);
-
-      // function check() {
-      //     switch (sum) {
-      //         case 0:
-      //             break;
-      //         case 1:
-      //             dropdownBtn.firstElementChild.innerText = sum + ' гость';
-      //             break;
-      //             break;
-      //         case 2:
-      //         case 3:
-      //         case 4:
-      //             dropdownBtn.firstElementChild.innerText = sum + ' гостя';
-      //             break;
-      //         default:
-      //             dropdownBtn.firstElementChild.innerText = sum + ' гостей';
-      //             break;
-      //     }
-      // }
+        })
+        
+        let title = dropdownBtnText.innerHTML = '2 спальни, 2 кровати&hellip;'
+    
+        // function check() {
+        //     let guests = newListArr[0].counter + newListArr[1].counter
+        //     let babies = newListArr[2].counter
+    
+        //     let guestsString = ''
+        //     switch (guests) {
+        //         case 0:
+        //             break;
+        //         case 1:
+        //             guestsString = guests + ' гость';
+        //             break;
+        //         case 2:
+        //         case 3:
+        //         case 4:
+        //             guestsString = guests + ' гостя';
+        //             break;
+        //         default:
+        //             guestsString = guests + ' гостей';
+        //             break;
+        //     }
+        //     let babiesString = ''
+        //     switch (babies) {
+        //         case 0:
+        //             break;
+        //         case 1:
+        //             babiesString = babies + ' младенец';
+        //             break;
+        //         case 2:
+        //         case 3:
+        //         case 4:
+        //             babiesString = babies + ' младенца';
+        //             break;
+        //         default:
+        //             babiesString = babies + ' младенцев';
+        //             break;
+        //     }
+    
+        //     if (guestsString && babiesString) {
+        //         dropdownBtnText.innerText = guestsString + ', ' + babiesString
+        //     } else if (!guestsString) {
+        //         dropdownBtnText.innerText = 'Сколько гостей'
+        //     } else {
+        //         dropdownBtnText.innerText = guestsString
+        //     }
+        // }
+    }
 }
-
-dropdown('guests')

@@ -1,28 +1,35 @@
+mixin dropdown__list-item(listitemname)
+    div.dropdown__list-item
+        h3.dropdown__list-item-name=listitemname
+        div.dropdown__counter-block
+            button.button_round -
+            h3.dropdown__counter-block-counter 0
+            button.button_round +
+
 div.dropdown#guests
     div.dropdown__btn.field
-        p Сколько гостей
+        p
         i.dropdown__btn-icon.material-icons keyboard_arrow_down
     div.dropdown__list.display_none
-        div.dropdown__list-item
-            h3.dropdown__list-item-name Взрослые
-            div.dropdown__counter-block
-                button.button_round -
-                h3.dropdown__counter-block-counter 0
-                button.button_round +
-        div.dropdown__list-item
-            h3.dropdown__list-item-name Дети
-            div.dropdown__counter-block
-                button.button_round -
-                h3.dropdown__counter-block-counter 0
-                button.button_round +
-        div.dropdown__list-item
-            h3.dropdown__list-item-name Младенцы
-            div.dropdown__counter-block
-                button.button_round -
-                h3.dropdown__counter-block-counter 0
-                button.button_round +
+        +dropdown__list-item('взрослые')
+        +dropdown__list-item('дети')
+        +dropdown__list-item('младенцы')
         div.dropdown__footer
-            button.dropdown__footer_button
+            button.dropdown__footer_button.dropdown__footer_button_disabled
                 h3.button__text_color_purple Очистить
             button.dropdown__footer_button
                 h3.button__text_color_purple Применить
+br
+br
+br
+br
+br
+br
+div.dropdown#rooms
+    div.dropdown__btn.field.field_width_266
+        p
+        i.dropdown__btn-icon.material-icons keyboard_arrow_down
+    div.dropdown__list.dropdown__list_width_266.display_none
+        +dropdown__list-item('спальни')
+        +dropdown__list-item('кровати')
+        +dropdown__list-item('ванные комнаты')

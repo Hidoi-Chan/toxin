@@ -2,6 +2,7 @@
 
 .field {
     width: 320px;
+    height: 44px;
     border: 1px solid $dark25;
     transition: 400ms ease;
     color: $dark75;
@@ -31,6 +32,10 @@
                 color: $dark75;
             }
         }
+    }
+
+    &_width_266 {
+        width: 266px;
     }
 
     &__title {
