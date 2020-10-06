@@ -5,6 +5,7 @@
     height: 44px;
     position: relative;
     border-radius: 22px;
+    box-sizing: border-box;
     background: $gradient;
     transition: 400ms ease;
 
@@ -62,4 +63,5 @@
     font-weight: 300;
     font-size: torem(18);
     line-height: torem(22);
+    box-sizing: border-box;
 }

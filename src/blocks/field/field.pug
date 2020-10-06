@@ -1,0 +1,7 @@
+mixin field(title, inputClass, type, placeholder, icon, iconClass)
+    if title
+        h3.field__title= title
+    div.field__wrapper
+        input(class!=`field ${inputClass}`, type!= type, placeholder!= placeholder)
+        if icon
+            i(class!=`field__icon material-icons ${iconClass}`)= icon

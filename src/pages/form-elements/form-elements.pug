@@ -1,7 +1,10 @@
 extends ../../layout
+include ../../blocks/field/field.pug
 
 block content
-    //- include ../../blocks/input/input.pug
     //- include ../../blocks/button/button.pug
-    include ../../blocks/dropdown/dropdown.pug
-
+    //- include ../../blocks/dropdown/dropdown.pug
+    //- +field-input('text field', 'text', 'Email', '', 320)
+    //- +field-input('masked text field', 'text', 'ДД.ММ.ГГГГ', '', 320, 'field_js-date')
+    //- +field-input('subscription text field', 'email', 'Email', 'arrow_forward', 266)
+    +field('filter date dropdown', 'field_width_266 field_border-radius_4 field_js-datepicker', 'text', 'Выберите дату', 'keyboard_arrow_down', 'field__icon_color_dark50')
