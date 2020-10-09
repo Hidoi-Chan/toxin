@@ -1,0 +1,72 @@
+@import '../../style/variables.scss';
+
+.checkbox {
+
+    display: block;
+
+    &:hover {
+        .checkbox__text-block:before {
+            border: 1px solid $purple;
+        }
+    }
+
+    input {
+        display: none;
+
+        &:checked + .checkbox__text-block:after {
+            opacity: 1;
+        }
+
+        &:checked + .checkbox__text-block:before {
+            border: 1px solid $purple;
+        }
+    }
+
+    &__text-block {
+        position: relative;
+        padding-left: 30px;
+        cursor: pointer;
+        font-size: torem(12);
+        line-height: torem(14);
+        color: $dark50;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border: 1px solid $dark25;
+            border-radius: 4px;
+            transition: 300ms ease;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 7px;
+            width: 6px;
+            height: 8px;
+            border: solid $purple;
+            border-width: 0 2px 2px 0;
+            border-image: $gradient;
+            border-image-slice: 1;
+            transform: rotate(45deg);
+            opacity: 0;
+            transition: 300ms ease;
+        }
+    }
+
+    &__title {
+        font-weight: 700;
+        font-size: torem(14);
+        line-height: torem(18);
+        color: $dark75;
+    }
+
+    &__discription {
+        margin-top: 5px;
+    }
+}

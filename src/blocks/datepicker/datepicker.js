@@ -9,8 +9,7 @@ $('.field_js-datepicker').datepicker({
     navTitles: {
         days: 'MM yyyy'
     },
-    offset: 6,
-    inline: true
+    offset: 6
 })
 
 let myDatepicker = $('.field_js-datepicker').datepicker().data('datepicker')

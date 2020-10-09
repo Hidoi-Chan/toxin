@@ -1,0 +1,7 @@
+mixin checkbox(title, discription, className)
+    label(class!=`checkbox ${className}`)
+        input(type='checkbox')
+        div.checkbox__text-block
+            p.checkbox__title= title
+            if discription
+                p.checkbox__discription= discription
