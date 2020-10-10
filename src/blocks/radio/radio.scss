@@ -2,7 +2,6 @@
 
 .radio {
     display: block;
-    padding-left: 20px;
 
     &:hover {
         .radio__text:before {
@@ -10,24 +9,20 @@
         }
     }
 
-    &:first-child {
-        padding-left: 0;
-    }
-
     input {
         display: none;
 
-        &:checked + .radio__text:after {
-            opacity: 1;
-        }
+        &:checked + .radio__text {
+            color: $dark75;
 
-        &:checked + .radio__text:before {
-            border: 1px solid $purple;
-        }
-    }
+            &:after {
+                opacity: 1;
+            }
 
-    &__wrapper {
-        display: flex;
+            &:before {
+                border: 1px solid $purple;
+            }
+        }
     }
 
     &__text {
@@ -36,6 +31,7 @@
         cursor: pointer;
         line-height: torem(24);
         color: $dark50;
+        transition: 300ms ease;
 
         &:before {
             content: '';

@@ -1,0 +1,73 @@
+@import '../../style/variables.scss';
+
+.rate {
+	width: 120px;
+    
+    // input {
+    //     display: none;
+
+    //     &:checked {
+
+    //         & ~ label {
+                
+    //             &:before {
+    //                 content: 'star';
+    //             }
+    //         }
+    //     }
+    // }
+
+    // label {
+    //     float: right;
+    //     width: 24px;
+    //     cursor: pointer;
+    //     font-family: 'Material Icons';
+    //     font-size: torem(24);
+    //     line-height: torem(20);
+    //     background: $gradient;
+    //     -webkit-background-clip: text;
+    //     -webkit-text-fill-color: transparent;
+    //     color: $purple;
+
+    //     &:before {
+    //         content: 'star_border';
+    //     }
+
+    //     &:hover,
+    //     &:hover ~ label {
+
+    //         &:before {
+    //             content: 'star';
+    //         }
+    //     }
+    // }
+
+    &-result {
+        width: 120px;
+
+        span {
+            display: block;
+            float: left;
+            width: 24px;
+            cursor: pointer;
+            font-family: 'Material Icons';
+            font-size: torem(24);
+            line-height: torem(20);
+            background: $gradient;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: $purple;
+
+            &:before {
+                content: 'star_border';
+            }
+
+            &.active {
+
+                &:before {
+                    content: 'star';
+                }
+            }
+        }
+    }
+}

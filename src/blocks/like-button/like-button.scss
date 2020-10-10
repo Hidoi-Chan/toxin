@@ -1,0 +1,77 @@
+@import '../../style/variables.scss';
+
+.like-button {
+    display: block;
+
+    input {
+        display: none;
+
+        &:checked + .like-button__btn {
+            border: 1px solid $purple;
+
+            &:before,
+            &:after {
+                color: $purple;
+            }
+    
+            &:before {
+                content: 'favorite';
+            }            
+        }
+    }
+
+    &:hover {
+
+        .like-button__btn {
+            border: 1px solid $purple;
+    
+            &:before,
+            &:after {
+                color: $purple;
+            }
+        }
+    }
+
+    &__btn {       
+        display: block; 
+        position: relative;
+        width: 40px;
+        height: 20px;
+        border: 1px solid $dark25;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 300ms ease;
+
+        &:before {
+            content: 'favorite_border';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Material Icons';
+            font-size: torem(10);
+            line-height: torem(9);
+            color: $dark25;
+            transition: 300ms ease;
+        }
+    
+        &:after {
+            content: '12';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 0;
+            left: 22px;
+            display: flex;
+            align-items: center;
+            font-size: torem(10);
+            line-height: torem(12);
+            color: $dark25;
+            transition: 300ms ease;
+        }
+    }
+}

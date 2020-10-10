@@ -1,0 +1,4 @@
+mixin toggle(title, value, className)
+    label(class!=`toggle ${className}`)
+        input(type='checkbox' name='toggle' value= value)
+        div.toggle__text= title

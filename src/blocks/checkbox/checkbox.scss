@@ -13,12 +13,15 @@
     input {
         display: none;
 
-        &:checked + .checkbox__text-block:after {
-            opacity: 1;
-        }
+        &:checked + .checkbox__text-block {
 
-        &:checked + .checkbox__text-block:before {
-            border: 1px solid $purple;
+            &:after {
+                opacity: 1;
+            }
+
+            &:before {
+                border: 1px solid $purple;
+            }
         }
     }
 
