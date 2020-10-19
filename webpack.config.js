@@ -166,13 +166,16 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|jpeg|svg|gif)$/,
-                exclude: [path.resolve(__dirname, './src/fonts')],
+                exclude: [
+                    path.resolve(__dirname, './src/fonts'),
+                    path.resolve(__dirname, './src/icons'),
+                ],
                 use: {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
                         outputPath: 'assets/images',
-                        publicPath: '../assets/images',
+                        // publicPath: '../assets/images',
                     }
                 }
             },

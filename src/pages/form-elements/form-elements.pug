@@ -5,6 +5,8 @@ include ../../blocks/radio/radio.pug
 include ../../blocks/toggle/toggle.pug
 include ../../blocks/like-button/like-button.pug
 include ../../blocks/rate/rate.pug
+include ../../blocks/list-title/list-title.pug
+include ../../blocks/room-info-item/room-info-item.pug
 
 block content
     //- include ../../blocks/button/button.pug
@@ -13,9 +15,14 @@ block content
     //- +field-input('masked text field', 'text', 'ДД.ММ.ГГГГ', '', 320, 'field_js-date')
     //- +field-input('subscription text field', 'email', 'Email', 'arrow_forward', 266)
     //- +field('filter date dropdown', 'field_width_266 field_border-radius_4 field_js-datepicker', 'text', 'Выберите дату', 'keyboard_arrow_down', 'field__icon_color_dark50')
-    +checkbox('Можно курить', 'v', 'Только мне')
+    +checkbox-with-discription('Можно курить', 'Если очень хочется, то можно')
+    +checkbox('Можно курить')
     +radio('Мужчина', 'male')
     +toggle('Получать спецпредложения', 'get special offers')
     +like-button()
-    +rate-result('', 3)
+    //- +rate-result('', 4)
+    +list-title('list-title_width_266 list-title_with-icon', 'expandable checkbox list')
+    //- +room-info-item('room-info-item_after', 'mood', 'Комфорт', 'Шумопоглощающие стены')
+    //- +room-info-item('room-info-item_after', 'location_city', 'Удобство', 'Окно в каждой из спален')
+    include ../../blocks/user-icon/user-icon.pug
     

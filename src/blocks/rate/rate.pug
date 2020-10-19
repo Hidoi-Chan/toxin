@@ -13,7 +13,6 @@ mixin rate-result(className, starsNum)
     div(class!=`rate-result ${className}`)
         - var i = 0
         while i < starsNum
-            span.active= i++
-        //- while i < 5
-        //-     span
-        //-     i++
+            span.active= ++i
+        while i < 5
+            span= ++i

@@ -67,6 +67,11 @@
         font-size: torem(14);
         line-height: torem(18);
         color: $dark75;
+
+        &_thin {
+            font-weight: 300;
+            color: $dark50;
+        }
     }
 
     &__discription {
