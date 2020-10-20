@@ -1,0 +1,52 @@
+@import '../../style/variables.scss';
+
+.review {
+
+    &__header {
+        display: flex;
+        align-items: center;      
+        margin-bottom: 12px;
+    }
+
+    &__circle-for-avatar {
+        width: 48px;
+        height: 48px;
+        overflow: hidden;
+        border-radius: 50%;
+        box-shadow: 0px 10px 20px $dark10;
+    }
+
+    &__avatar {
+        display: block;
+        width:100%;
+        border-radius: 50%;
+    }
+
+    &__header-text,
+    &__text {
+        margin: 0 10px;
+        max-width: 653px;
+    }
+
+    &__username {
+        font-weight: 700;
+        line-height: torem(24);
+    }
+
+    &__date-added {
+        line-height: torem(24);
+    }
+
+    &__wrapper {
+        display: flex;
+    }
+
+    &__like-button-wrapper {
+        width: 48px;
+        display: flex;
+    }
+
+    &__like-button {
+        margin: 0 auto;
+    }
+}

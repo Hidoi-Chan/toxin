@@ -10,7 +10,7 @@
             border: 1px solid $purple;
 
             &:before,
-            &:after {
+            .like-button__num {
                 color: $purple;
             }
     
@@ -26,7 +26,7 @@
             border: 1px solid $purple;
     
             &:before,
-            &:after {
+            .like-button__num {
                 color: $purple;
             }
         }
@@ -58,20 +58,19 @@
             color: $dark25;
             transition: 300ms ease;
         }
-    
-        &:after {
-            content: '12';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            top: 0;
-            left: 22px;
-            display: flex;
-            align-items: center;
-            font-size: torem(10);
-            line-height: torem(12);
-            color: $dark25;
-            transition: 300ms ease;
-        }
+    }
+
+    &__num {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 0;
+        left: 22px;
+        display: flex;
+        align-items: center;
+        font-size: torem(10);
+        line-height: torem(12);
+        color: $dark25;
+        transition: 300ms ease;
     }
 }

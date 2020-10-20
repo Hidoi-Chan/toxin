@@ -1,4 +1,5 @@
-mixin like-button(className)
+mixin like-button(className, num)
     label(class!=`like-button ${className}`)
         input(type='checkbox')
-        div.like-button__btn
+        div.like-button__btn 
+            p.like-button__num= num

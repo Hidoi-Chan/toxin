@@ -16,7 +16,8 @@ import '@blocks/like-button/like-button.scss'
 import '@blocks/rate/rate.scss'
 import '@blocks/list-title/list-title.scss'
 import '@blocks/room-info-item/room-info-item.scss'
-import '@blocks/user-icon/user-icon.scss'
+import '@blocks/review/review.scss'
+import '@blocks/range-slider/range-slider.scss'
 
 dropdown('guests')
 dropdown('rooms')
