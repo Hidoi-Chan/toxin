@@ -1,0 +1,37 @@
+@import '../../style/variables.scss';
+
+.pagination {
+    max-width: 240px;
+    text-align: center;
+
+    &__list {
+        display: inline-block;
+    }
+
+    &__link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        float: left;
+        border-radius: 22px;
+        font-size: torem(12);
+        line-height: torem(15);
+        color: $dark50;
+
+        &.active {
+            background: $gradient;
+            color: white;
+            cursor: auto;
+        }
+
+        &.next,
+        &.prev {
+            background: $secondaryGradient;
+            color: white;
+            font-size: torem(24);
+            line-height: torem(20);
+        }
+    }
+}

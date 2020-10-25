@@ -60,4 +60,19 @@
             transition: 300ms ease;
         }
     }
+
+    &_checked {
+        .toggle__text {
+
+            &:after {
+                background: $gradient;
+                left: 25px;
+
+            }
+
+            &:before {
+                border: 1px solid $purple;
+            }
+        }
+    }
 }

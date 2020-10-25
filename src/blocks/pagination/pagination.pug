@@ -1,0 +1,10 @@
+mixin pagination(className, description)
+    div(class!=`pagination ${className}`)
+        div.pagination__list
+            a(href="#").pagination__link.active 1
+            a(href="#").pagination__link 2
+            a(href="#").pagination__link 3
+            a(href="#").pagination__link …
+            a(href="#").pagination__link 15
+            a(href="#").pagination__link.next.material-icons arrow_forward
+        p.pagination__description= description

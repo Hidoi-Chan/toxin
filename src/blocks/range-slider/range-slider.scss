@@ -1,2 +1,54 @@
 @import '../../style/variables.scss';
 
+.range-slider {
+    height: 44px;
+    width: 266px;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &__base {
+        height: 6px;
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid $dark25;
+        border-radius: 3px;
+        position: relative;
+
+        &::after,
+        &::before {
+            content: '';
+            display: block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid white;
+            border-radius: 10px;
+            background: $secondaryGradient;
+            position: absolute;
+            top: calc(50% - 8px);
+            z-index: 5;
+        }
+
+        &::before {
+            left: 77px;
+        }
+
+        &::after {
+            right: 92px;
+        }
+    }
+
+    &__fill {
+        height: 6px;
+        box-sizing: border-box;
+        border-radius: 3px;
+        background: $secondaryGradient;
+        position: absolute;
+        top: calc(50% - 3px);
+        left: 82px;
+        right: 96px;
+    }
+}

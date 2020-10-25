@@ -58,4 +58,18 @@
             transition: 300ms ease;
         }
     }
+
+    &_checked {
+        .radio__text {
+            color: $dark75;
+
+            &:after {
+                opacity: 1;
+            }
+
+            &:before {
+                border: 1px solid $purple;
+            }
+        }
+    }
 }

@@ -2,22 +2,6 @@
 @import '../../../node_modules/air-datepicker/dist/css/datepicker.min.css';
 
 .field {
-    height: 44px;
-    position: relative;
-    box-sizing: border-box;
-    padding: 12px 15px;
-    border: 1px solid $dark25;
-    transition: 400ms ease;
-    color: $dark75;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 300;
-    font-size: torem(14);
-    line-height: torem(18);
-
-    &::placeholder {
-        color: $dark25;
-        transition: 400ms ease;
-    }
 
     &__title {
         margin-bottom: 5px;
@@ -29,7 +13,7 @@
 
         &:focus,
         &:hover {
-            .field {
+            .field__input {
                 border: 1px solid $dark50;
                 color: $dark75;
 
@@ -39,6 +23,62 @@
             }
     
             .field__icon_color_dark50 {
+                color: $dark75;
+            }
+        }
+    }
+
+    &__input {
+        height: 44px;
+        position: relative;
+        box-sizing: border-box;
+        padding: 12px 15px;
+        border: 1px solid $dark25;
+        transition: 400ms ease;
+        color: $dark75;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 300;
+        font-size: torem(14);
+        line-height: torem(18);
+
+        &::placeholder {
+            color: $dark25;
+            transition: 400ms ease;
+        }
+
+        &_width_320 {
+            width: 320px;
+        }
+    
+        &_width_266 {
+            width: 266px;
+            padding-right: 44px;
+        }
+    
+        &_width_150 {
+            width: 150px;
+        }
+    
+        &_dropdown-color_dark75 {
+
+            &::placeholder {
+                color: $dark75;
+            }
+        }
+    
+        &_border-radius_4 {
+            border-radius: 4px;
+        }
+    
+        &_border-radius_2 {
+            border-radius: 2px 2px 0 0;
+        }
+        
+        &_hover {
+            border: 1px solid $dark50;
+            color: $dark75;
+
+            &::placeholder {
                 color: $dark75;
             }
         }
@@ -67,32 +107,6 @@
             -webkit-text-fill-color: transparent;
             color: $purple;
         }
-    }
-
-    &_width_320 {
-        width: 320px;
-    }
-
-    &_width_266 {
-        width: 266px;
-        padding-right: 44px;
-    }
-
-    &_width_150 {
-        width: 150px;
-    }
-
-    &_border-radius_4 {
-        border-radius: 4px;
-    }
-
-    &_border-radius_2 {
-        border-radius: 2px 2px 0 0;
-    }
-    
-    &_hover {
-        border: 1px solid $dark50;
-        color: $dark75;
     }
 
     &_js-datepicker {

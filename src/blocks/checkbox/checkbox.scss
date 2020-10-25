@@ -3,6 +3,7 @@
 .checkbox {
 
     display: block;
+    margin-top: 12px;
 
     &:hover {
         .checkbox__text-block:before {
@@ -76,5 +77,19 @@
 
     &__discription {
         margin-top: 5px;
+    }
+
+    &_checked {
+
+        .checkbox__text-block {
+
+            &:after {
+                opacity: 1;
+            }
+
+            &:before {
+                border: 1px solid $purple;
+            }
+        }
     }
 }
