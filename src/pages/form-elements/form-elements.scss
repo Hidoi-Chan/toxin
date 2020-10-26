@@ -7,12 +7,15 @@
     &__section {
         display: flex;
         justify-content: space-between;
+
+        &:nth-child(2) {
+            margin-top: 100px;
+        }
     }
 
     &__column {
         display: flex;
         flex-direction: column;
-        max-width: 320px;
 
         & > * {
             margin-top: 20px;
@@ -31,20 +34,41 @@
         line-height: torem(15);
         color: $dark50;
         text-transform: uppercase;
+
+        &_range-slider {
+            top: -(torem(15));
+            cursor: auto;
+        }
     }
 
     &__title {
         margin-bottom: 16px;
     }
 
+    &__title-range-slider {
+        margin-bottom: 0;
+    }
+
     &__container {
         display: flex;
 
-        & > * {
+        & > *:first-child {
+            margin-right: 20px;
+        }
+    }
 
-            &:first-child {
-                margin-right: 20px;
-            }
+    &__container-like-button {
+        display: flex;
+
+        & > *:first-child {
+                margin-right: 10px;
+        }
+    }
+
+    &__buttons-wrapper {
+
+        & > .form-elements__container {
+            margin-bottom: 30px;
         }
     }
 }

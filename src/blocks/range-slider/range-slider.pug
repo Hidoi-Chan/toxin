@@ -1,4 +1,6 @@
-mixin range-slider(className)
+mixin range-slider(className, formElementsTitle)
     div(class!=`range-slider ${className}`)
+        if formElementsTitle
+            p.form-elements__description-text.form-elements__description-text_range-slider= formElementsTitle
         div.range-slider__base
             div.range-slider__fill

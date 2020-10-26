@@ -98,8 +98,11 @@
 
         &_color_dark50 {
             color: $dark50;
-            transition: 400ms ease;
-        } 
+        }
+
+        &_color_dark75 {
+            color: $dark75;
+        }
 
         &_color_gradient {
             background: $gradient;

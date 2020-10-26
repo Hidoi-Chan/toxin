@@ -73,4 +73,19 @@
         color: $dark25;
         transition: 300ms ease;
     }
+
+    &_checked {
+        .like-button__btn {
+            border: 1px solid $purple;
+
+            &:before,
+            .like-button__num {
+                color: $purple;
+            }
+    
+            &:before {
+                content: 'favorite';
+            }
+        }
+    }
 }

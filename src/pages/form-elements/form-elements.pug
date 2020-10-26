@@ -3,17 +3,17 @@ include ../../blocks/field/field.pug
 include ../../blocks/checkbox/checkbox.pug
 include ../../blocks/radio/radio.pug
 include ../../blocks/toggle/toggle.pug
-//- include ../../blocks/like-button/like-button.pug
-//- include ../../blocks/rate/rate.pug
+include ../../blocks/like-button/like-button.pug
+include ../../blocks/rate/rate.pug
 include ../../blocks/list-title/list-title.pug
+include ../../blocks/button/button.pug
+include ../../blocks/dropdown/dropdown.pug
 //- include ../../blocks/room-info-item/room-info-item.pug
 //- include ../../blocks/review/review.pug
-//- include ../../blocks/range-slider/range-slider.pug
-//- include ../../blocks/pagination/pagination.pug
+include ../../blocks/range-slider/range-slider.pug
+include ../../blocks/pagination/pagination.pug
 
 block content
-    //- include ../../blocks/button/button.pug
-    //- include ../../blocks/dropdown/dropdown.pug
     //- +field-input('text field', 'text', 'Email', '', 320)
     //- +field-input('masked text field', 'text', 'ДД.ММ.ГГГГ', '', 320, 'field_js-date')
     //- +field-input('subscription text field', 'email', 'Email', 'arrow_forward', 266)
@@ -58,5 +58,41 @@ block content
                     h3.form-elements__title Toggle
                     +toggle('toggle_checked', 'Получать спецпредложения', 'get special offers')
                     +toggle('', 'Получать спецпредложения', 'get special offers')
+                div
+                    h3.form-elements__title like button
+                    div.form-elements__container-like-button
+                        +like-button('', 2)
+                        +like-button('like-button_checked', 12)
+                div
+                    h3.form-elements__title rate button
+                    div.form-elements__container
+                        +rate-result('', 4)
+                        +rate-result('', 5)
+            div.form-elements__column
+                div
+                    h3.form-elements__title-range-slider Range Slider
+                    +range-slider('', '5 000p - 10 000p')
+                div.form-elements__buttons-wrapper
+                    h3.form-elements__title buttons
+                    div.form-elements__container
+                        +button('', 'click me')
+                        +buttonDisabled('', 'click me')
+                    div.form-elements__container
+                        +button('', 'click me', true)
+                        +buttonDisabled('', 'click me', true)
+                    div.form-elements__container
+                        +buttonWithoutFill('', 'click me', 'purple')
+                        +buttonWithoutFill('', 'click me', 'dark50')
+                    div.form-elements__container
+                        +button('button_width_320', 'перейти к оплате')
+                div
+                    h3.form-elements__title pagination
+                    +pagination('', '1 – 12 из 100+ вариантов аренды')
+        section.form-elements__section
+            div.form-elements__column
+                +field('Dropdown', 'field__input_width_266 field__input_border-radius_2 field__input_dropdown-color_dark75', '', '2 спальни, 2 кровати…', 'Default', 'expand_more', 'field__icon_color_dark75', 'readonly')
+                +field('Dropdown', 'field__input_width_266 field__input_border-radius_2 field__input_hover field__input_dropdown-color_dark75', '', '2 спальни, 2 кровати…', 'expanded', 'expand_more', 'field__icon_color_dark75', 'readonly', ['dropdown_width_266', ['спальни', 'кровати', 'ванные комнаты']])
+            div.form-elements__column
+                +field('Dropdown', 'field__input_width_320 field__input_border-radius_2 field__input_hover field__input_dropdown-color_dark75', '', 'Сколько гостей', '', 'expand_more', 'field__icon_color_dark75', 'readonly', ['', ['взрослые', 'дети', 'младенцы'], true])
             div.form-elements__column Hello world
     

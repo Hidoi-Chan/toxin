@@ -1,4 +1,4 @@
-mixin field(title, inputClass, type, placeholder, formElementsTitle, icon, iconClass, readonly)
+mixin field(title, inputClass, type, placeholder, formElementsTitle, icon, iconClass, readonly, dropdownArr)
     div.field
         if title
             h3.field__title= title
@@ -8,3 +8,5 @@ mixin field(title, inputClass, type, placeholder, formElementsTitle, icon, iconC
             input(class!=`field__input ${inputClass}`, type!= type, placeholder!= placeholder, readonly!= readonly, spellcheck='false')
             if icon
                 i(class!=`field__icon material-icons ${iconClass}`)= icon
+            if dropdownArr
+                +dropdown(...dropdownArr)

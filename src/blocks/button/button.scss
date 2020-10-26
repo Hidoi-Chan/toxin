@@ -51,17 +51,37 @@
             background: $gradient;
         }
     }
-}
 
-.button_round {                             // перенести
-    width: 30px;
-    height: 30px;
-    border: 1px solid $dark25;
-    border-radius: 22px;
-    color: $dark50;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 300;
-    font-size: torem(18);
-    line-height: torem(22);
-    box-sizing: border-box;
+    &_round {
+        width: 30px;
+        height: 30px;
+        border: 1px solid $dark25;
+        border-radius: 22px;
+        color: $dark50;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 300;
+        font-size: torem(18);
+        line-height: torem(22);
+        box-sizing: border-box;
+    }
+
+    &_width_320 {
+        width: 320px;
+
+        &::after {
+            content: 'arrow_forward';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-family: "Material Icons", sans-serif;
+            font-size: torem(24);
+            line-height: torem(24);
+            color: white;
+        }
+    }
 }

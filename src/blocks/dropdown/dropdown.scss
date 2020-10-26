@@ -1,54 +1,25 @@
 @import '../../style/variables.scss';
 
 .dropdown {
-    position: relative;
-    display: block;
+    width: 320px;
+    box-sizing: border-box;
+    padding: 7px 7px 0 15px;
+    position: absolute;
+    top: 44px;
+    background-color: white;
+    z-index: 10;
+    border: 1px solid $dark50;
+    border-top: none;
+    border-radius: 0 0 2px 2px;
 
-    &__btn {
-        position: relative;
-        padding: 12px 44px 13px 15px;
-        box-sizing: border-box;
-        border-radius: 2px 2px 0 0;
-        cursor: pointer;
-
-        &-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            position: absolute;
-            top: 0;
-            right: 0;
-            color: $dark75;
-        }
-        
-        &_hover {
-            border: 1px solid $dark50;
-        }
+    &_width_266 {
+        width: 266px;
     }
 
-    &__list {
-        width: 320px;
-        box-sizing: border-box;
-        padding: 7px 7px 0 15px;
-        position: absolute;
-        top: 44px;
-        background-color: white;
-        z-index: 10;
-        border: 1px solid $dark50;
-        border-top: none;
-        border-radius: 0 0 2px 2px;
-
-        &-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        &_width_266 {
-            width: 266px;
-        }
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     &__counter-block {
@@ -63,7 +34,7 @@
         display: flex;
         justify-content: space-between;
 
-        &_button {
+        &-button {
             padding: 12px 0;
 
             &_disabled {
