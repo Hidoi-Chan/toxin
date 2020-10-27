@@ -15,11 +15,12 @@ import '@blocks/radio/radio.scss'
 import '@blocks/toggle/toggle.scss'
 import '@blocks/like-button/like-button.scss'
 import '@blocks/rate/rate.scss'
-import '@blocks/list-title/list-title.scss'
+import '@blocks/expandable-list/expandable-list.scss'
 import '@blocks/room-info-item/room-info-item.scss'
 import '@blocks/review/review.scss'
 import '@blocks/range-slider/range-slider.scss'
 import '@blocks/pagination/pagination.scss'
+import '@blocks/bullet-list/bullet-list.scss'
 
 dropdown('guests')
 dropdown('rooms')

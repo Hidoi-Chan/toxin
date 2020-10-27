@@ -1,0 +1,4 @@
+mixin bulletList(className, list)
+    ul(class!=`bullet-list ${className}`)
+        each val in list
+            li.bullet-list__item= val

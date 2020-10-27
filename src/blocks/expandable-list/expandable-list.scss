@@ -1,8 +1,9 @@
 @import '../../style/variables.scss';
 
-.list-title {
+.expandable-list {
     display: flex;
     height: 44px;
+    position: relative;
 
     &_width {
 
@@ -41,5 +42,12 @@
 
     &__title {
         margin: auto 0;
+    }
+
+    &__checkbox-container {
+        position: absolute;
+        top: 44px;
+        left: 0;
+        width: 266px;
     }
 }

@@ -5,9 +5,10 @@ include ../../blocks/radio/radio.pug
 include ../../blocks/toggle/toggle.pug
 include ../../blocks/like-button/like-button.pug
 include ../../blocks/rate/rate.pug
-include ../../blocks/list-title/list-title.pug
+include ../../blocks/expandable-list/expandable-list.pug
 include ../../blocks/button/button.pug
 include ../../blocks/dropdown/dropdown.pug
+include ../../blocks/bullet-list/bullet-list.pug
 //- include ../../blocks/room-info-item/room-info-item.pug
 //- include ../../blocks/review/review.pug
 include ../../blocks/range-slider/range-slider.pug
@@ -24,7 +25,7 @@ block content
     //- +toggle('Получать спецпредложения', 'get special offers')
     //- +like-button('', 2)
     //- +rate-result('', 4)
-    //- +list-title('list-title_width_266 list-title_with-icon', 'expandable checkbox list')
+    //- +expandable-list('expandable-list_width_266 expandable-list_with-icon', 'expandable checkbox list')
     //- +room-info-item('room-info-item_after', 'mood', 'Комфорт', 'Шумопоглощающие стены')
     //- +room-info-item('room-info-item_after', 'location_city', 'Удобство', 'Окно в каждой из спален')
     //- +review('', 'image.png', 'Мурад Сарафанов', '5 дней назад', 8, 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.')
@@ -93,6 +94,21 @@ block content
                 +field('Dropdown', 'field__input_width_266 field__input_border-radius_2 field__input_dropdown-color_dark75', '', '2 спальни, 2 кровати…', 'Default', 'expand_more', 'field__icon_color_dark75', 'readonly')
                 +field('Dropdown', 'field__input_width_266 field__input_border-radius_2 field__input_hover field__input_dropdown-color_dark75', '', '2 спальни, 2 кровати…', 'expanded', 'expand_more', 'field__icon_color_dark75', 'readonly', ['dropdown_width_266', ['спальни', 'кровати', 'ванные комнаты']])
             div.form-elements__column
-                +field('Dropdown', 'field__input_width_320 field__input_border-radius_2 field__input_hover field__input_dropdown-color_dark75', '', 'Сколько гостей', '', 'expand_more', 'field__icon_color_dark75', 'readonly', ['', ['взрослые', 'дети', 'младенцы'], true])
-            div.form-elements__column Hello world
+                +field('Dropdown', 'field__input_width_320 field__input_border-radius_2 field__input_hover field__input_dropdown-color_dark75', '', 'Сколько гостей', '', 'expand_more', 'field__icon_color_dark75', 'readonly', ['', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button dropdown__footer-button_disabled', 'Очистить', 'purple'], ['dropdown__footer-button', 'Применить', 'purple']])
+            div.form-elements__column
+                +field('Dropdown', 'field__input_width_320 field__input_border-radius_2 field__input_hover field__input_dropdown-color_dark75', '', '3 гостя', '', 'expand_more', 'field__icon_color_dark75', 'readonly', ['', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button', 'Очистить', 'purple'], ['dropdown__footer-button', 'Применить', 'purple']])
+        section.form-elements__section
+            div.form-elements__column
+                div
+                    +expandable-list('expandable-list_width_266 expandable-list_with-icon', 'expandable checkbox list')
+                    +expandable-list('expandable-list_width_266 expandable-list_with-icon', 'expandable checkbox list', [['', 'Завтрак'], ['checkbox_checked', 'Письменный стол'], ['checkbox_checked', 'Стул для кормления'], ['checkbox_checked', 'Кроватка'], ['', 'Телевизор'], ['', 'Шампунь']])
+            div.form-elements__column
+                div
+                    h3.form-elements__title rich Checkbox Buttons
+                    +checkbox('', 'Широкий коридор', '', 'Ширина коридоров в номере не менее 91 см.')
+                    +checkbox('', 'Помощник для инвалидов', '', 'На 1 этаже вас встретит специалист и проводит до номера.')
+            div.form-elements__column
+                div
+                    h3.form-elements__title bullet list
+                    +bulletList('', ['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, а выезд до 12:00'])
     

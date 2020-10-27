@@ -1,0 +1,23 @@
+@import '../../style/variables.scss';
+
+.bullet-list {
+    display: block;
+
+    &__item {
+        padding-left: 20px;
+        max-width: 246px;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: calc(50% - 5px);
+            left: 0;
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 22px;
+            background-color: $dark25;
+        }
+    }
+}

@@ -1,0 +1,8 @@
+mixin expandable-list(className, title, checkbox)
+    div(class!=`expandable-list ${className}`)
+        h3.expandable-list__title= title
+        if checkbox
+            div.expandable-list__checkbox-container
+                each val in checkbox
+                    +checkbox(...val)
+            
