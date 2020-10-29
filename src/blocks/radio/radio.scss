@@ -36,10 +36,11 @@
         &:before {
             content: '';
             position: absolute;
-            top: 1px;
+            top: 3px;
             left: 0;
             width: 20px;
             height: 20px;
+            box-sizing: border-box;
             border: 1px solid $dark25;
             border-radius: 10px;
             transition: 300ms ease;
@@ -48,8 +49,8 @@
         &:after {
             content: '';
             position: absolute;
-            top: 6px;
-            left: 5px;
+            top: 7px;
+            left: 4px;
             width: 12px;
             height: 12px;
             background: $gradient;

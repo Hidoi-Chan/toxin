@@ -1,6 +1,4 @@
-include ../../blocks/like-button/like-button.pug
-
-mixin review(className, avatarName, username, dateAdded, num, text)
+mixin review(className, avatarName, username, dateAdded, text, likeButton)
     div(class!=`review ${className}`)
         div.review__header
             div.review__circle-for-avatar
@@ -10,7 +8,7 @@ mixin review(className, avatarName, username, dateAdded, num, text)
                 p.review__date-added= dateAdded
         div.review__wrapper
             div.review__like-button-wrapper
-                +like-button('review__like-button', `${num}`)
+                +like-button(...likeButton)
             div.review__text
                 p= text
 

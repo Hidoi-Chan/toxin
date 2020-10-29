@@ -5,11 +5,11 @@
 
 html,
 body {
-    width: 1440px;
+    width: 100%;
     background-color: white;
     color: $dark75;
     font-family: "Montserrat", sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 14px;
     line-height: torem(24);
 }
@@ -19,6 +19,10 @@ body {
 //     margin: auto;
 //     display: flex;
 // }
+
+.row {
+    display: flex;
+}
 
 h1,
 h2,

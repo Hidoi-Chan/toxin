@@ -11,6 +11,7 @@
     border: 1px solid $dark50;
     border-top: none;
     border-radius: 0 0 2px 2px;
+    box-shadow: 0px 10px 20px $dark5;
 
     &_width_266 {
         width: 266px;
@@ -19,7 +20,8 @@
     &__item {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: center;        
+        margin-bottom: 7px;
     }
 
     &__counter-block {
@@ -27,7 +29,6 @@
         justify-content: space-between;
         align-items: center;
         width: 92px;
-        padding-bottom: 7px;
     }
 
     &__footer {

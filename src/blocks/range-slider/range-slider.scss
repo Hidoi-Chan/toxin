@@ -34,11 +34,11 @@
         }
 
         &::before {
-            left: 77px;
+            left: 75px;
         }
 
         &::after {
-            right: 92px;
+            right: 88px;
         }
     }
 
@@ -49,7 +49,7 @@
         background: $secondaryGradient;
         position: absolute;
         top: calc(50% - 3px);
-        left: 82px;
-        right: 96px;
+        left: 80px;
+        right: 90px;
     }
 }

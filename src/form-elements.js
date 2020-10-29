@@ -2,7 +2,6 @@ import '@img/image.png';
 import '@img/image_4.png';
 
 import '@style/global.scss'
-import '@pages/form-elements/form-elements.scss'
 import '@blocks/field/field.scss'
 import '@blocks/field/field.js'
 import '@blocks/datepicker/datepicker.scss'
@@ -21,6 +20,7 @@ import '@blocks/review/review.scss'
 import '@blocks/range-slider/range-slider.scss'
 import '@blocks/pagination/pagination.scss'
 import '@blocks/bullet-list/bullet-list.scss'
+import '@pages/form-elements/form-elements.scss'
 
 dropdown('guests')
 dropdown('rooms')

@@ -38,12 +38,18 @@ const optimization = () => {
                     chunks: 'initial',
                     enforce: true,
                 },
-                index: {
-                    test: /index.js/,
-                    name: 'index',
+                cards: {
+                    test: /cards.js/,
+                    name: 'cards',
                     chunks: 'initial',
                     enforce: true,
                 }
+                // index: {
+                //     test: /index.js/,
+                //     name: 'index',
+                //     chunks: 'initial',
+                //     enforce: true,
+                // }
             }
         }
         // {
@@ -87,6 +93,7 @@ module.exports = {
     entry: {
         colorstype: './colors-type.js',
         formelements: './form-elements.js',
+        cards: './cards.js',
         index: './index.js'
     },
     output: {
@@ -118,7 +125,12 @@ module.exports = {
         new HTMLWebpackPlugin({
             filename: 'form-elements.html',
             template: './pages/form-elements/form-elements.pug',
-            chunks: ['formelements', 'index']
+            chunks: ['formelements']
+        }),
+        new HTMLWebpackPlugin({
+            filename: 'cards.html',
+            template: './pages/cards/cards.pug',
+            chunks: ['cards']
         }),
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin({

@@ -2,16 +2,17 @@
 
 .bullet-list {
     display: block;
+    max-width: 266px;
 
     &__item {
-        padding-left: 20px;
-        max-width: 246px;
+        padding: 0 10px 0 21px;
         position: relative;
+        margin-bottom: 10px;
 
         &::before {
             content: '';
             position: absolute;
-            top: calc(50% - 5px);
+            top: 7px;
             left: 0;
             display: block;
             width: 10px;

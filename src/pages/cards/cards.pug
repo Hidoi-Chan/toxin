@@ -1,0 +1,26 @@
+extends ../../layout
+include ../../blocks/field/field.pug
+include ../../blocks/button/button.pug
+include ../../blocks/radio/radio.pug
+
+block content
+    main.cards
+        div
+            div.card
+                h2.h1 Найдём номера под ваши пожелания
+                div.row
+                    +field('Прибытие', 'field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', 'ДД.ММ.ГГГГ', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
+                    +field('Выезд', 'card_margin-right_20 field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', 'ДД.ММ.ГГГГ', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
+                +field('Гости', 'card_margin-bottom_10 field__input_width_320 field__input_border-radius_2 field__input_dropdown-color_dark75', '', 'Сколько гостей', '', 'expand_more', 'field__icon_color_dark75', 'readonly')
+                +button('button_width_320', 'подобрать номер')
+            div.card
+                h2.h1 Регистрация аккаунта
+                div
+                    +field('', 'field__input_width_320 field__input_border-radius_4', 'text', 'Имя')
+                    +field('', 'field__input_width_320 field__input_border-radius_4', 'text', 'Фамилия')
+                    div.row
+                        +radio('', 'Мужчина', 'male')
+                        +radio('', 'Женщина', 'female')
+
+        div
+        div

@@ -3,7 +3,7 @@
 .checkbox {
 
     display: block;
-    margin-top: 12px;
+    margin-bottom: 12px;
 
     &:hover {
         .checkbox__text-block:before {
@@ -28,7 +28,7 @@
 
     &__text-block {
         position: relative;
-        padding-left: 30px;
+        padding: 0 10px 0 30px;
         max-width: 236px;
         cursor: pointer;
         font-size: torem(12);
@@ -38,10 +38,11 @@
         &:before {
             content: '';
             position: absolute;
-            top: -2px;
+            top: -1px;
             left: 0;
             width: 20px;
             height: 20px;
+            box-sizing: border-box;
             border: 1px solid $dark25;
             border-radius: 4px;
             transition: 300ms ease;
@@ -50,10 +51,11 @@
         &:after {
             content: '';
             position: absolute;
-            top: 2px;
-            left: 7px;
             width: 6px;
             height: 8px;
+            top: 3px;
+            left: 7px;
+            box-sizing: border-box;
             border: solid $purple;
             border-width: 0 2px 2px 0;
             border-image: $gradient;
@@ -71,7 +73,7 @@
         color: $dark75;
 
         &_thin {
-            font-weight: 300;
+            font-weight: 400;
             color: $dark50;
         }
     }

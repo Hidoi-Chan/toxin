@@ -1,7 +1,6 @@
 @import '../../style/variables.scss';
 
 .expandable-list {
-    display: flex;
     height: 44px;
     position: relative;
 
@@ -41,7 +40,7 @@
     }
 
     &__title {
-        margin: auto 0;
+        line-height: 44px;
     }
 
     &__checkbox-container {
@@ -49,5 +48,6 @@
         top: 44px;
         left: 0;
         width: 266px;
+        padding-top: 3px;
     }
 }

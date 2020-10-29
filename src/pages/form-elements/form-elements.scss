@@ -1,25 +1,28 @@
 @import '../../style/variables.scss';
 
 .form-elements {
-    margin: 145px auto;
+    margin: 142px auto;
     width: 1160px;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    column-gap: 72px;
+    row-gap: 100px;
 
-    &__section {
-        display: flex;
-        justify-content: space-between;
-
-        &:nth-child(2) {
-            margin-top: 100px;
-        }
-
-        &:nth-child(3) {
-            margin-top: 170px;
-        }
-    }
-
-    &__column {
+    &__grid-item {
         display: flex;
         flex-direction: column;
+
+        &:first-child {
+            margin-right: 54px;
+        }
+
+        &:nth-child(4) {
+            margin-bottom: 72px;
+        }
+
+        &:nth-child(8) {
+            margin-bottom: 110px;
+        }
 
         & > * {
             margin-top: 20px;
@@ -40,17 +43,28 @@
         text-transform: uppercase;
 
         &_range-slider {
-            top: -(torem(15));
+            top: -(torem(19));
             cursor: auto;
         }
     }
 
     &__title {
-        margin-bottom: 16px;
+
+        &_margin-bottom_4 {
+            margin-bottom: 4px;
+        }
+
+        &_margin-bottom_13 {
+            margin-bottom: 13px;
+        }
+
+        &_margin-bottom_18 {
+            margin-bottom: 18px;
+        }
     }
 
     &__title-range-slider {
-        margin-bottom: 0;
+        margin-bottom: 4px;
     }
 
     &__container {
@@ -59,13 +73,27 @@
         & > *:first-child {
             margin-right: 20px;
         }
+
+        &_padding-top_3 {
+            padding-top: 3px;
+        }
+
+        &_padding-top_5 {
+            padding-top: 5px;
+        }
+
+        &_margin-right {
+
+            & > *:first-child {
+                margin-right: 10px;
+            }
+        }
     }
 
-    &__container-like-button {
-        display: flex;
+    &__checkbox {
 
-        & > *:first-child {
-                margin-right: 10px;
+        &-container {
+            max-width: 236px;
         }
     }
 
@@ -73,6 +101,53 @@
 
         & > .form-elements__container {
             margin-bottom: 30px;
+            margin-top: 16px;
         }
+    }
+
+    &__review-container {
+        grid-column: 2 / 4;
+        display: flex;
+        justify-content: center;
+    }
+
+    &_margin {
+    
+        &_10 {
+            margin-top: 10px;
+        }
+    
+        &_22 {
+            margin-top: 22px;
+        }
+    
+        &_25 {
+            margin-top: 25px;
+        }
+    
+        &_30 {
+            margin-top: 30px;
+        }
+    
+        &_40 {
+            margin-top: 40px;
+        }
+    
+        &_42 {
+            margin-top: 42px;
+        }
+    
+        &_44 {
+            margin-top: 44px;
+        }
+    }
+
+    &__expandable-list-container {
+        position: relative;
+        top: -14px;
+    }
+
+    &__room-info-item {
+        padding-top: 0;
     }
 }

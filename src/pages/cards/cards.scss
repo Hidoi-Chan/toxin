@@ -1,0 +1,13 @@
+@import '../../style/variables.scss';
+
+body {
+    background-color: $grey;
+}
+
+.cards {
+    margin: 0 auto;
+    padding: 150px 0 140px;
+    width: 1160px;
+    display: flex;
+    justify-content: space-between;
+}
