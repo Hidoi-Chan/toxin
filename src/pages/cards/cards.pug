@@ -2,25 +2,66 @@ extends ../../layout
 include ../../blocks/field/field.pug
 include ../../blocks/button/button.pug
 include ../../blocks/radio/radio.pug
+include ../../blocks/toggle/toggle.pug
 
 block content
     main.cards
         div
-            div.card
-                h2.h1 Найдём номера под ваши пожелания
-                div.row
+            form(action="").card
+                h1.card__element.h1 Найдём номера под ваши пожелания
+                div.card__element.card__row
                     +field('Прибытие', 'field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', 'ДД.ММ.ГГГГ', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
-                    +field('Выезд', 'card_margin-right_20 field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', 'ДД.ММ.ГГГГ', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
-                +field('Гости', 'card_margin-bottom_10 field__input_width_320 field__input_border-radius_2 field__input_dropdown-color_dark75', '', 'Сколько гостей', '', 'expand_more', 'field__icon_color_dark75', 'readonly')
-                +button('button_width_320', 'подобрать номер')
-            div.card
-                h2.h1 Регистрация аккаунта
-                div
+                    +field('Выезд', 'field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', 'ДД.ММ.ГГГГ', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
+                div.card__element
+                    +field('Гости', 'field__input_width_320 field__input_border-radius_2 field__input_dropdown-color_dark75', '', 'Сколько гостей', '', 'expand_more', 'field__icon_color_dark75', 'readonly')
+                +button('card__element button_width_320', 'подобрать номер')
+            form(action="").card
+                h1.card__element.h1 Регистрация аккаунта
+                div.card__element.card__element_margin-bottom_10
                     +field('', 'field__input_width_320 field__input_border-radius_4', 'text', 'Имя')
                     +field('', 'field__input_width_320 field__input_border-radius_4', 'text', 'Фамилия')
-                    div.row
+                    div.card__row
                         +radio('', 'Мужчина', 'male')
                         +radio('', 'Женщина', 'female')
-
+                div.card__element
+                    +field('дата рождения', 'field__input_width_320 field__input_border-radius_4 field_js-date', 'text', 'ДД.ММ.ГГГГ')
+                div.card__element.card__element_margin-bottom_10
+                    +field('данные для входа в сервис', 'field__input_width_320 field__input_border-radius_4', 'text', 'Email')
+                    +field('', 'field__input_width_320 field__input_border-radius_4', 'text', 'Пароль')
+                    +toggle('', 'Получать спецпредложения', 'get special offers')
+                +button('card__element button_width_320', 'перейти к оплате')
+                div.card__element.card__submit-block
+                    p.card__submit-block-text Уже есть аккаунт на Toxin
+                    +button('', 'войти', true)
         div
+            form(action="").card
+                div.card__element.card__room-characteristics
+                    h1.h1 № 888
+                        span.h3.card__characteristics_color_purple  люкс
+                    h2.card__price 9 990р
+                        span.card__price_thin  в сутки
+                div.card__element.card__row
+                    +field('Прибытие', 'field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', '19.08.2019', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
+                    +field('Выезд', 'field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', '23.08.2019', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
+                div.card__element
+                    +field('Гости', 'field__input_width_320 field__input_border-radius_2 field__input_dropdown-color_dark75', '', '3 гостя', '', 'expand_more', 'field__icon_color_dark75', 'readonly')
+                table.card__element.card__table
+                    tr
+                        td 9 990р х 4 суток
+                        td
+                        td 39 960р
+                    tr
+                        td Сбор за услуги: скидка 2 179р
+                        td 
+                            +buttonRound('card__button_round', 'i')
+                        td 0р
+                    tr
+                        td Сбор за дополнительные услуги
+                        td
+                            +buttonRound('card__button_round', 'i')
+                        td 300р
+                div.card__element.card__room-characteristics
+                    h2.h2 Итого
+                    h2.h2 38 081р
+
         div
