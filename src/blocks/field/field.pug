@@ -1,5 +1,5 @@
-mixin field(title, inputClass, type, placeholder, formElementsTitle, icon, iconClass, readonly, dropdownArr)
-    div.field
+mixin field(className, title, inputClass, type, placeholder, formElementsTitle, icon, iconClass, readonly, dropdownArr)
+    div(class!=`field ${className}`)
         if title
             h3.field__title= title
         div(class!=`field__wrapper`)

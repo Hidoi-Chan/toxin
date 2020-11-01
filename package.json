@@ -39,6 +39,7 @@
     "air-datepicker": "^2.2.3",
     "inputmask": "^5.0.6-beta.15",
     "jquery": "^3.5.1",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "owl.carousel": "^2.3.4"
   }
 }

@@ -23,6 +23,10 @@
 
     &:last-child {
         margin-top: 30px;
+
+        &.card__button-reservation {
+            margin-top: 20px;
+        }
     }
 
     &_margin-bottom_10 {
@@ -85,15 +89,14 @@
 
 .card__table {
     width: 100%;
-    border-collapse: separate; 
-    border-spacing: 0 10px;
+    border-collapse: collapse;
 
     tr {
         vertical-align: top;
     }
 
     td {
-        padding: 0;
+        padding: 0 0 10px;
 
         &:first-child {
             width: 214px;

@@ -3,6 +3,7 @@
 .datepicker {
     width: 320px;
     height: 370px;
+    overflow: hidden;
     background-color: white;
     border: 1px solid $dark25;
     box-sizing: border-box;
@@ -132,5 +133,9 @@
         //       background: map_get($datepickerBG, selectedHover);
         //     }
         // }
+    }
+
+    &-inline {
+        box-shadow: 0px 10px 20px $dark5;
     }
 }
