@@ -1,0 +1,17 @@
+@import '../../style/variables.scss';
+
+body {
+    background-color: $grey;
+}
+
+.headers-footers {
+    padding: 140px 0;
+
+    & > * {
+        margin-bottom: 40px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

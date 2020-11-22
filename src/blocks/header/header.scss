@@ -1,0 +1,20 @@
+@import '../../style/variables.scss';
+
+.header {
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 10px 20px $dark5;
+}
+
+.header__container {
+    width: 1160px;
+    margin: 0 auto;
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+}
+
+.header__nav {
+    flex-grow: 1;
+    margin-right: 10px;
+}

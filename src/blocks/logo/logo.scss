@@ -1,0 +1,13 @@
+@import '../../style/variables.scss';
+
+.logo__img,
+.logo__toxin {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.logo__img {
+    width: 40px;
+    height: 40px;
+    margin-right: 12.5px;
+}

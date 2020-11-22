@@ -1,0 +1,59 @@
+include ../logo/logo.pug
+include ../nav/nav.pug
+include ../sign-in/sign-in.pug
+
+mixin header(className, username)
+    header(class!=`header ${className}`)
+        div.header__container
+            +logo('')
+            +nav('header__nav', [
+                {
+                    name: 'О нас', 
+                    isActive: true
+                },
+                {
+                    name: 'Услуги', 
+                    isActive: false,
+                    childItem: [
+                        {
+                            name: 'Lorem',
+                            isActive: false,
+                        },
+                        {
+                            name: 'Lorem',
+                            isActive: false,
+                        },
+                        {
+                            name: 'Lorem',
+                            isActive: false,
+                        }
+                    ]
+                },
+                {
+                    name: 'Вакансии', 
+                    isActive: false
+                },
+                {
+                    name: 'Новости', 
+                    isActive: false
+                },
+                {
+                    name: 'Соглашения', 
+                    isActive: false,
+                    childItem: [
+                        {
+                            name: 'Lorem',
+                            isActive: false,
+                        },
+                        {
+                            name: 'Lorem',
+                            isActive: false,
+                        },
+                        {
+                            name: 'Lorem',
+                            isActive: false,
+                        }
+                    ]
+                }
+            ])
+            +sign-in('', username)

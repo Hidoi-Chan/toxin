@@ -43,6 +43,12 @@ const optimization = () => {
                     name: 'cards',
                     chunks: 'initial',
                     enforce: true,
+                },
+                headersfooters: {
+                    test: /headersfooters.js/,
+                    name: 'headersfooters',
+                    chunks: 'initial',
+                    enforce: true,
                 }
                 // index: {
                 //     test: /index.js/,
@@ -94,6 +100,7 @@ module.exports = {
         colorstype: './colors-type.js',
         formelements: './form-elements.js',
         cards: './cards.js',
+        headersfooters: './headers-footers.js',
         index: './index.js'
     },
     output: {
@@ -132,15 +139,20 @@ module.exports = {
             template: './pages/cards/cards.pug',
             chunks: ['cards']
         }),
-        new CleanWebpackPlugin(),
-        new CopyWebpackPlugin({
-            patterns: [
-                {
-                    from: './img/favicon.ico',
-                    to: path.resolve(__dirname, 'dist')
-                }
-            ]
+        new HTMLWebpackPlugin({
+            filename: 'headers-footers.html',
+            template: './pages/headers-footers/headers-footers.pug',
+            chunks: ['headersfooters']
         }),
+        new CleanWebpackPlugin(),
+        // new CopyWebpackPlugin({
+        //     patterns: [
+        //         {
+        //             from: './img/favicon.ico',
+        //             to: path.resolve(__dirname, 'dist')
+        //         }
+        //     ]
+        // }),
         new MiniCssExtractPlugin({
             filename: `style/${filename('css')}`
         }),

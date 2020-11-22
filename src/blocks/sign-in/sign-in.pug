@@ -1,0 +1,9 @@
+include ../../blocks/button/button.pug
+
+mixin sign-in(className, username)
+    div(class!=`sign-in ${className}`)
+        if username
+            p.sign-in__username= username
+        else
+            +button('sign-in__button', 'войти', true)
+            +button('sign-in__button', 'зарегистрироваться')

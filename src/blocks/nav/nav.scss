@@ -1,0 +1,66 @@
+@import '../../style/variables.scss';
+
+.nav__menu {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav__item {
+    position: relative;
+}
+
+.nav__link {
+    display: block;
+    padding: 0 10px;
+    color: $dark50;
+    line-height: 40px;
+}
+
+.nav__link_active {
+    font-weight: 700;
+    color: $dark75;
+}
+
+.nav__link_expandable {
+    padding-right: 34px;
+    position: relative;
+
+    &::after {
+        content: 'expand_more';
+        display: block;
+        width: 24px;
+        position: absolute;
+        top: calc(50% - 10px);
+        right: 10px;
+        font-family: "Material Icons", sans-serif;
+        font-size: torem(24);
+        line-height: torem(20);
+    }
+
+    &:hover {
+
+        & + .nav__child-menu {
+            display: block;
+        }
+    }
+}
+
+.nav__child-menu {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    background-color: white;
+    white-space: nowrap;
+    min-width: 100%;
+    transition: 300ms ease;
+}
+
+.nav__child-menu-item {
+    border-bottom: 1px solid $dark10;
+    transition: 300ms ease;
+
+    &:hover {
+        background-color: $grey;
+    }
+}
+

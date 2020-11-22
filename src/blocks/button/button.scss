@@ -1,8 +1,9 @@
 @import '../../style/variables.scss';
 
 .button {
-    width: 99px;
+    min-width: 99px;
     height: 44px;
+    padding: 0 20px;
     position: relative;
     border-radius: 22px;
     box-sizing: border-box;
@@ -28,8 +29,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 95px;
-        height: 40px;
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
         position: absolute;
         top: 2px;
         left: 2px;
