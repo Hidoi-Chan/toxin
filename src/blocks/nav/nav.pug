@@ -1,24 +1,2 @@
-mixin nav(className, menu)
+mixin nav(className)
     nav(class!=`nav ${className}`)
-        ul.nav__menu
-            each item in menu
-                li.nav__item
-                    if item.isActive
-                        a(href="#").nav__link.nav__link_active= item.name
-                    else if item.childItem
-                        a(href="#").nav__link.nav__link_expandable= item.name
-                        ul.nav__child-menu
-                            //- each item in childItem
-                            //-     li
-                            //-         if item.isActive
-                            //-             a(href="#").nav__link.nav__link_active= item.name
-                            //-         else
-                            //-             a(href="#").nav__link= item.name
-                            li.nav__child-menu-item
-                                a(href="#").nav__link.nav__child-link Lorem ipsum dolor
-                            li.nav__child-menu-item
-                                a(href="#").nav__link.nav__child-link Lorem
-                            li.nav__child-menu-item
-                                a(href="#").nav__link.nav__child-link Lorem
-                    else
-                        a(href="#").nav__link= item.name

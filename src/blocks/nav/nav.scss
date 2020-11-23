@@ -3,6 +3,33 @@
 .nav__menu {
     display: flex;
     justify-content: flex-end;
+
+    .nav__menu {
+        display: none;
+        position: absolute;
+        z-index: 10;
+        background-color: white;
+        white-space: nowrap;
+        min-width: 100%;
+        transition: 300ms ease;
+
+        &:hover {
+            display: block;
+        }
+
+        .nav__item {
+            border-bottom: 1px solid $dark10;
+            transition: 300ms ease;
+
+            &:first-child {
+                margin-top: 15px;
+            }
+        
+            &:hover {
+                background-color: $grey;
+            }
+        }
+    }
 }
 
 .nav__item {
@@ -39,28 +66,9 @@
 
     &:hover {
 
-        & + .nav__child-menu {
+        & + .nav__menu {
             display: block;
         }
-    }
-}
-
-.nav__child-menu {
-    display: none;
-    position: absolute;
-    z-index: 10;
-    background-color: white;
-    white-space: nowrap;
-    min-width: 100%;
-    transition: 300ms ease;
-}
-
-.nav__child-menu-item {
-    border-bottom: 1px solid $dark10;
-    transition: 300ms ease;
-
-    &:hover {
-        background-color: $grey;
     }
 }
 

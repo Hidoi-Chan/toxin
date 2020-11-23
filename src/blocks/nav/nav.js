@@ -8,7 +8,7 @@ let headerNav = [
         isActive: false,
         childItem: [
             {
-                name: 'Lorem',
+                name: 'Lorem ipsum dolor',
                 isActive: false,
             },
             {
@@ -38,7 +38,7 @@ let headerNav = [
                 isActive: false,
             },
             {
-                name: 'Lorem',
+                name: 'Lorem ipsum dolor',
                 isActive: false,
             },
             {
@@ -48,3 +48,24 @@ let headerNav = [
         ]
     }
 ]
+
+function renderMenu(arrMenu) {
+    let html = ''
+    arrMenu.map((item, index) => {
+        html += `<li class="nav__item">
+            <a href="#" 
+                class="nav__link
+                ${item.isActive ? 'nav__link_active' : ''}
+                ${item.childItem ? 'nav__link_expandable' : ''}">
+                    ${item.name}
+            </a>
+            ${item.childItem ? renderMenu(item.childItem) : ''} 
+        </li>`
+    })
+    return '<ul class="nav__menu">' + html + '</ul>'
+}
+
+let nav = document.querySelectorAll('.nav')
+for (let menu of nav) {
+    menu.insertAdjacentHTML('beforeend', renderMenu(headerNav))
+}
