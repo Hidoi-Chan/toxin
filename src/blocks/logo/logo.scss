@@ -1,5 +1,9 @@
 @import '../../style/variables.scss';
 
+.logo {
+    display: block;
+}
+
 .logo__img,
 .logo__toxin {
     display: inline-block;

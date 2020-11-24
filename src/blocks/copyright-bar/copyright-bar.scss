@@ -1,0 +1,38 @@
+@import '../../style/variables.scss';
+
+.copyright-bar {
+    width: 100%;
+    box-shadow: 0px -1px 0px $dark10;
+}
+
+.copyright-bar__container {
+    width: 1160px;
+    margin: 0 auto;
+    padding: 23px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyright-bar__social-nav {
+    display: flex;
+}
+
+.copyright-bar__social-link {
+    background: $gradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: $purple;
+
+    & + & {
+        margin-left: 20px;
+    }
+}
+
+.copyright-bar__social-icon {
+    display: block;
+    width: 24px;
+    font-size: torem(24);
+    line-height: torem(24);
+    text-align: center;
+}

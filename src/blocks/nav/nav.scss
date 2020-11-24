@@ -41,6 +41,11 @@
     padding: 0 10px;
     color: $dark50;
     line-height: 40px;
+    transition: 300ms ease;
+
+    &:hover {
+        color: $dark75;
+    }
 }
 
 .nav__link_active {

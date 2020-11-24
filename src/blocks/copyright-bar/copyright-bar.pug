@@ -1,0 +1,7 @@
+div.copyright-bar
+    div.copyright-bar__container
+        pCopyright © 2018 Toxin отель. Все права зачищены.
+        div.copyright-bar__social-nav
+            each socialLink in ['fab fa-twitter', 'fab fa-facebook-square', 'fab fa-instagram']
+                a(href="#", target="_blank").copyright-bar__social-link
+                    i(class!=`copyright-bar__social-icon ${socialLink}`)
