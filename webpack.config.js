@@ -49,13 +49,13 @@ const optimization = () => {
                     name: 'headersfooters',
                     chunks: 'initial',
                     enforce: true,
+                },
+                landingpage: {
+                    test: /landing-page.js/,
+                    name: 'landing-page',
+                    chunks: 'initial',
+                    enforce: true,
                 }
-                // index: {
-                //     test: /index.js/,
-                //     name: 'index',
-                //     chunks: 'initial',
-                //     enforce: true,
-                // }
             }
         }
         // {
@@ -101,7 +101,7 @@ module.exports = {
         formelements: './form-elements.js',
         cards: './cards.js',
         headersfooters: './headers-footers.js',
-        index: './index.js'
+        landingpage: './landing-page.js'
     },
     output: {
         filename: filename('js'),
@@ -143,6 +143,11 @@ module.exports = {
             filename: 'headers-footers.html',
             template: './pages/headers-footers/headers-footers.pug',
             chunks: ['headersfooters']
+        }),
+        new HTMLWebpackPlugin({
+            filename: 'index.html',
+            template: './pages/landing-page/landing-page.pug',
+            chunks: ['landingpage']
         }),
         new CleanWebpackPlugin(),
         // new CopyWebpackPlugin({
@@ -200,7 +205,7 @@ module.exports = {
                     options: {
                         name: '[name].[ext]',
                         outputPath: 'assets/images',
-                        // publicPath: '../assets/images',
+                        publicPath: '../assets/images',
                     }
                 }
             },

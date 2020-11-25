@@ -1,0 +1,19 @@
+extends ../../layout
+include ../../blocks/header/header.pug
+include ../../blocks/field/field.pug
+include ../../blocks/button/button.pug
+
+block content
+    +header('header_fixed')
+    main.first-screen
+        div.first-screen__container
+            form(action="").card.first-screen__card
+                h2.card__element.h1 Найдём номера под ваши пожелания
+                div.card__element.card__row
+                    +field('', 'Прибытие', 'field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', 'ДД.ММ.ГГГГ', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
+                    +field('', 'Выезд', 'field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', 'ДД.ММ.ГГГГ', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
+                div.card__element
+                    +field('', 'Гости', 'field__input_width_320 field__input_border-radius_2 field__input_dropdown-color_dark75', '', 'Сколько гостей', '', 'expand_more', 'field__icon_color_dark75', 'readonly')
+                +button('card__element button_width_320', 'подобрать номер')
+            h1.first-screen__h1 Лучшие номера для вашей работы, отдыха и просто вдохновения
+    include ../../blocks/footer/footer.pug

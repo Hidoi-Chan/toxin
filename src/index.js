@@ -1,3 +1,1 @@
-let console = () => console.log('Babel')
-
-console()
+console.log(1)

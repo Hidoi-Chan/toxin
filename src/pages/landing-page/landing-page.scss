@@ -1,0 +1,36 @@
+@import '../../style/variables.scss';
+
+.first-screen {
+    height: 900px;
+    background-image: url('../../img/better_room_1.jpg');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+}
+
+.first-screen__container {
+    width: 1160px;
+    height: 100%;
+    margin: 0 auto;
+    padding-top: 70px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.first-screen__card {
+    position: absolute;
+    top: 140px;
+}
+
+.first-screen__h1 {
+    position: absolute;
+    right: 0;
+    bottom: 18px;
+    max-width: 300px;
+    text-align: right;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: torem(24);
+    color: $dark75;
+}
