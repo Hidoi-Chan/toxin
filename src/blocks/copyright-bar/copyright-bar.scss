@@ -3,6 +3,23 @@
 .copyright-bar {
     width: 100%;
     box-shadow: 0px -1px 0px $dark10;
+
+    &_max-width_800 {
+        box-shadow: none;
+
+        .copyright-bar__container {
+            width: 768px;
+            background-color: white;
+            padding: 120px 30px;
+            box-sizing: border-box;
+            flex-direction: column;
+            box-shadow: 0px 10px 20px $dark5;
+        }
+
+        .copyright-bar__description {
+            margin-bottom: 25px;
+        }
+    }
 }
 
 .copyright-bar__container {

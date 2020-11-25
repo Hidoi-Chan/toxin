@@ -1,4 +1,5 @@
 include ../../blocks/field/field.pug
+include ../../blocks/copyright-bar/copyright-bar.pug
 
 mixin footer-nav(title, menuArr)
     div.footer__nav-container
@@ -11,14 +12,14 @@ mixin footer-nav(title, menuArr)
 footer.footer
     div.footer__container
         div.footer__logo-block
-            +logo('')
-            p Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
+            +logo('footer__logo')
+            p.footer__description Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
         nav.footer__nav
             +footer-nav('навигация', ['О нас', 'Новости', 'Служба поддержки', 'Услуги'])
             +footer-nav('о нас', ['О сервисе', 'Наша команда', 'Вакансии', 'Инвесторы'])
             +footer-nav('Служба поддержки', ['Соглашения', 'Сообщества', 'Связь с нами'])
         div.footer__subscription
-            h4.h3 Подписка
-            p Получайте специальные предложения и новости сервиса
+            h4.h3.footer__subscription-title Подписка
+            p.footer__subscription-text Получайте специальные предложения и новости сервиса
             +field('', '', 'field__input_width_266 field__input_border-radius_4', 'text', 'Email', '', 'arrow_forward', 'field__icon_color_gradient')
-    include ../../blocks/copyright-bar/copyright-bar.pug
+    +copyrightBar('')
