@@ -55,6 +55,12 @@ const optimization = () => {
                     name: 'landing-page',
                     chunks: 'initial',
                     enforce: true,
+                },
+                searchroom: {
+                    test: /search-room.js/,
+                    name: 'search-room',
+                    chunks: 'initial',
+                    enforce: true,
                 }
             }
         }
@@ -101,7 +107,8 @@ module.exports = {
         formelements: './form-elements.js',
         cards: './cards.js',
         headersfooters: './headers-footers.js',
-        landingpage: './landing-page.js'
+        landingpage: './landing-page.js',
+        searchroom: './search-room.js'
     },
     output: {
         filename: filename('js'),
@@ -148,6 +155,11 @@ module.exports = {
             filename: 'index.html',
             template: './pages/landing-page/landing-page.pug',
             chunks: ['landingpage']
+        }),
+        new HTMLWebpackPlugin({
+            filename: 'search-room.html',
+            template: './pages/search-room/search-room.pug',
+            chunks: ['searchroom']
         }),
         new CleanWebpackPlugin(),
         // new CopyWebpackPlugin({

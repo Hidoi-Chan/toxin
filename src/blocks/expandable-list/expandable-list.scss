@@ -1,7 +1,6 @@
 @import '../../style/variables.scss';
 
 .expandable-list {
-    height: 44px;
     position: relative;
 
     &_width {
@@ -44,9 +43,6 @@
     }
 
     &__checkbox-container {
-        position: absolute;
-        top: 44px;
-        left: 0;
         width: 266px;
         padding-top: 3px;
     }

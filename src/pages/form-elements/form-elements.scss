@@ -41,11 +41,6 @@
         line-height: torem(15);
         color: $dark50;
         text-transform: uppercase;
-
-        &_range-slider {
-            top: -(torem(19));
-            cursor: auto;
-        }
     }
 
     &__title {
@@ -61,10 +56,6 @@
         &_margin-bottom_18 {
             margin-bottom: 18px;
         }
-    }
-
-    &__title-range-slider {
-        margin-bottom: 4px;
     }
 
     &__container {

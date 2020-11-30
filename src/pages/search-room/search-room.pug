@@ -1,0 +1,25 @@
+extends ../../layout
+include ../../blocks/header/header.pug
+include ../../blocks/field/field.pug
+include ../../blocks/button/button.pug
+include ../../blocks/range-slider/range-slider.pug
+include ../../blocks/expandable-list/expandable-list.pug
+include ../../blocks/checkbox/checkbox.pug
+
+block content
+    +header('header_fixed')
+    main.main
+        div.main__container
+            div.left-sidebar
+                +field('', 'даты пребывания в отеле', 'field__input_width_266 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', '19 авг - 23 авг', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
+                +field('', 'гости', 'field__input_width_266 field__input_border-radius_4 field__input_dropdown-color_dark75', '', '3 гостя, 1 младенец', false, 'expand_more', 'field__icon_color_dark75', 'readonly')
+                div
+                    h3 Диапазон цены
+                    +range-slider('', '5 000p - 10 000p')
+                    p.left-sidebar__range-description Стоимость за сутки пребывания в номере
+                +expandable-list('expandable-list_width_266', 'правила дома', [['', 'Можно курить'], ['', 'Можно с питомцами'], ['', 'Можно пригласить гостей (до 10 человек)']])
+                +expandable-list('expandable-list_width_266', 'доступность', [['', 'Широкий коридор', '', 'Ширина коридоров в номере не менее 91 см.'], ['', 'Помощник для инвалидов', '', 'На 1 этаже вас встретит специалист и проводит до номера.']])
+                +field('', 'удобства номера', 'field__input_width_266 field__input_border-radius_2 field__input_dropdown-color_dark75', '', '2 спальни, 2 кровати...', false, 'expand_more', 'field__icon_color_dark75', 'readonly')
+                +expandable-list('expandable-list_width_266 expandable-list_with-icon', 'дополнительные удобства', [['', 'Завтрак'], ['', 'Письменный стол'], ['', 'Стул для кормления'], ['', 'Кроватка'], ['', 'Телевизор'], ['', 'Шампунь']])
+            div.main__content 1
+    include ../../blocks/footer/footer.pug

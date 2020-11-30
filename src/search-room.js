@@ -1,4 +1,3 @@
-import '@img/better_room_1.jpg'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 import '@style/global.scss'
@@ -8,10 +7,10 @@ import '@blocks/sign-in/sign-in.scss'
 import '@blocks/nav/nav.scss'
 import '@blocks/nav/nav.js'
 import '@blocks/header/header.scss'
-import '@blocks/card/card.scss'
+import '@blocks/range-slider/range-slider.scss'
+import '@blocks/expandable-list/expandable-list.scss'
+import '@blocks/checkbox/checkbox.scss'
 import '@blocks/field/field.scss'
 import '@blocks/copyright-bar/copyright-bar.scss'
 import '@blocks/footer/footer.scss'
-import '@pages/landing-page/landing-page.scss'
-
-console.log(1)
+import '@pages/search-room/search-room.scss'
