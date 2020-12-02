@@ -61,6 +61,12 @@ const optimization = () => {
                     name: 'search-room',
                     chunks: 'initial',
                     enforce: true,
+                },
+                roomdetails: {
+                    test: /room-details.js/,
+                    name: 'room-details',
+                    chunks: 'initial',
+                    enforce: true,
                 }
             }
         }
@@ -108,7 +114,8 @@ module.exports = {
         cards: './cards.js',
         headersfooters: './headers-footers.js',
         landingpage: './landing-page.js',
-        searchroom: './search-room.js'
+        searchroom: './search-room.js',
+        roomdetails: './room-details.js'
     },
     output: {
         filename: filename('js'),
@@ -160,6 +167,11 @@ module.exports = {
             filename: 'search-room.html',
             template: './pages/search-room/search-room.pug',
             chunks: ['searchroom']
+        }),
+        new HTMLWebpackPlugin({
+            filename: 'room-details.html',
+            template: './pages/room-details/room-details.pug',
+            chunks: ['roomdetails']
         }),
         new CleanWebpackPlugin(),
         // new CopyWebpackPlugin({

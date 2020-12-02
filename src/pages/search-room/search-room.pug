@@ -5,6 +5,8 @@ include ../../blocks/button/button.pug
 include ../../blocks/range-slider/range-slider.pug
 include ../../blocks/expandable-list/expandable-list.pug
 include ../../blocks/checkbox/checkbox.pug
+include ../../blocks/rate/rate.pug
+include ../../blocks/pagination/pagination.pug
 
 block content
     +header('header_fixed')
@@ -21,5 +23,200 @@ block content
                 +expandable-list('expandable-list_width_266', 'доступность', [['', 'Широкий коридор', '', 'Ширина коридоров в номере не менее 91 см.'], ['', 'Помощник для инвалидов', '', 'На 1 этаже вас встретит специалист и проводит до номера.']])
                 +field('', 'удобства номера', 'field__input_width_266 field__input_border-radius_2 field__input_dropdown-color_dark75', '', '2 спальни, 2 кровати...', false, 'expand_more', 'field__icon_color_dark75', 'readonly')
                 +expandable-list('expandable-list_width_266 expandable-list_with-icon', 'дополнительные удобства', [['', 'Завтрак'], ['', 'Письменный стол'], ['', 'Стул для кормления'], ['', 'Кроватка'], ['', 'Телевизор'], ['', 'Шампунь']])
-            div.main__content 1
+            div.main__content
+                h1 Номера, которые мы для вас подобрали
+                div.main__room-card-container
+                    div.room-card
+                        div.owl-carousel.owl-theme
+                            img(src=`assets/images/room_1.jpg` alt='room_1')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                        div.room-card__text-block
+                            div.room-card__text-block-item.room-card__characteristics
+                                h1.h1 № 888
+                                    span.h3.room-card__characteristics_color_purple  люкс
+                                h2.room-card__price 9 990р
+                                    span.room-card__price_thin  в сутки
+                            div.room-card__text-block-item.room-card__rating
+                                +rate-result('', 5)
+                                h2.room-card__price 145
+                                    span.room-card__price_thin.room-card__price_size_14  Отзывов
+                    div.room-card
+                        div.owl-carousel.owl-theme
+                            img(src=`assets/images/room_1.jpg` alt='room_1')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                        div.room-card__text-block
+                            div.room-card__text-block-item.room-card__characteristics
+                                h1.h1 № 888
+                                    span.h3.room-card__characteristics_color_purple  люкс
+                                h2.room-card__price 9 990р
+                                    span.room-card__price_thin  в сутки
+                            div.room-card__text-block-item.room-card__rating
+                                +rate-result('', 5)
+                                h2.room-card__price 145
+                                    span.room-card__price_thin.room-card__price_size_14  Отзывов
+                    div.room-card
+                        div.owl-carousel.owl-theme
+                            img(src=`assets/images/room_1.jpg` alt='room_1')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                        div.room-card__text-block
+                            div.room-card__text-block-item.room-card__characteristics
+                                h1.h1 № 888
+                                    span.h3.room-card__characteristics_color_purple  люкс
+                                h2.room-card__price 9 990р
+                                    span.room-card__price_thin  в сутки
+                            div.room-card__text-block-item.room-card__rating
+                                +rate-result('', 5)
+                                h2.room-card__price 145
+                                    span.room-card__price_thin.room-card__price_size_14  Отзывов
+                    div.room-card
+                        div.owl-carousel.owl-theme
+                            img(src=`assets/images/room_1.jpg` alt='room_1')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                        div.room-card__text-block
+                            div.room-card__text-block-item.room-card__characteristics
+                                h1.h1 № 888
+                                    span.h3.room-card__characteristics_color_purple  люкс
+                                h2.room-card__price 9 990р
+                                    span.room-card__price_thin  в сутки
+                            div.room-card__text-block-item.room-card__rating
+                                +rate-result('', 5)
+                                h2.room-card__price 145
+                                    span.room-card__price_thin.room-card__price_size_14  Отзывов
+                    div.room-card
+                        div.owl-carousel.owl-theme
+                            img(src=`assets/images/room_1.jpg` alt='room_1')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                        div.room-card__text-block
+                            div.room-card__text-block-item.room-card__characteristics
+                                h1.h1 № 888
+                                    span.h3.room-card__characteristics_color_purple  люкс
+                                h2.room-card__price 9 990р
+                                    span.room-card__price_thin  в сутки
+                            div.room-card__text-block-item.room-card__rating
+                                +rate-result('', 5)
+                                h2.room-card__price 145
+                                    span.room-card__price_thin.room-card__price_size_14  Отзывов
+                    div.room-card
+                        div.owl-carousel.owl-theme
+                            img(src=`assets/images/room_1.jpg` alt='room_1')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                        div.room-card__text-block
+                            div.room-card__text-block-item.room-card__characteristics
+                                h1.h1 № 888
+                                    span.h3.room-card__characteristics_color_purple  люкс
+                                h2.room-card__price 9 990р
+                                    span.room-card__price_thin  в сутки
+                            div.room-card__text-block-item.room-card__rating
+                                +rate-result('', 5)
+                                h2.room-card__price 145
+                                    span.room-card__price_thin.room-card__price_size_14  Отзывов
+                    div.room-card
+                        div.owl-carousel.owl-theme
+                            img(src=`assets/images/room_1.jpg` alt='room_1')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                        div.room-card__text-block
+                            div.room-card__text-block-item.room-card__characteristics
+                                h1.h1 № 888
+                                    span.h3.room-card__characteristics_color_purple  люкс
+                                h2.room-card__price 9 990р
+                                    span.room-card__price_thin  в сутки
+                            div.room-card__text-block-item.room-card__rating
+                                +rate-result('', 5)
+                                h2.room-card__price 145
+                                    span.room-card__price_thin.room-card__price_size_14  Отзывов
+                    div.room-card
+                        div.owl-carousel.owl-theme
+                            img(src=`assets/images/room_1.jpg` alt='room_1')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                        div.room-card__text-block
+                            div.room-card__text-block-item.room-card__characteristics
+                                h1.h1 № 888
+                                    span.h3.room-card__characteristics_color_purple  люкс
+                                h2.room-card__price 9 990р
+                                    span.room-card__price_thin  в сутки
+                            div.room-card__text-block-item.room-card__rating
+                                +rate-result('', 5)
+                                h2.room-card__price 145
+                                    span.room-card__price_thin.room-card__price_size_14  Отзывов
+                    div.room-card
+                        div.owl-carousel.owl-theme
+                            img(src=`assets/images/room_1.jpg` alt='room_1')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                        div.room-card__text-block
+                            div.room-card__text-block-item.room-card__characteristics
+                                h1.h1 № 888
+                                    span.h3.room-card__characteristics_color_purple  люкс
+                                h2.room-card__price 9 990р
+                                    span.room-card__price_thin  в сутки
+                            div.room-card__text-block-item.room-card__rating
+                                +rate-result('', 5)
+                                h2.room-card__price 145
+                                    span.room-card__price_thin.room-card__price_size_14  Отзывов
+                    div.room-card
+                        div.owl-carousel.owl-theme
+                            img(src=`assets/images/room_1.jpg` alt='room_1')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                        div.room-card__text-block
+                            div.room-card__text-block-item.room-card__characteristics
+                                h1.h1 № 888
+                                    span.h3.room-card__characteristics_color_purple  люкс
+                                h2.room-card__price 9 990р
+                                    span.room-card__price_thin  в сутки
+                            div.room-card__text-block-item.room-card__rating
+                                +rate-result('', 5)
+                                h2.room-card__price 145
+                                    span.room-card__price_thin.room-card__price_size_14  Отзывов
+                    div.room-card
+                        div.owl-carousel.owl-theme
+                            img(src=`assets/images/room_1.jpg` alt='room_1')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                        div.room-card__text-block
+                            div.room-card__text-block-item.room-card__characteristics
+                                h1.h1 № 888
+                                    span.h3.room-card__characteristics_color_purple  люкс
+                                h2.room-card__price 9 990р
+                                    span.room-card__price_thin  в сутки
+                            div.room-card__text-block-item.room-card__rating
+                                +rate-result('', 5)
+                                h2.room-card__price 145
+                                    span.room-card__price_thin.room-card__price_size_14  Отзывов
+                    div.room-card
+                        div.owl-carousel.owl-theme
+                            img(src=`assets/images/room_1.jpg` alt='room_1')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                            img(src=`assets/images/room_2.jpg` alt='room_2')
+                        div.room-card__text-block
+                            div.room-card__text-block-item.room-card__characteristics
+                                h1.h1 № 888
+                                    span.h3.room-card__characteristics_color_purple  люкс
+                                h2.room-card__price 9 990р
+                                    span.room-card__price_thin  в сутки
+                            div.room-card__text-block-item.room-card__rating
+                                +rate-result('', 5)
+                                h2.room-card__price 145
+                                    span.room-card__price_thin.room-card__price_size_14  Отзывов
+                +pagination('main__pagination', '1 – 12 из 100+ вариантов аренды')
     include ../../blocks/footer/footer.pug

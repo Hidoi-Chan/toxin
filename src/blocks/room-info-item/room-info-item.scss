@@ -7,7 +7,7 @@
     position: relative;
     padding: 20px 0 21px;
 
-    &_after {
+    &+& {
 
         &::after {
             content: '';
@@ -16,7 +16,7 @@
             height: 1px;
             background-color: $dark10;
             position: absolute;
-            bottom: 0;
+            top: 0;
         }
     }
 

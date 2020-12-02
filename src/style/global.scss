@@ -14,16 +14,6 @@ body {
     line-height: torem(24);
 }
 
-// .container {
-//     width: 1160px;
-//     margin: auto;
-//     display: flex;
-// }
-
-// .row {
-//     display: flex;
-// }
-
 h1,
 h2,
 h3,
@@ -46,7 +36,6 @@ a {
 h1,
 .h1 {
     color: $dark100;
-    font-family: "Quicksand", "OpenSans", sans-serif;
     font-weight: 700;
     font-size: torem(24);
     line-height: torem(30);
@@ -55,7 +44,6 @@ h1,
 h2,
 .h2 {
     color: $dark100;
-    font-family: "Quicksand", "OpenSans", sans-serif;
     font-weight: 700;
     font-size: torem(19);
     line-height: torem(24);
@@ -64,7 +52,6 @@ h2,
 h3,
 .h3 {
     color: $dark100;
-    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     font-size: torem(12);
     line-height: torem(15);
