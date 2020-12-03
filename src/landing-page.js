@@ -1,4 +1,4 @@
-import '@img/better_room_1.jpg'
+// import '@img/better_room_1.jpg'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 import '@style/global.scss'

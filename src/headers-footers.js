@@ -1,5 +1,5 @@
-import '@img/logo.svg'
-import '@img/toxin.png'
+// import '@img/logo.svg'
+// import '@img/toxin.png'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 import '@style/global.scss'

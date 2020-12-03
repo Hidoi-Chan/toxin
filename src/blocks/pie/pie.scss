@@ -1,0 +1,63 @@
+@import '../../style/variables.scss';
+
+.pie {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+#pie {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.pie__text {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.pie__sum,
+.pie__word {
+    color: $purple;
+}
+
+.pie__bullet-list {
+    margin-top: 30px;
+
+    .bullet-list__item {
+        padding: 0 0 0 15px;
+        margin-bottom: 0;
+
+        &:nth-child(1) {
+
+            &::before {
+                background: linear-gradient(180deg, #FFE39C 0%, #FFBA9C 100%);
+            }
+        }
+
+        &:nth-child(2) {
+
+            &::before {
+                background: $secondaryGradient;
+            }
+        }
+
+        &:nth-child(3) {
+
+            &::before {
+                background: $gradient;
+            }
+        }
+
+        &:nth-child(4) {
+
+            &::before {
+                background: linear-gradient(180deg, #919191 0%, #3D4975 100%);
+            }
+        }
+    }
+}

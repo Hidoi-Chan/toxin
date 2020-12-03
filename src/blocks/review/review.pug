@@ -2,16 +2,14 @@ include ../like-button/like-button.pug
 
 mixin review(className, avatarName, username, dateAdded, text, likeButton)
     div(class!=`review ${className}`)
-        div.review__header
-            div.review__circle-for-avatar
-                img(src=`assets/images/${avatarName}` alt='avatar').review__avatar
-            div.review__header-text
-                p.review__username= username
-                p.review__date-added= dateAdded
-        div.review__wrapper
-            div.review__like-button-wrapper
-                +like-button(...likeButton)
-            div.review__text
-                p= text
+        div.review__circle-for-avatar
+            img(src=`assets/images/${avatarName}` alt='avatar').review__avatar
+        div.review__header-text
+            p.review__username= username
+            p.review__date-added= dateAdded
+        div.review__like-button-wrapper
+            +like-button(...likeButton)
+        div.review__text
+            p= text
 
     

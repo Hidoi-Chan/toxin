@@ -51,7 +51,7 @@
     margin-right: 70px;
 
     &>* {
-        margin-top: 10px;
+        margin-top: 30px;
     }
 }
 
@@ -74,6 +74,7 @@
 }
 
 .main__review-block {
+    margin-top: 10px;
 
     .review {
         margin-top: 20px;
@@ -83,4 +84,14 @@
 .main__review-block-description {
     line-height: 1rem;
     color: $dark50;
+}
+
+.main__rules {
+    padding-left: 21px;
+}
+
+.main__pie,
+.main__rules,
+.main__cancel {
+    margin-bottom: 20px;
 }

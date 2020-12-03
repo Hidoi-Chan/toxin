@@ -1,5 +1,5 @@
-import '@img/image.png';
-import '@img/image_4.png';
+// import '@img/image.png';
+// import '@img/image_4.png';
 
 import '@style/global.scss'
 import '@blocks/field/field.scss'

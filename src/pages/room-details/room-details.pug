@@ -4,11 +4,7 @@ include ../../blocks/field/field.pug
 include ../../blocks/button/button.pug
 include ../../blocks/room-info-item/room-info-item.pug
 include ../../blocks/review/review.pug
-//- include ../../blocks/range-slider/range-slider.pug
-//- include ../../blocks/expandable-list/expandable-list.pug
-//- include ../../blocks/checkbox/checkbox.pug
-//- include ../../blocks/rate/rate.pug
-//- include ../../blocks/pagination/pagination.pug
+include ../../blocks/bullet-list/bullet-list.pug
 
 block content
     +header('header_fixed')
@@ -26,16 +22,21 @@ block content
                         +room-info-item('form-elements__room-info-item', 'location_city', 'Удобство', 'Окно в каждой из спален')
                         +room-info-item('form-elements__room-info-item', 'whatshot', 'Уют', 'Номер оснащён камином')
                     div.main__room-information-block
-                        h2 Впечатления о номере
-                        +room-info-item('form-elements__room-info-item', 'mood', 'Комфорт', 'Шумопоглощающие стены')
-                        +room-info-item('form-elements__room-info-item', 'location_city', 'Удобство', 'Окно в каждой из спален')
-                        +room-info-item('form-elements__room-info-item', 'whatshot', 'Уют', 'Номер оснащён камином')
+                        h2.main__pie Впечатления от номера
+                        include ../../blocks/pie/pie.pug
                 div.main__review-block
                     div.main__review-block-title
                         h2 Отзывы посетителей номера
                         p.main__review-block-description 2 отзыва
                     +review('', 'image.png', 'Мурад Сарафанов', '5 дней назад', 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', ['review__like-button like-button_checked', 12])
-                    +review('', 'image.png', 'Мурад Сарафанов', '5 дней назад', 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', ['review__like-button like-button_checked', 12])
+                    +review('', 'image_4.png', 'Патрисия Стёклышкова', 'Неделю назад', 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент', ['review__like-button', 2])
+                div.main__room-information
+                    div.main__room-information-block
+                        h2.main__rules Правила
+                        +bulletList('', ['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, а выезд до 12:00'])
+                    div.main__room-information-block
+                        h2.main__cancel Отмена
+                        p Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.            
             form(action="").card
                 div.card__element.card__room-characteristics
                     h1.h1 № 888

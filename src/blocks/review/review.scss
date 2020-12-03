@@ -1,12 +1,10 @@
 @import '../../style/variables.scss';
 
 .review {
-
-    &__header {
-        display: flex;
-        align-items: center;      
-        margin-bottom: 12px;
-    }
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
+    gap: 10px;
 
     &__circle-for-avatar {
         width: 48px;
@@ -24,7 +22,6 @@
 
     &__header-text,
     &__text {
-        margin: 0 10px;
         max-width: 653px;
     }
 
@@ -37,12 +34,9 @@
         line-height: torem(24);
     }
 
-    &__wrapper {
-        display: flex;
-    }
-
     &__like-button-wrapper {
         width: 48px;
+        margin-top: 2px;
         display: flex;
     }
 
