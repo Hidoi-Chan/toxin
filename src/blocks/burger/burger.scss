@@ -1,0 +1,127 @@
+@import '../../style/variables.scss';
+
+.burger {
+    display: none;
+}
+
+.burger + label {
+    display: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 4px;
+    position: relative;
+
+    @include large {
+        display: block;
+    }
+}
+
+.burger+label>span {
+    display: block;
+    position: absolute;
+    top: calc(50% - 1px);
+    left: calc(50% - 17px);
+    width: 34px;
+    height: 2px;
+    border-radius: 1px;
+    background-color: $purple;
+    transition: 250ms ease;
+}
+
+.burger+label>span:first-child {
+    transform: translateY(-10px);
+}
+
+.burger+label>span:last-child {
+    transform: translateY(10px);
+}
+
+.burger+label>span:nth-child(2) {
+    transform: scaleX(1);
+}
+
+.burger:checked+label>span:first-child {
+    transform: rotate(45deg);
+}
+
+.burger:checked+label>span:last-child {
+    transform: rotate(-45deg);
+}
+
+.burger:checked+label>span:nth-child(2) {
+    transform: scaleX(0);
+}
+
+@include large {
+
+    .burger+label+.header__container-for-burger {
+        position: fixed;
+        top: 70px;
+        right: -300px;
+        background-color: white;
+        min-width: 240px;
+        height: calc(100vh - 70px);
+        z-index: 9998;
+        transition: 300ms ease;
+        flex-direction: column;
+    
+        .nav {
+            flex-grow: 0;
+            order: 2;
+            width: 100%;
+            margin: 20px;
+        }
+    
+        .nav__menu {
+            flex-direction: column;
+        }
+    
+        .nav__link {
+            padding: 0 20px;
+        }
+    
+        .nav__link_expandable {
+        
+            &:hover {
+    
+                & + .nav__menu {
+                    display: none;
+                }
+            }
+
+            &::after {
+                right: 20px;
+            }
+        }
+    
+        .sign-in {
+            margin: 0 10px;
+    
+            .button {
+                margin: 0 auto;
+                display: block;
+                width: 100%;
+
+                &:first-child {
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    
+        .sign-in__username {
+            display: block;
+            background-color: $dark10;
+            padding: 10px;
+            border-radius: 4px;
+    
+            &::before {
+                content: none;
+            }
+        }
+    }
+    
+    .burger:checked+label+.header__container-for-burger {
+        right: 0;
+    }
+}

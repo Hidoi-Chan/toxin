@@ -1,6 +1,7 @@
 @import '../../style/variables.scss';
 
 .first-screen {
+    padding-top: 70px;
     background-image: url('../../img/image_registration.jpg');
     background-size: cover;
     background-position: center bottom;
@@ -11,5 +12,5 @@
 }
 
 .registration__card {
-    margin: 90px 0 20px;
+    margin: 20px 0;
 }

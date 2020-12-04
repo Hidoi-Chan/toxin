@@ -23,7 +23,7 @@
 }
 
 .copyright-bar__container {
-    width: 1160px;
+    max-width: 1160px;
     margin: 0 auto;
     padding: 23px 0;
     display: flex;
@@ -52,4 +52,12 @@
     font-size: torem(24);
     line-height: torem(24);
     text-align: center;
+}
+
+@include large-up {
+    .copyright-bar__container {
+        max-width: 700px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }

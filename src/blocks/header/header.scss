@@ -12,10 +12,21 @@
 }
 
 .header__container {
-    width: 1160px;
+    max-width: 1160px;
     margin: 0 auto;
     padding: 15px 0;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include large-up {
+        margin: 0 20px;
+    }
+}
+
+.header__container-for-burger {
+    flex-grow: 1;
+    display:flex;
     align-items: center;
 }
 

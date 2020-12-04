@@ -1,9 +1,11 @@
 mixin button(className, text, border)
-    button(class!=`button ${className}`)
-        if border
+    if border
+        button(class!=`button ${className}`)
+            h3.button__text_color_purple= text
             div.button__border-gradient
                 h3.button__text_color_purple= text
-        else
+    else
+        button(class!=`button ${className}`)
             h3.button__text= text
 
 mixin buttonDisabled(className, text, border)

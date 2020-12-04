@@ -16,3 +16,20 @@ $secondaryGradient: linear-gradient(180deg, $green 0%, #66D2EA 100%);
 
     @return $px / 14 + rem;
 }
+
+
+@mixin small {
+    @media (max-width: 499px) { @content; }
+}
+
+@mixin medium {
+    @media (max-width: 699px) { @content; }
+}
+
+@mixin large {
+    @media (max-width: 999px) { @content; }
+}
+
+@mixin large-up {
+    @media (max-width: 1200px) { @content; }
+}

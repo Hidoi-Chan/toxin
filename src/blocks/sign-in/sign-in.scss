@@ -4,6 +4,7 @@
     display: inline-block;
     vertical-align: middle;
     height: 34px;
+    min-width: auto;
 
     &+& {
         margin-left: 20px;
