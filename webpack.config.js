@@ -73,6 +73,12 @@ const optimization = () => {
                     name: 'registration',
                     chunks: 'initial',
                     enforce: true,
+                },
+                signin: {
+                    test: /sign-in.js/,
+                    name: 'sign-in',
+                    chunks: 'initial',
+                    enforce: true,
                 }
             }
         }
@@ -122,7 +128,8 @@ module.exports = {
         landingpage: './landing-page.js',
         searchroom: './search-room.js',
         roomdetails: './room-details.js',
-        roomdetails: './registration.js'
+        registration: './registration.js',
+        signin: './sign-in.js',
     },
     output: {
         filename: filename('js'),
@@ -184,6 +191,11 @@ module.exports = {
             filename: 'registration.html',
             template: './pages/registration/registration.pug',
             chunks: ['registration']
+        }),
+        new HTMLWebpackPlugin({
+            filename: 'sign-in.html',
+            template: './pages/sign-in/sign-in.pug',
+            chunks: ['signin']
         }),
         new CleanWebpackPlugin(),
         // new CopyWebpackPlugin({

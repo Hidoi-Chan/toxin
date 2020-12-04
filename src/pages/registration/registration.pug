@@ -1,0 +1,29 @@
+extends ../../layout
+include ../../blocks/header/header.pug
+include ../../blocks/field/field.pug
+include ../../blocks/button/button.pug
+include ../../blocks/radio/radio.pug
+include ../../blocks/toggle/toggle.pug
+
+block content
+    +header('header_fixed')
+    main.first-screen
+        form(action="").card.registration__card
+            h1.card__element.h1 Регистрация аккаунта
+            div.card__element.card__element_margin-bottom_10
+                +field('', '', 'field__input_width_320 field__input_border-radius_4', 'text', 'Имя')
+                +field('', '', 'field__input_width_320 field__input_border-radius_4', 'text', 'Фамилия')
+                div.card__row
+                    +radio('', 'Мужчина', 'male')
+                    +radio('', 'Женщина', 'female')
+            div.card__element
+                +field('', 'дата рождения', 'field__input_width_320 field__input_border-radius_4 field_js-date', 'text', 'ДД.ММ.ГГГГ')
+            div.card__element.card__element_margin-bottom_10
+                +field('', 'данные для входа в сервис', 'field__input_width_320 field__input_border-radius_4', 'text', 'Email')
+                +field('', '', 'field__input_width_320 field__input_border-radius_4', 'text', 'Пароль')
+                +toggle('', 'Получать спецпредложения', 'get special offers')
+            +button('card__element button_width_320', 'перейти к оплате')
+            div.card__element.card__submit-block
+                p.card__submit-block-text Уже есть аккаунт на Toxin
+                +button('', 'войти', true)
+    include ../../blocks/footer/footer.pug

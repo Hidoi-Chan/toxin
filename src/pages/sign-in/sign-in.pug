@@ -1,0 +1,18 @@
+extends ../../layout
+include ../../blocks/header/header.pug
+include ../../blocks/field/field.pug
+include ../../blocks/button/button.pug
+
+block content
+    +header('header_fixed')
+    main.first-screen
+        form(action="").card
+            h1.card__element.h1 Войти
+            div.card__element.card__element_margin-bottom_10
+                +field('', '', 'field__input_width_320 field__input_border-radius_4', 'text', 'Email')
+                +field('', '', 'field__input_width_320 field__input_border-radius_4', 'text', 'Пароль')
+            +button('card__element button_width_320', 'Войти')
+            div.card__element.card__submit-block
+                p.card__submit-block-text Нет аккаунта на Toxin?
+                +button('', 'создать', true)
+    include ../../blocks/footer/footer.pug

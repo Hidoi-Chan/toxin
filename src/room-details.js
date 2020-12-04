@@ -1,8 +1,8 @@
-// import '@img/room-details.jpg'
-// import '@img/room-details-2.jpg'
-// import '@img/room-details-3.jpg'
-// import '@img/image.png'
-// import '@img/image_4.png'
+import '@img/room-details.jpg'
+import '@img/room-details-2.jpg'
+import '@img/room-details-3.jpg'
+import '@img/image.png'
+import '@img/image_4.png'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 import '@style/global.scss'

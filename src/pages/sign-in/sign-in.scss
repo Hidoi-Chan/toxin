@@ -1,6 +1,7 @@
 @import '../../style/variables.scss';
 
 .first-screen {
+    height: 800px;
     background-image: url('../../img/image_registration.jpg');
     background-size: cover;
     background-position: center bottom;
@@ -8,8 +9,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.registration__card {
-    margin: 90px 0 20px;
 }

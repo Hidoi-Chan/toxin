@@ -1,5 +1,5 @@
-// import '@img/room_1.jpg';
-// import '@img/room_2.jpg';
+import '@img/room_1.jpg';
+import '@img/room_2.jpg';
 
 import '@style/global.scss'
 import '@blocks/field/field.scss'
