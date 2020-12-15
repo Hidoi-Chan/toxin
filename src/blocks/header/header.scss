@@ -34,3 +34,77 @@
     flex-grow: 1;
     margin-right: 10px;
 }
+
+@include large {
+
+    .burger+label+.header__container-for-burger {
+        position: fixed;
+        top: 70px;
+        right: -300px;
+        background-color: white;
+        box-shadow: -10px 0 20px $dark5;
+        min-width: 240px;
+        height: calc(100vh - 70px);
+        z-index: 9998;
+        transition: 300ms ease;
+        flex-direction: column;
+    
+        .nav {
+            flex-grow: 0;
+            order: 2;
+            width: 100%;
+            margin: 20px;
+        }
+    
+        .nav__menu {
+            flex-direction: column;
+        }
+    
+        .nav__link {
+            padding: 0 20px;
+        }
+    
+        .nav__link_expandable {
+        
+            &:hover {
+    
+                & + .nav__menu {
+                    display: none;
+                }
+            }
+
+            &::after {
+                right: 20px;
+            }
+        }
+    
+        .sign-in {
+            margin: 0 10px;
+    
+            .button {
+                margin: 0 auto;
+                display: block;
+                width: 100%;
+
+                &:first-child {
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    
+        .sign-in__username {
+            display: block;
+            background-color: $dark10;
+            padding: 10px;
+            border-radius: 4px;
+    
+            &::before {
+                content: none;
+            }
+        }
+    }
+    
+    .burger:checked+label+.header__container-for-burger {
+        right: 0;
+    }
+}

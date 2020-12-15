@@ -7,7 +7,7 @@ mixin header(className, username)
     header(class!=`header ${className}`)
         div.header__container
             +logo('')
-            +burger('')
+            +burger('', 'burger')
             div.header__container-for-burger
                 +nav('header__nav')
                 +sign-in('', username)

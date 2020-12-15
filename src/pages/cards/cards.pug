@@ -1,5 +1,6 @@
 extends ../../layout
 include ../../blocks/field/field.pug
+include ../../blocks/dropdown/dropdown.pug
 include ../../blocks/button/button.pug
 include ../../blocks/radio/radio.pug
 include ../../blocks/toggle/toggle.pug
@@ -11,25 +12,35 @@ block content
             form(action="").card
                 h1.card__element.h1 Найдём номера под ваши пожелания
                 div.card__element.card__row
-                    +field('', 'Прибытие', 'field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', 'ДД.ММ.ГГГГ', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
-                    +field('', 'Выезд', 'field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', 'ДД.ММ.ГГГГ', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
+                    div
+                        h3.field__title Прибытие
+                        div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150
+                            +field('', 'text', 'ДД.ММ.ГГГГ', true)
+                    div
+                        h3.field__title Выезд
+                        div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150
+                            +field('', 'text', 'ДД.ММ.ГГГГ', true)
                 div.card__element
-                    +field('', 'Гости', 'field__input_width_320 field__input_border-radius_2 field__input_dropdown-color_dark75', '', 'Сколько гостей', '', 'expand_more', 'field__icon_color_dark75', 'readonly')
+                    h3.field__title Гости
+                    +dropdown('', 'Сколько гостей')
                 +button('card__element button_width_320', 'подобрать номер')
             form(action="").card
                 h1.card__element.h1 Регистрация аккаунта
                 div.card__element.card__element_margin-bottom_10
-                    +field('', '', 'field__input_width_320 field__input_border-radius_4', 'text', 'Имя')
-                    +field('', '', 'field__input_width_320 field__input_border-radius_4', 'text', 'Фамилия')
+                    +field('', 'text', 'Имя')
+                    +field('', 'text', 'Фамилия')
                     div.card__row
                         +radio('', 'Мужчина', 'male')
                         +radio('', 'Женщина', 'female')
                 div.card__element
-                    +field('', 'дата рождения', 'field__input_width_320 field__input_border-radius_4 field_js-date', 'text', 'ДД.ММ.ГГГГ')
-                div.card__element.card__element_margin-bottom_10
-                    +field('', 'данные для входа в сервис', 'field__input_width_320 field__input_border-radius_4', 'text', 'Email')
-                    +field('', '', 'field__input_width_320 field__input_border-radius_4', 'text', 'Пароль')
-                    +toggle('', 'Получать спецпредложения', 'get special offers')
+                    h3.field__title дата рождения
+                    +field('field_js-date', 'text', 'ДД.ММ.ГГГГ')
+                div.card__element
+                    h3.field__title данные для входа в сервис
+                    div.card__element_margin-bottom_10
+                        +field('', 'text', 'Email')
+                        +field('', 'text', 'Пароль')
+                        +toggle('', 'Получать спецпредложения', 'get special offers')
                 +button('card__element button_width_320', 'перейти к оплате')
                 div.card__element.card__submit-block
                     p.card__submit-block-text Уже есть аккаунт на Toxin
@@ -42,10 +53,17 @@ block content
                     h2.card__price 9 990р
                         span.card__price_thin  в сутки
                 div.card__element.card__row
-                    +field('', 'Прибытие', 'field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', '19.08.2019', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
-                    +field('', 'Выезд', 'field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', '23.08.2019', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
+                    div
+                        h3.field__title Прибытие
+                        div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150
+                            +field('', 'text', '19.08.2019', true)
+                    div
+                        h3.field__title Выезд
+                        div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150
+                            +field('', 'text', '23.08.2019', true)
                 div.card__element
-                    +field('', 'Гости', 'field__input_width_320 field__input_border-radius_2 field__input_dropdown-color_dark75', '', '3 гостя', '', 'expand_more', 'field__icon_color_dark75', 'readonly')
+                    h3.field__title Гости
+                    +dropdown('', '3 гостя')
                 table.card__element.card__table
                     tr
                         td 9 990р х 4 суток
@@ -68,8 +86,8 @@ block content
             form(action="").card
                 h1.card__element.h1 Войти
                 div.card__element.card__element_margin-bottom_10
-                    +field('', '', 'field__input_width_320 field__input_border-radius_4', 'text', 'Email')
-                    +field('', '', 'field__input_width_320 field__input_border-radius_4', 'text', 'Пароль')
+                    +field('', 'text', 'Email')
+                    +field('', 'text', 'Пароль')
                 +button('card__element button_width_320', 'Войти')
                 div.card__element.card__submit-block
                     p.card__submit-block-text Нет аккаунта на Toxin?

@@ -11,7 +11,7 @@
 }
 
 .first-screen__container {
-    width: 1160px;
+    max-width: 1160px;
     height: 100%;
     margin: 0 auto;
     position: relative;
@@ -33,4 +33,29 @@
     font-size: 14px;
     line-height: torem(24);
     color: $dark75;
+}
+
+@include large-up {
+
+    .first-screen__container {
+        margin: 0 20px;
+    }
+}
+
+@include medium {
+
+    .first-screen {
+        height: auto;
+    }
+
+    .first-screen__container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .first-screen__card {
+        position: relative;
+        top: 0;
+        margin: 50px 0 100px;
+    }
 }

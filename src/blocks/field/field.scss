@@ -1,90 +1,48 @@
 @import '../../style/variables.scss';
-@import '../../../node_modules/air-datepicker/dist/css/datepicker.min.css';
 
 .field {
+    height: 44px;
+    max-width: 320px;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 15px;
+    border: 1px solid $dark25;
+    border-radius: 4px;
+    transition: 400ms ease;
+    color: $dark75;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: torem(14);
+    line-height: torem(18);
 
-    &__title {
-        margin-bottom: 5px;
-    }
-
-    &__wrapper {
-        display: inline-block;
-        position: relative;
-
-        &:focus,
-        &:hover {
-            .field__input {
-                border: 1px solid $dark50;
-                color: $dark75;
-
-                &::placeholder {
-                    color: $dark75;
-                }
-            }
-    
-            .field__icon_color_dark50 {
-                color: $dark75;
-            }
-        }
-    }
-
-    &__input {
-        height: 44px;
-        position: relative;
-        box-sizing: border-box;
-        padding: 0 15px;
-        border: 1px solid $dark25;
+    &::placeholder {
+        color: $dark25;
         transition: 400ms ease;
+    }
+    
+    &:hover,
+    &:focus,
+    &_hover {
+        border: 1px solid $dark50;
         color: $dark75;
-        font-family: "Montserrat", sans-serif;
-        font-weight: 400;
-        font-size: torem(14);
-        line-height: torem(18);
 
         &::placeholder {
-            color: $dark25;
-            transition: 400ms ease;
-        }
-
-        &_width_320 {
-            width: 320px;
-        }
-    
-        &_width_266 {
-            width: 266px;
-            padding-right: 44px;
-        }
-    
-        &_width_150 {
-            width: 150px;
-        }
-    
-        &_dropdown-color_dark75 {
-
-            &::placeholder {
-                color: $dark75;
-            }
-        }
-    
-        &_border-radius_4 {
-            border-radius: 4px;
-        }
-    
-        &_border-radius_2 {
-            border-radius: 2px 2px 0 0;
-        }
-        
-        &_hover {
-            border: 1px solid $dark50;
             color: $dark75;
-
-            &::placeholder {
-                color: $dark75;
-            }
         }
     }
+}
 
-    &__icon {
+.field__title {
+    margin-bottom: 5px;
+}
+
+.field__wrapper {
+    display: inline-block;
+    position: relative;
+
+    &::after {
+        content: 'arrow_forward';
         display: flex;
         align-items: center;
         justify-content: center;
@@ -95,16 +53,24 @@
         right: 0;
         cursor: pointer;
         transition: 400ms ease;
+        font-family: "Material Icons", sans-serif;
+        font-size: torem(24);
+        line-height: torem(24);
+    }
 
-        &_color_dark50 {
-            color: $dark50;
-        }
+    &:hover .field {                
+        border: 1px solid $dark50;
+        color: $dark75;
 
-        &_color_dark75 {
+        &::placeholder {
             color: $dark75;
         }
+    }
 
-        &_color_gradient {
+    &_for-subscription {
+        width: 266px;
+
+        &::after {
             background: $gradient;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -112,8 +78,23 @@
         }
     }
 
-    &_js-datepicker {
-        cursor: pointer;
-        // text-transform: lowercase;
+    &_for-datepicker {
+        width: 266px;
+
+        &::after {
+            content: 'expand_more';
+            color: $dark50;
+        }
+
+        .field {
+
+            &::placeholder {
+                color: $dark75;
+            }
+        }
+    }
+
+    &_width_150 {
+        width: 150px;
     }
 }

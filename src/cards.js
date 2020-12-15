@@ -4,6 +4,7 @@ import '@img/room_2.jpg';
 import '@style/global.scss'
 import '@blocks/field/field.scss'
 import '@blocks/field/field.js'
+import '@blocks/dropdown/dropdown.scss'
 import '@blocks/button/button.scss'
 import '@blocks/radio/radio.scss'
 import '@blocks/toggle/toggle.scss'

@@ -1,6 +1,56 @@
 @import '../../style/variables.scss';
 
 .dropdown {
+    position: relative;
+
+    &_hover {
+
+        .field {
+            border: 1px solid $dark50;
+            color: $dark75;
+
+            &::placeholder {
+                color: $dark75;
+            }
+        }
+    }
+}
+
+.dropdown__field-wrapper {
+    width: 320px;
+
+    .field {
+        border-radius: 2px 2px 0 0;
+
+        &::placeholder {
+            color: $dark75;
+        }
+    }
+
+    &::after {
+        content: 'expand_more';
+        color: $dark50;
+    }
+
+    &_width_266 {
+        width: 266px;
+    }
+
+    &:hover,
+    &:focus {
+
+        .field {
+            border: 1px solid $dark50;
+            color: $dark75;
+
+            &::placeholder {
+                color: $dark75;
+            }
+        }
+    }
+}
+
+.dropdown__container {
     width: 320px;
     box-sizing: border-box;
     padding: 7px 7px 0 15px;
@@ -16,32 +66,32 @@
     &_width_266 {
         width: 266px;
     }
+}
 
-    &__item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;        
-        margin-bottom: 7px;
-    }
+.dropdown__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;        
+    margin-bottom: 7px;
+}
 
-    &__counter-block {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 92px;
-    }
+.dropdown__counter-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 92px;
+}
 
-    &__footer {
-        display: flex;
-        justify-content: space-between;
+.dropdown__footer {
+    display: flex;
+    justify-content: space-between;
 
-        &-button {
-            padding: 12px 0;
+    &-button {
+        padding: 12px 0;
 
-            &_disabled {
-                opacity: 0;
-                cursor: auto;
-            }
+        &_disabled {
+            opacity: 0;
+            cursor: auto;
         }
     }
 }

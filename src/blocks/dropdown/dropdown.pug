@@ -1,11 +1,30 @@
-mixin dropdown(className, arr, footer, buttonWithoutFill1, buttonWithoutFill2)
+include ../../blocks/field/field.pug
+
+mixin dropdown(className, placeholder, arr, footer, buttonClear, buttonApply)
     div(class!=`dropdown ${className}`)
-        each val in arr
-            +dropdown__item(val)
-        if footer
-            div.dropdown__footer
-                +buttonWithoutFill(...buttonWithoutFill1)
-                +buttonWithoutFill(...buttonWithoutFill2)
+        div.field__wrapper.dropdown__field-wrapper
+            +field('', 'text', `${placeholder}`, true)
+        if arr
+            div.dropdown__container
+                each val in arr
+                    +dropdown__item(val)
+                if footer
+                    div.dropdown__footer
+                        +buttonWithoutFill(...buttonClear)
+                        +buttonWithoutFill(...buttonApply)
+
+mixin dropdown266(className, placeholder, arr, footer, buttonClear, buttonApply)
+    div(class!=`dropdown ${className}`)
+        div.field__wrapper.dropdown__field-wrapper.dropdown__field-wrapper_width_266
+            +field('', 'text', `${placeholder}`, true)
+        if arr
+            div.dropdown__container.dropdown__container_width_266
+                each val in arr
+                    +dropdown__item(val)
+                if footer
+                    div.dropdown__footer
+                        +buttonWithoutFill(...buttonClear)
+                        +buttonWithoutFill(...buttonApply)
 
 mixin dropdown__item(itemName)
     div.dropdown__item

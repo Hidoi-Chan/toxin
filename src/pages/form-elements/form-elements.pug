@@ -17,18 +17,35 @@ include ../../blocks/pagination/pagination.pug
 block content
     main.form-elements
         div.form-elements__grid-item
-            +field('', 'Text Field', 'field__input_width_320 field__input_border-radius_4', 'text', 'Email', 'Default')
-            +field('', 'Text Field', 'field__input_width_320 field__input_border-radius_4 field__input_hover', 'text', 'This is pretty awesome', 'Hover / Focus')
-            +field('', 'Dropdown', 'field__input_width_320 field__input_border-radius_4 field__input_dropdown-color_dark75', '', 'Сколько гостей', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
+            div
+                h3.field__title Text Field
+                +field('', 'text', 'Email')
+            div
+                h3.field__title Text Field
+                +field('field_hover', 'text', 'This is pretty awesome')
+            div
+                h3.field__title Dropdown
+                +dropdown('', 'Сколько гостей')
             div.form-elements_margin_22
-                +field('', 'masked text field', 'field__input_width_320 field__input_border-radius_4 field_js-date', 'text', 'ДД.ММ.ГГГГ')
+                h3.field__title masked text field
+                +field('field_js-date', 'text', 'ДД.ММ.ГГГГ')
             div.form-elements__container.form-elements_margin_42
-                +field('', 'date Dropdown', 'field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', 'ДД.ММ.ГГГГ', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
-                +field('', 'date Dropdown', 'field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', '19.08.2019', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
+                div
+                    h3.field__title date Dropdown
+                    div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150
+                        +field('', 'text', 'ДД.ММ.ГГГГ', true)
+                div
+                    h3.field__title date Dropdown
+                    div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150
+                        +field('', 'text', '19.08.2019', true)
             div.form-elements_margin_40
-                +field('', 'filter date dropdown', 'field__input_width_266 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', '19 авг - 23 авг', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
+                h3.field__title filter date dropdown
+                div.field__wrapper.field__wrapper_for-datepicker
+                    +field('', 'text', '19 авг - 23 авг', true)
             div.form-elements_margin_40
-                +field('', 'subscription text field', 'field__input_width_266 field__input_border-radius_4', 'text', 'Email', '', 'arrow_forward', 'field__icon_color_gradient')
+                h3.field__title subscription text field
+                div.field__wrapper.field__wrapper_for-subscription
+                    +field('', 'text', 'Email')
         div.form-elements__grid-item
             div.form-elements__checkbox-container
                 h3.form-elements__title_margin-bottom_18 Checkbox Buttons
@@ -75,12 +92,20 @@ block content
                 h3.form-elements__title_margin-bottom_18 pagination
                 +pagination('', '1 – 12 из 100+ вариантов аренды')
         div.form-elements__grid-item
-            +field('', 'Dropdown', 'field__input_width_266 field__input_border-radius_2 field__input_dropdown-color_dark75', '', '2 спальни, 2 кровати…', 'Default', 'expand_more', 'field__icon_color_dark75', 'readonly')
-            +field('', 'Dropdown', 'field__input_width_266 field__input_border-radius_2 field__input_hover field__input_dropdown-color_dark75', '', '2 спальни, 2 кровати…', 'expanded', 'expand_more', 'field__icon_color_dark75', 'readonly', ['dropdown_width_266', ['спальни', 'кровати', 'ванные комнаты']])
+            div
+                h3.field__title Dropdown
+                +dropdown266('', '2 спальни, 2 кровати…')
+            div
+                h3.field__title Dropdown
+                +dropdown266('dropdown_hover', '2 спальни, 2 кровати…', ['спальни', 'кровати', 'ванные комнаты'])
         div.form-elements__grid-item
-            +field('', 'Dropdown', 'field__input_width_320 field__input_border-radius_2 field__input_hover field__input_dropdown-color_dark75', '', 'Сколько гостей', '', 'expand_more', 'field__icon_color_dark75', 'readonly', ['', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button dropdown__footer-button_disabled', 'Очистить', 'purple'], ['dropdown__footer-button', 'Применить', 'purple']])
+            div
+                h3.field__title Dropdown
+                +dropdown('dropdown_hover', 'Сколько гостей', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button dropdown__footer-button_disabled', 'Очистить', 'purple'], ['dropdown__footer-button', 'Применить', 'purple'])
         div.form-elements__grid-item
-            +field('', 'Dropdown', 'field__input_width_320 field__input_border-radius_2 field__input_hover field__input_dropdown-color_dark75', '', '3 гостя', '', 'expand_more', 'field__icon_color_dark75', 'readonly', ['', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button', 'Очистить', 'purple'], ['dropdown__footer-button', 'Применить', 'purple']])
+            div
+                h3.field__title Dropdown
+                +dropdown('dropdown_hover', '3 гостя', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button', 'Очистить', 'purple'], ['dropdown__footer-button', 'Применить', 'purple'])
         div.form-elements__grid-item
             div.form-elements__expandable-list-container
                 +expandable-list('expandable-list_width_266 expandable-list_with-icon', 'expandable checkbox list')

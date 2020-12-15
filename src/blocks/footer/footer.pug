@@ -21,5 +21,6 @@ footer.footer
         div.footer__subscription
             h4.h3.footer__subscription-title Подписка
             p.footer__subscription-text Получайте специальные предложения и новости сервиса
-            +field('', '', 'field__input_width_266 field__input_border-radius_4', 'text', 'Email', '', 'arrow_forward', 'field__icon_color_gradient')
-    +copyrightBar('')
+            div.field__wrapper.field__wrapper_for-subscription
+                +field('', 'text', 'Email')
+
