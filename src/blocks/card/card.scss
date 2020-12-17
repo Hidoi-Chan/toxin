@@ -121,3 +121,44 @@
     font-size: torem(12);
     line-height: torem(14);
 }
+
+@include small {
+
+    .card__element {
+
+        & + & {
+            margin-top: 10px;
+        }
+    
+        &:last-child {
+            margin-top: 20px;
+    
+            // &.card__button-reservation {
+            //     margin-top: 20px;
+            // }
+        }
+    
+        // &_margin-bottom_10 {
+    
+        //     & > * {
+        //         margin-bottom: 10px;
+        
+        //         &:last-child {
+        //             margin-bottom: 0;
+        //         }
+        //     }
+        // }
+    }
+
+    .card__row {
+        flex-direction: column;
+    
+        & > * {
+            margin: 0 0 10px;
+
+            &:last-child {
+                margin: 0;
+            }
+        }
+    }
+}

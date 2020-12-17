@@ -40,6 +40,7 @@
 .field__wrapper {
     display: inline-block;
     position: relative;
+    width: 100%;
 
     &::after {
         content: 'arrow_forward';
@@ -68,7 +69,7 @@
     }
 
     &_for-subscription {
-        width: 266px;
+        // width: 266px;
 
         &::after {
             background: $gradient;
@@ -79,7 +80,7 @@
     }
 
     &_for-datepicker {
-        width: 266px;
+        // width: 266px;
 
         &::after {
             content: 'expand_more';
@@ -94,7 +95,8 @@
         }
     }
 
-    &_width_150 {
-        width: 150px;
-    }
+    // &_width_150 {  // изменить
+    //     max-width: 150px;
+    //     width: 100%;
+    // }
 }

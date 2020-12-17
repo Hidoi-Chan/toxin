@@ -74,3 +74,24 @@ button {
 .display_none {
     display: none;
 }
+
+@include small {
+
+    h1,
+    .h1 {
+        font-size: torem(18);
+        line-height: torem(22);
+    }
+    
+    // h2,
+    // .h2 {
+    //     font-size: torem(19);
+    //     line-height: torem(24);
+    // }
+    
+    // h3,
+    // .h3 {
+    //     font-size: torem(12);
+    //     line-height: torem(15);
+    // }
+}

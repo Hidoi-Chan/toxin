@@ -67,7 +67,7 @@
     }
 
     &_width_320 {
-        width: 320px;
+        width: 100%;  // изменить
 
         &::after {
             content: 'arrow_forward';
