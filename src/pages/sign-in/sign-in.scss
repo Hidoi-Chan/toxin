@@ -11,3 +11,10 @@
     justify-content: center;
     align-items: center;
 }
+
+@include small {
+
+    .first-screen {
+        height: 500px;
+    }
+}

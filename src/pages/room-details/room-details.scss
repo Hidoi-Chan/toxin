@@ -10,38 +10,109 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
+}
 
-    div {
+.main__first-screen-image {
 
-        &:first-child {
-            grid-column-start: 1; 
-            grid-column-end: 3; 
-            grid-row-start: 1; 
-            grid-row-end: 3;
-            background-image: url('../../img/room-details.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+    &:first-child {
+        grid-column-start: 1; 
+        grid-column-end: 3; 
+        grid-row-start: 1; 
+        grid-row-end: 3;
+        background-image: url('../../img/room-details.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    &:nth-child(2) {
+        background-image: url('../../img/room-details-2.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    &:last-child {
+        background-image: url('../../img/room-details-3.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+
+.main__owl-calousel {
+    display: none;
+
+    .owl-carousel {
+        width: 100%;
+        max-height: 460px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .owl-carousel .owl-nav button.owl-prev,
+    .owl-carousel .owl-nav button.owl-next {
+        width: 42px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 99.99%, rgba(255, 255, 255, 0) 100%);
+    
+        span {
+            display: none;
         }
-
-        &:nth-child(2) {
-            background-image: url('../../img/room-details-2.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+    
+        &::after {
+            content: 'expand_more';
+            width: 44px;
+            height: 44px;
+            position: absolute;
+            top: calc(50% - 22px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Material Icons';
+            font-size: torem(24);
+            line-height: torem(24);
+            color: white;
+            transform: rotate(90deg);
         }
-
-        &:last-child {
-            background-image: url('../../img/room-details-3.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+    }
+    
+    .owl-carousel .owl-nav button.owl-prev {
+        left: 0;
+    }
+    
+    .owl-carousel .owl-nav button.owl-next {
+        right: 0;
+        transform: matrix(-1, 0, 0, 1, 0, 0);
+    }
+    
+    .owl-dots {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        display: flex;
+    }
+    
+    .owl-carousel button.owl-dot {
+        display: block;
+        width: 7.5px;
+        height: 7.5px;
+        box-sizing: border-box;
+        border: 1px solid white;
+        border-radius: 22px;
+        margin-left: 3.75px;
+        transition: 300ms ease;
+    
+        &.active {
+            background-color: white;
         }
     }
 }
 
 .main__container {
-    width: 1160px;
+    max-width: 1160px;
     margin: 70px auto;
     display: flex;
 }
@@ -98,4 +169,81 @@
 
 .card {
     align-self: flex-start;
+}
+
+@include large-up {
+
+    .main__container {
+        padding: 0 20px;
+    }
+}
+
+@include large {
+
+    .main__first-screen {
+        display: none;
+    }
+
+    .main__owl-calousel {
+        display: block;
+    }
+ 
+    .main__container {
+        flex-direction: column;
+        margin: 40px 0;
+    }
+
+    .main__content {
+        margin-right: 0;
+        order: 2;
+
+        &>* {
+            margin-top: 40px;
+        }
+    }
+
+    .card {
+        align-self: center;
+    }
+}
+
+@include small {
+
+    .main__container {
+        padding: 0;
+    }
+
+    .main__content {
+        padding: 0 20px;
+    }
+
+    .main__room-information {
+        flex-direction: column;
+    }
+
+    .main__room-information-block {
+        width: 100%;
+        padding: 0;
+
+        h2 {
+            text-align: center;
+        }
+
+        &:first-child {
+            margin-bottom: 10px;
+        }
+    }
+
+    .main__review-block-title {
+        align-items: center;
+    }
+
+    .main__review-block-description {
+        white-space: nowrap;
+        padding-left: 10px;
+    }
+
+    .card {
+        width: auto;
+    }
 }

@@ -20,3 +20,23 @@ import '@blocks/dropdown/dropdown.scss'
 import '@blocks/copyright-bar/copyright-bar.scss'
 import '@blocks/footer/footer.scss'
 import '@pages/search-room/search-room.scss'
+
+let filterButton = document.querySelector('.js-filter-button')
+let leftSidebarCloseButton = document.querySelector('.js-left-sidebar-close')
+let leftSidebarAcceptButton = document.querySelector('.js-left-sidebar-accept')
+let filterBlock = document.querySelector('.left-sidebar')
+
+function closeSidebar() {
+    filterBlock.style.left = -400 + 'px'
+}
+
+filterButton.addEventListener('click', function() {
+    if (filterBlock.style.left == '0px') {
+        closeSidebar()
+    } else {
+        filterBlock.style.left = 0
+    }
+})
+
+leftSidebarCloseButton.addEventListener('click', closeSidebar)
+leftSidebarAcceptButton.addEventListener('click', closeSidebar)

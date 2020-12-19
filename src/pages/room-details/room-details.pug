@@ -1,6 +1,7 @@
 extends ../../layout
 include ../../blocks/header/header.pug
 include ../../blocks/field/field.pug
+include ../../blocks/dropdown/dropdown.pug
 include ../../blocks/button/button.pug
 include ../../blocks/room-info-item/room-info-item.pug
 include ../../blocks/review/review.pug
@@ -10,9 +11,14 @@ block content
     +header('header_fixed')
     main.main
         div.main__first-screen
-            div
-            div
-            div
+            div.main__first-screen-image
+            div.main__first-screen-image
+            div.main__first-screen-image
+        div.main__owl-calousel
+            div.owl-carousel.owl-theme
+                img(src=`assets/images/room-details.jpg` alt='room_1')
+                img(src=`assets/images/room-details-2.jpg` alt='room_2')
+                img(src=`assets/images/room-details-3.jpg` alt='room_3')
         div.main__container
             div.main__content
                 div.main__room-information
@@ -44,10 +50,17 @@ block content
                     h2.card__price 9 990р
                         span.card__price_thin  в сутки
                 div.card__element.card__row
-                    +field('', 'Прибытие', 'field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', '19.08.2019', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
-                    +field('', 'Выезд', 'field__input_width_150 field__input_border-radius_4 field__input_dropdown-color_dark75', 'text', '23.08.2019', '', 'expand_more', 'field__icon_color_dark50', 'readonly')
+                    div
+                        h3.field__title Прибытие
+                        div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150
+                            +field('', 'text', '19.08.2019', true)
+                    div
+                        h3.field__title Выезд
+                        div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150
+                            +field('', 'text', '23.08.2019', true)
                 div.card__element
-                    +field('', 'Гости', 'field__input_width_320 field__input_border-radius_2 field__input_dropdown-color_dark75', '', '3 гостя', '', 'expand_more', 'field__icon_color_dark75', 'readonly')
+                    h3.field__title Гости
+                    +dropdown('', '3 гостя')
                 table.card__element.card__table
                     tr
                         td 9 990р х 4 суток

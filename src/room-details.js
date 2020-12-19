@@ -21,6 +21,17 @@ import '@blocks/bullet-list/bullet-list.scss'
 import '@blocks/pie/pie.scss'
 import '@blocks/pie/pie.js'
 import '@blocks/field/field.scss'
+import '@blocks/dropdown/dropdown.scss'
 import '@blocks/copyright-bar/copyright-bar.scss'
 import '@blocks/footer/footer.scss'
 import '@pages/room-details/room-details.scss'
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel';
+
+$('.owl-carousel').owlCarousel({
+    items: 1,
+    mouseDrag: false,
+    nav: true,
+    // navText: ['expand_more','expand_more'],
+    dotsEach: true
+})

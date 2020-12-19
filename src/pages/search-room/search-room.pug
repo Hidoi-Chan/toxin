@@ -31,10 +31,13 @@ block content
                     h3.field__title удобства номера
                     +dropdown('', '2 спальни, 2 кровати...')
                 +expandable-list('expandable-list_width_266 expandable-list_with-icon', 'дополнительные удобства', [['', 'Завтрак'], ['', 'Письменный стол'], ['', 'Стул для кормления'], ['', 'Кроватка'], ['', 'Телевизор'], ['', 'Шампунь']])
+                div.main__row
+                    +button('left-sidebar__button js-left-sidebar-close', 'Отменить', true)
+                    +button('left-sidebar__button js-left-sidebar-accept', 'Применить')
             div.main__content
                 div.main__title
                     h1.h1 Номера, которые мы для вас подобрали
-                    +filterBurger('main__burger', 'filter', 'Фильтры')
+                    button.filter-button.js-filter-button Фильтры
                 div.main__room-card-container
                     div.room-card
                         div.owl-carousel.owl-theme

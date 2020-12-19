@@ -35,6 +35,7 @@
         cursor: pointer;
         line-height: torem(24);
         color: $dark75;
+        white-space: nowrap;
 
         &:before {
             content: '';
@@ -75,5 +76,13 @@
                 border: 1px solid $purple;
             }
         }
+    }
+}
+
+@include small {
+
+    .toggle__text {
+        padding-left: 46px;
+        font-size: torem(13);
     }
 }

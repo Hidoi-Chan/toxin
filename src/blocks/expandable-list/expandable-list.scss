@@ -3,16 +3,16 @@
 .expandable-list {
     position: relative;
 
-    &_width {
+    // &_width {
 
-        &_266 {
-            width: 266px;
-        }
+    //     &_266 {
+    //         width: 266px;
+    //     }
 
-        &_292 {
-            width: 292px;
-        }
-    }
+    //     &_292 {
+    //         width: 292px;
+    //     }
+    // }
 
     &_with-icon {
         position: relative;
@@ -39,7 +39,7 @@
     }
 
     &__checkbox-container {
-        width: 266px;
+        // width: 266px;
         padding-top: 16px;
     }
 }

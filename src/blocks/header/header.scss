@@ -4,10 +4,11 @@
     width: 100%;
     background-color: white;
     box-shadow: 0px 10px 20px $dark5;
+    position: relative;
+    z-index: 20;
 
     &_fixed {
         position: fixed;
-        z-index: 10;
     }
 }
 

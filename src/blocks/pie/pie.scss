@@ -61,3 +61,21 @@
         }
     }
 }
+
+@include large-up {
+
+    .pie {
+        flex-direction: column;
+    }
+}
+
+@include small {
+
+    .pie {
+        align-items: center;
+    }
+
+    #pie {
+        left: calc(50% - 60px);
+    }
+}

@@ -51,11 +51,17 @@
     .first-screen__container {
         display: flex;
         justify-content: center;
+        margin: 0;
     }
 
     .first-screen__card {
         position: relative;
         top: 0;
-        margin: 50px 0 100px;
+        margin-top: 50px;
+        margin-bottom: 100px;
+    }
+
+    .first-screen__h1 {
+        margin-right: 20px;
     }
 }

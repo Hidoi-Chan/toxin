@@ -11,6 +11,11 @@
     display: flex;
 }
 
+.main__row {
+    display: none;
+    justify-content: center;
+}
+
 .main__content {
     flex-grow: 1;
 }
@@ -21,12 +26,27 @@
     align-items: center;
 }
 
-.main__burger + label {
+.filter-button {
+    display: none;
     margin-left: 20px;
+    padding: 4px 8px;
+    border: 1px solid $dark25;
+    color: $dark50;
+    transition: 300ms ease;
+
+    &:hover,
+    &:focus {
+        border: 1px solid $dark50;
+        color: $dark75;        
+    }
 }
 
 .left-sidebar {
-    margin-right: 60px;
+    min-width: 266px;
+    padding-right: 60px;
+    transition: 300ms ease;
+    background-color: white;
+    z-index: 10;
 
     & > * {
         margin-top: 30px;
@@ -34,6 +54,18 @@
         &:first-child {
             margin-top: 0;
         }
+    }
+}
+
+.left-sidebar__button {
+    display: inline-block;
+    vertical-align: middle;
+    height: 38px;
+    min-width: auto;
+    padding: 0 14px;
+
+    &+& {
+        margin-left: 20px;
     }
 }
 
@@ -72,7 +104,24 @@
 @include large {
 
     .left-sidebar {
-        display: none;
+        height: calc(100vh - 110px);
+        min-width: auto;
+        max-width: 80%;
+        position: fixed;
+        left: -400px;
+        top: 70px;
+        padding: 30px 20px 10px;
+        overflow: auto;
+        box-shadow: 10px 0 20px $dark25;
+    }
+
+    .main__row {
+        display: flex;
+        justify-content: center;
+    }
+
+    .filter-button {
+        display: block;
     }
 
     .main__room-card-container {
@@ -102,8 +151,15 @@
         align-items: flex-start;
     }
 
-    .main__burger + label {
+    .filter-button {
         margin: 10px 0 0;
         align-self: flex-end;
+    }
+
+    .left-sidebar__button {
+    
+        &+& {
+            margin-left: 5px;
+        }
     }
 }

@@ -12,21 +12,6 @@
     position: relative;
 }
 
-.burger_filter + label {
-    width: auto;
-    height: auto;
-    padding: 4px 8px;
-    border: 1px solid $dark25;
-    color: $dark50;
-    transition: 300ms ease;
-
-    &:hover,
-    &:focus {
-        border: 1px solid $dark50;
-        color: $dark75;        
-    }
-}
-
 .burger+label>span {
     display: block;
     position: absolute;
