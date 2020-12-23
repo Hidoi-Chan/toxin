@@ -21,6 +21,7 @@
 
     .field {
         border-radius: 2px 2px 0 0;
+        cursor: pointer;
 
         &::placeholder {
             color: $dark75;
@@ -52,6 +53,7 @@
 
 .dropdown__container {
     width: 100%;
+    display: none;
     // width: 320px;
     box-sizing: border-box;
     padding: 7px 7px 0 15px;
@@ -83,16 +85,22 @@
     width: 92px;
 }
 
+.dropdown__button_disabled {
+    border: 1px solid $dark10;
+    color: $dark25;
+    cursor: auto;
+}
+
 .dropdown__footer {
     display: flex;
     justify-content: space-between;
+}
 
-    &-button {
-        padding: 12px 0;
+.dropdown__footer-button {
+    padding: 12px 0;
 
-        &_disabled {
-            opacity: 0;
-            cursor: auto;
-        }
+    &_disabled {
+        opacity: 0;
+        cursor: auto;
     }
 }

@@ -1,35 +1,34 @@
 include ../../blocks/field/field.pug
 
 mixin dropdown(className, placeholder, arr, footer, buttonClear, buttonApply)
-    div(class!=`dropdown ${className}`)
-        div.field__wrapper.dropdown__field-wrapper
+    div(class!=`dropdown js-dropdown ${className}`)
+        div.field__wrapper.dropdown__field-wrapper.js-dropdown__field-wrapper
             +field('', 'text', `${placeholder}`, true)
-        if arr
-            div.dropdown__container
-                each val in arr
-                    +dropdown__item(val)
-                if footer
-                    div.dropdown__footer
-                        +buttonWithoutFill(...buttonClear)
-                        +buttonWithoutFill(...buttonApply)
+        div.dropdown__container.js-dropdown__container
+            each val in arr
+                +dropdown__item(val)
+            if footer
+                div.dropdown__footer.js-dropdown__footer
+                    +buttonWithoutFill(...buttonClear)
+                    +buttonWithoutFill(...buttonApply)
 
-mixin dropdown266(className, placeholder, arr, footer, buttonClear, buttonApply)
-    div(class!=`dropdown ${className}`)
-        div.field__wrapper.dropdown__field-wrapper.dropdown__field-wrapper_width_266
-            +field('', 'text', `${placeholder}`, true)
-        if arr
-            div.dropdown__container.dropdown__container_width_266
-                each val in arr
-                    +dropdown__item(val)
-                if footer
-                    div.dropdown__footer
-                        +buttonWithoutFill(...buttonClear)
-                        +buttonWithoutFill(...buttonApply)
+//- mixin dropdown266(className, placeholder, arr, footer, buttonClear, buttonApply)
+//-     div(class!=`dropdown ${className}`)
+//-         div.field__wrapper.dropdown__field-wrapper.dropdown__field-wrapper_width_266
+//-             +field('', 'text', `${placeholder}`, true)
+//-         if arr
+//-             div.dropdown__container.dropdown__container_width_266
+//-                 each val in arr
+//-                     +dropdown__item(val)
+//-                 if footer
+//-                     div.dropdown__footer
+//-                         +buttonWithoutFill(...buttonClear)
+//-                         +buttonWithoutFill(...buttonApply)
 
 mixin dropdown__item(itemName)
-    div.dropdown__item
-        h3.dropdown__item-name= itemName
+    div.dropdown__item.js-dropdown__item
+        h3.dropdown__item-name.js-dropdown__item-name= itemName
         div.dropdown__counter-block
-            +buttonRound('', '-')
-            h3.dropdown__counter-block-counter 0
-            +buttonRound('', '+')
+            +buttonRound('js-dropdown__button-decrement', '-')
+            h3.dropdown__counter-block-counter.js-dropdown__counter 0
+            +buttonRound('js-dropdown__button-increment', '+')

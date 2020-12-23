@@ -20,7 +20,7 @@ block content
                         +field('', 'text', '19 авг - 23 авг', true)
                 div
                     h3.field__title Гости
-                    +dropdown('', '3 гостя, 1 младенец')
+                    +dropdown('js-dropdown-guests', 'Сколько гостей', ['взрослые', 'дети', 'младенцы'])
                 div
                     h3 Диапазон цены
                     +range-slider('', '5 000p - 10 000p')
@@ -29,7 +29,7 @@ block content
                 +expandable-list('expandable-list_width_266', 'доступность', [['', 'Широкий коридор', '', 'Ширина коридоров в номере не менее 91 см.'], ['', 'Помощник для инвалидов', '', 'На 1 этаже вас встретит специалист и проводит до номера.']])
                 div
                     h3.field__title удобства номера
-                    +dropdown('', '2 спальни, 2 кровати...')
+                    +dropdown('js-dropdown-room', '2 спальни, 2 кровати...', ['спальни', 'кровати', 'ванные комнаты'])
                 +expandable-list('expandable-list_width_266 expandable-list_with-icon', 'дополнительные удобства', [['', 'Завтрак'], ['', 'Письменный стол'], ['', 'Стул для кормления'], ['', 'Кроватка'], ['', 'Телевизор'], ['', 'Шампунь']])
                 div.main__row
                     +button('left-sidebar__button js-left-sidebar-close', 'Отменить', true)

@@ -1,193 +1,158 @@
-export default function dropdown(id) {
-    const dropdown = document.getElementById(id)
-    const dropdownBtn = dropdown.querySelector('.dropdown__btn')
-    const dropdownBtnText = dropdownBtn.firstElementChild
-    const dropdownList = dropdown.querySelector('.dropdown__list')
-    const listArr = dropdown.querySelectorAll('.dropdown__list-item')
-    const dropdownBtnClean = dropdown.querySelector('.dropdown__footer_button:first-child')
-    const dropdownBtnCheck = dropdown.querySelector('.dropdown__footer_button:last-child')
+function declOfNum(n, text_forms) {  
+    n = Math.abs(n) % 100
+    let n1 = n % 10;
+    if (n > 10 && n < 20) { return text_forms[2]; }
+    if (n1 > 1 && n1 < 5) { return text_forms[1]; }
+    if (n1 == 1) { return text_forms[0]; }
+    return text_forms[2];
+}
 
-    dropdownBtn.addEventListener('click', () => {
-        dropdownList.classList.toggle('display_none')
-        dropdownBtn.classList.toggle('dropdown__btn_hover')
+function nameArr(name) {
+    switch (name) {
+        case 'гости':
+        return ['гость', 'гостя', 'гостей']
+        case 'младенцы':
+        return ['младенец', 'младенца', 'младенцев']
+        case 'спальни':
+        return ['спальня', 'спальни', 'спален']
+        case 'кровати':
+        return ['кровать', 'кровати', 'кроватей']
+        case 'ванные комнаты':
+        return ['ванная комната', 'ванные комнаты', 'ванных комнат']
+    }
+}
+
+let dropdownsArr = document.querySelectorAll('.js-dropdown')
+
+for (let dropdown of dropdownsArr) {
+    let dropdownField = dropdown.querySelector('.js-dropdown__field-wrapper')
+    let input = dropdown.querySelector('input.field')
+    let container = dropdown.querySelector('.js-dropdown__container')
+    let dropdownItemsArr = container.querySelectorAll('.js-dropdown__item')
+    let buttonClear = container.querySelector('.js-dropdown-button-clear')
+    let buttonApply = container.querySelector('.js-dropdown-button-apply')
+
+    let click = new Event('click')
+
+    let result = new Map()
+    function nullResult() {
+        if (dropdown.classList.contains('js-dropdown-guests')) {
+            result.set('гости', 0)
+            result.set('младенцы', 0)
+        }
+        if (dropdown.classList.contains('js-dropdown-room')) {
+            result.set('спальни', 0)
+            result.set('кровати', 0)
+            result.set('ванные комнаты', 0)
+        }
+    }
+    nullResult()
+
+    dropdownField.addEventListener('click', function() {
+        if (container.style.display == 'block') {
+            if (dropdown.classList.contains('dropdown_hover')) {
+                dropdown.classList.remove('dropdown_hover')
+            }
+            container.style.display = ''
+        } else {
+            dropdown.classList.add('dropdown_hover')
+            container.style.display = 'block'
+        }
     })
 
-    const newListArr = []
-    for (let i = 0; i < listArr.length; i++) {
-        newListArr.push({
-            name: listArr[i].querySelector('.dropdown__list-item-name').innerText,
-            btnDecrement: listArr[i].querySelectorAll('.button_round')[0],
-            btnIncrement: listArr[i].querySelectorAll('.button_round')[1],
-            counter: listArr[i].querySelector('.dropdown__counter-block-counter').innerText
-        })
-    }
+    for (let dropdownItem of dropdownItemsArr) {
+        let buttonIncrement = dropdownItem.querySelector('.js-dropdown__button-increment')
+        let buttonDecrement = dropdownItem.querySelector('.js-dropdown__button-decrement')
+        let counterItem = dropdownItem.querySelector('.js-dropdown__counter')
+        let name = dropdownItem.querySelector('.js-dropdown__item-name').textContent
 
-    if (dropdown === document.getElementById('guests')) {
+        buttonDecrement.classList.add('dropdown__button_disabled')
 
-        let title = dropdownBtnText.innerText = 'Сколько гостей'
-        let sum = 0
-    
-        newListArr.map((item, index) => {
-            item.btnDecrement.addEventListener('click', decrement)
-            item.btnIncrement.addEventListener('click', increment)
-            dropdownBtnClean.addEventListener('click', clean)
-            item.counter *= 1
-    
-            function decrement() {
-                if (item.counter) {
-                    item.counter -= 1
-                    sum -= 1
-                    listArr[index].querySelector('.dropdown__counter-block-counter').innerText = item.counter
-                    if (!sum) {
-                        dropdownBtnClean.classList.add('dropdown__footer_button_disabled')
-                    }
+        function resultString() {
+            let resultString = ''
+            let sum = 0
+
+            for (let entry of result) {
+                if (entry[1]) {
+                    resultString += entry[1] + ' ' + declOfNum(entry[1], nameArr(entry[0])) + ', '
                 }
+                sum += entry[1]
             }
-    
-            function increment() {
-                if (item.counter < 10) {
-                    item.counter += 1
-                    sum+= 1
-                    listArr[index].querySelector('.dropdown__counter-block-counter').innerText = item.counter
-                    dropdownBtnClean.classList.remove('dropdown__footer_button_disabled')
-                }
+
+            if (sum && buttonClear) {
+                buttonClear.classList.remove('dropdown__footer-button_disabled')
             }
-    
-            function clean() {
-                listArr.forEach(i => {
-                    i.querySelector('.dropdown__counter-block-counter').innerText = item.counter = 0
-                })
-                dropdownBtnText.innerText = title
-                dropdownBtnClean.classList.add('dropdown__footer_button_disabled')
+            if (sum == 0 && buttonClear) {
+                buttonClear.classList.add('dropdown__footer-button_disabled')
             }
-        })
-        
-        dropdownBtnCheck.addEventListener('click', check)
-    
-        function check() {
-            let guests = newListArr[0].counter + newListArr[1].counter
-            let babies = newListArr[2].counter
-    
-            let guestsString = ''
-            switch (guests) {
-                case 0:
-                    break;
-                case 1:
-                    guestsString = guests + ' гость';
-                    break;
-                case 2:
-                case 3:
-                case 4:
-                    guestsString = guests + ' гостя';
-                    break;
-                default:
-                    guestsString = guests + ' гостей';
-                    break;
-            }
-            let babiesString = ''
-            switch (babies) {
-                case 0:
-                    break;
-                case 1:
-                    babiesString = babies + ' младенец';
-                    break;
-                case 2:
-                case 3:
-                case 4:
-                    babiesString = babies + ' младенца';
-                    break;
-                default:
-                    babiesString = babies + ' младенцев';
-                    break;
-            }
-    
-            if (guestsString && babiesString) {
-                dropdownBtnText.innerText = guestsString + ', ' + babiesString
-            } else if (!guestsString) {
-                dropdownBtnText.innerText = title
-            } else {
-                dropdownBtnText.innerText = guestsString
-            }
+            return resultString.slice(0, -2)
         }
 
+        buttonIncrement.addEventListener('click', function(event) {
+            event.preventDefault()
+
+            if (counterItem.textContent == 0) {
+                buttonDecrement.classList.remove('dropdown__button_disabled')
+            }
+
+            counterItem.textContent = +counterItem.textContent + 1
+
+            if (name == 'взрослые' || name == 'дети') {
+                result.set('гости', result.get('гости') + 1)
+            } else {
+                result.set(name, result.get(name) + 1)
+            }
+        
+            input.value = resultString()
+        })
+
+        buttonDecrement.addEventListener('click', function(event) {
+            event.preventDefault()
+            if (+counterItem.textContent > 0) {
+                counterItem.textContent -= 1
+
+                if (name == 'взрослые' || name == 'дети') {
+                    result.set('гости', result.get('гости') - 1)
+                } else {
+                    result.set(name, result.get(name) - 1)
+                }
+
+                input.value = resultString()
+            }
+
+            if (counterItem.textContent == 0) {
+                buttonDecrement.classList.add('dropdown__button_disabled')
+            }
+        })
+
+        if (name == 'спальни') {
+            buttonIncrement.dispatchEvent(click)
+            buttonIncrement.dispatchEvent(click)
+        }
+
+        if (name == 'кровати') {
+            buttonIncrement.dispatchEvent(click)
+            buttonIncrement.dispatchEvent(click)
+        }
     }
 
-    if (dropdown === document.getElementById('rooms')) {
-        
-        console.log(newListArr)
-    
-        newListArr.map((item, index) => {
+    if (buttonClear && buttonApply) {
+        buttonClear.classList.add('dropdown__footer-button_disabled')
 
-            item.btnDecrement.addEventListener('click', decrement)
-            item.btnIncrement.addEventListener('click', increment)
-            item.counter *= 1
-
-            if (index < 2) {
-                listArr[index].querySelector('.dropdown__counter-block-counter').innerText = item.counter = 2
+        buttonClear.addEventListener('click', function(event) {
+            event.preventDefault()
+            nullResult()
+            buttonClear.classList.add('dropdown__footer-button_disabled')
+            input.value = input.getAttribute('placeholder')
+            for (let dropdownItem of dropdownItemsArr) {
+                dropdownItem.querySelector('.js-dropdown__counter').textContent = 0
+                dropdownItem.querySelector('.js-dropdown__button-decrement').classList.add('dropdown__button_disabled')
             }
-    
-            function decrement() {
-                if (item.counter) {
-                    item.counter -= 1
-                    listArr[index].querySelector('.dropdown__counter-block-counter').innerText = item.counter
-                }
-            }
-    
-            function increment() {
-                if (item.counter < 10) {
-                    item.counter += 1
-                    listArr[index].querySelector('.dropdown__counter-block-counter').innerText = item.counter
-                }
-            }
-
         })
-        
-        let title = dropdownBtnText.innerHTML = '2 спальни, 2 кровати&hellip;'
-    
-        // function check() {
-        //     let guests = newListArr[0].counter + newListArr[1].counter
-        //     let babies = newListArr[2].counter
-    
-        //     let guestsString = ''
-        //     switch (guests) {
-        //         case 0:
-        //             break;
-        //         case 1:
-        //             guestsString = guests + ' гость';
-        //             break;
-        //         case 2:
-        //         case 3:
-        //         case 4:
-        //             guestsString = guests + ' гостя';
-        //             break;
-        //         default:
-        //             guestsString = guests + ' гостей';
-        //             break;
-        //     }
-        //     let babiesString = ''
-        //     switch (babies) {
-        //         case 0:
-        //             break;
-        //         case 1:
-        //             babiesString = babies + ' младенец';
-        //             break;
-        //         case 2:
-        //         case 3:
-        //         case 4:
-        //             babiesString = babies + ' младенца';
-        //             break;
-        //         default:
-        //             babiesString = babies + ' младенцев';
-        //             break;
-        //     }
-    
-        //     if (guestsString && babiesString) {
-        //         dropdownBtnText.innerText = guestsString + ', ' + babiesString
-        //     } else if (!guestsString) {
-        //         dropdownBtnText.innerText = 'Сколько гостей'
-        //     } else {
-        //         dropdownBtnText.innerText = guestsString
-        //     }
-        // }
+
+        buttonApply.addEventListener('click', function(event) {
+            event.preventDefault()
+            container.style.display = ''
+        })
     }
 }

@@ -25,7 +25,7 @@ block content
                 +field('field_hover', 'text', 'This is pretty awesome')
             div
                 h3.field__title Dropdown
-                +dropdown('', 'Сколько гостей')
+                +dropdown('js-dropdown-guests', 'Сколько гостей', ['взрослые', 'дети', 'младенцы'])
             div.form-elements_margin_22
                 h3.field__title masked text field
                 +field('field_js-date', 'text', 'ДД.ММ.ГГГГ')
@@ -94,18 +94,18 @@ block content
         div.form-elements__grid-item
             div
                 h3.field__title Dropdown
-                +dropdown266('', '2 спальни, 2 кровати…')
+                +dropdown('js-dropdown-room', '2 спальни, 2 кровати…', ['спальни', 'кровати', 'ванные комнаты'])
             div
                 h3.field__title Dropdown
-                +dropdown266('dropdown_hover', '2 спальни, 2 кровати…', ['спальни', 'кровати', 'ванные комнаты'])
+                +dropdown('dropdown_hover js-dropdown-room', '2 спальни, 2 кровати…', ['спальни', 'кровати', 'ванные комнаты'])
         div.form-elements__grid-item
             div
                 h3.field__title Dropdown
-                +dropdown('dropdown_hover', 'Сколько гостей', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button dropdown__footer-button_disabled', 'Очистить', 'purple'], ['dropdown__footer-button', 'Применить', 'purple'])
+                +dropdown('dropdown_hover js-dropdown-guests', 'Сколько гостей', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button js-dropdown-button-clear', 'Очистить', 'purple'], ['dropdown__footer-button js-dropdown-button-apply', 'Применить', 'purple'])
         div.form-elements__grid-item
             div
                 h3.field__title Dropdown
-                +dropdown('dropdown_hover', '3 гостя', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button', 'Очистить', 'purple'], ['dropdown__footer-button', 'Применить', 'purple'])
+                +dropdown('dropdown_hover js-dropdown-guests', '3 гостя', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button js-dropdown-button-clear', 'Очистить', 'purple'], ['dropdown__footer-button js-dropdown-button-apply', 'Применить', 'purple'])
         div.form-elements__grid-item
             div.form-elements__expandable-list-container
                 +expandable-list('expandable-list_width_266 expandable-list_with-icon', 'expandable checkbox list')

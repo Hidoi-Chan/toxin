@@ -21,7 +21,7 @@ block content
                             +field('', 'text', 'ДД.ММ.ГГГГ', true)
                 div.card__element
                     h3.field__title Гости
-                    +dropdown('', 'Сколько гостей')
+                    +dropdown('js-dropdown-guests', 'Сколько гостей', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button js-dropdown-button-clear', 'Очистить', 'purple'], ['dropdown__footer-button js-dropdown-button-apply', 'Применить', 'purple'])
                 +button('card__element button_width_320', 'подобрать номер')
             h1.first-screen__h1 Лучшие номера для вашей работы, отдыха и просто вдохновения
     include ../../blocks/footer/footer.pug
