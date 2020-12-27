@@ -15,11 +15,11 @@ block content
                     div
                         h3.field__title Прибытие
                         div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150
-                            +field('', 'text', 'ДД.ММ.ГГГГ', true)
+                            +field('.datepicker-here', 'text', 'ДД.ММ.ГГГГ', true)
                     div
                         h3.field__title Выезд
                         div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150
-                            +field('', 'text', 'ДД.ММ.ГГГГ', true)
+                            +field('.field_js-datepicker-1', 'text', 'ДД.ММ.ГГГГ', true)
                 div.card__element
                     h3.field__title Гости
                     +dropdown('js-dropdown-guests', 'Сколько гостей', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button js-dropdown-button-clear', 'Очистить', 'purple'], ['dropdown__footer-button js-dropdown-button-apply', 'Применить', 'purple'])
@@ -73,11 +73,13 @@ block content
                         td Сбор за услуги: скидка 2 179р
                         td 
                             +buttonRound('card__button_round', 'i')
+                            div.card__tooltip Сбор за услуги: скидка 2 179р
                         td 0р
                     tr
                         td Сбор за дополнительные услуги
                         td
                             +buttonRound('card__button_round', 'i')
+                            div.card__tooltip Сбор за дополнительные услуги
                         td 300р
                 div.card__element.card__room-characteristics
                     h2.h2 Итого

@@ -92,6 +92,7 @@
         }
 
         .field {
+            cursor: pointer;
 
             &::placeholder {
                 color: $dark75;

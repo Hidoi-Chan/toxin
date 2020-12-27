@@ -3,7 +3,7 @@
 
 .datepicker {
     width: 320px;
-    height: 370px;
+    height: auto;
     overflow: hidden;
     background-color: white;
     border: 1px solid $dark25;
@@ -15,128 +15,202 @@
     font-weight: 400;
     font-size: torem(12);
     line-height: torem(15);
+}
 
-    &--pointer {
+.datepicker--pointer {
+    display: none;
+}
+
+.datepicker--nav {
+    border: none;
+    padding: 20px 20px 30px;
+
+    &-title {
+        color: $dark100;
+        font-weight: 700;
+        font-size: torem(19);
+        line-height: torem(24);
+    }
+}
+
+.datepicker--nav-action{
+    position: relative;
+
+    svg {
         display: none;
     }
 
-    &--nav {
-        border: none;
-        padding: 20px 20px 30px;
-
-        &-title {
-            color: $dark100;
-            font-family: "Quicksand", "OpenSans", sans-serif;
-            font-weight: 700;
-            font-size: torem(19);
-            line-height: torem(24);
-        }
-    }
-
-    &--icon {
+    &::after {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        font-family: "Material Icons", sans-serif;
+        font-size: torem(24);
         line-height: torem(20);
         color: $purple;
     }
 
-    &--days {
-        padding: 0 20px;
+    &:hover {
+        background: none;
+    }
+}
+
+.datepicker--nav-action[data-action='prev'] {
+
+    &::after {
+        content: 'arrow_back';
+        justify-content: flex-start;
+    }
+}
+
+.datepicker--nav-action[data-action='next'] {
+
+    &::after {
+        content: 'arrow_forward';
+        justify-content: flex-end;
+    }
+}
+
+.datepicker--content {
+    padding: 0 20px;
+}
+
+.datepicker--days-names {
+    margin: 0;
+}
+
+.datepicker--day-name {
+    width: calc(100% / 7);
+    height: 40px;
+    color: $purple;
+    text-transform: capitalize;
+    font-size: torem(12);
+    line-height: torem(15);
+    font-weight: 700;
+}
+
+.datepicker--cell {
+    border-radius: 22px;
+    width: calc(100% / 7);
+    height: 40px;
+    position: relative;
+
+    &.-focus- {
+        background: $secondaryGradient;
+        color: white;
     }
 
-    &--day-name {
-        width: 38.5px;
-        height: 40px;
-        color: $purple;
-        text-transform: capitalize;
-        font-size: torem(12);
-        line-height: torem(15);
-        font-weight: 700;
-    }
-
-    &--cell {
-        border-radius: 22px;
-        width: 38.5px;
-        height: 40px;
-
+    &.-disabled- {
+        color: $dark25;
+    
         &.-focus- {
-            background: $secondaryGradient;
-            color: white;
+          color: $dark25;
         }
-
-        &.-disabled- {
-            color: $dark25;
-        
-            &.-focus- {
-              color: $dark25;
-            }
-        
-            &.-in-range- {
-              color: $dark25;
-            }
-        
-            &.-current- {
-                &.-focus- {
-                    color: $dark25;
-                }
-            }
-        }
-
-        &.-range-from-,
-        &.-range-to- {
-            background: $gradient;
-            border-radius: 22px 0 0 22px;
-        }
-
-        &.-range-to- {
-            border-radius: 0 22px 22px 0;
-        }
-
+    
         &.-in-range- {
+          color: $dark25;
+        }
+    
+        &.-current- {
+            &.-focus- {
+                color: $dark25;
+            }
+        }
+    }
+
+    &.-range-from-,
+    &.-range-to- {
+        background: $gradient;
+        border: none;
+        border-radius: 22px;
+        color: white;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 22px 0 0 22px;
             background: $gradient;
             opacity: .25;
+            color: white;
+        }
+    }
+
+    &.-range-to- {
+
+        &::after {
+            border-radius: 0 22px 22px 0;
+        }
+    }
+
+    &.-in-range- {
+        border-radius: 0;
+        background: $gradient;
+        opacity: .25;
+        color: $dark100;
+        
+        &.-focus- {
             color: $dark50;
-            
-            &.-focus- {
-                color: $dark50;
-            }
         }
-
-        &.-other-month- {
-            color: $dark25;
-        }
-
-        // &.-in-range- {
-        //     background: map_get($datepickerBG, inRange);
-        //     color: map_get($datepickerTextColor, common);
-        //     border-radius: 0;
-        
-        //     &.-focus- {
-        //       background-color: rgba(map_get($datepickerBG, inRange), .2);
-        //     }
-        // }
-
-        // &.-range-to- {
-        //     border: 1px solid rgba(map_get($datepickerBG, selected), .5);
-        //     background-color: map_get($datepickerBG, inRange);
-        //     border-radius:  0 $datepickerBorderRadius $datepickerBorderRadius 0;
-        // }
-
-        // &.-selected- {
-        //     color: #fff;
-        //     border: none;
-        //     background: map_get($datepickerBG, selected);
-        
-        //     &.-current- {
-        //       color: #fff;
-        //       background: map_get($datepickerBG, selected);
-        //     }
-        
-        //     &.-focus- {
-        //       background: map_get($datepickerBG, selectedHover);
-        //     }
-        // }
     }
 
-    &-inline {
-        box-shadow: 0px 10px 20px $dark5;
+    &.-selected- {
+        background: $gradient;
+
+        &.-current-,
+        &.-focus- {
+            background: $gradient;
+        }
     }
+
+    &.-other-month- {
+        color: $dark25;
+    }
+}
+
+.datepicker--buttons {
+    border-top: none;
+    padding: 20px;
+}
+
+.datepicker--button {
+    border-radius: 0;
+    transition: 300ms ease;
+    height: auto;
+    
+    &:hover {
+        background: none;
+    }
+
+    &:first-child {
+        justify-content: flex-start;
+    }
+
+    &:last-child {
+        justify-content: flex-end;
+    }
+}
+
+.datepicker--cells-months,
+.datepicker--years,
+.datepicker--cells-years {
+    height: auto;
+}
+
+.datepicker--cell-month,
+.datepicker--cell-year {
+  width: 50%;
+  height: 40px;
+}
+
+.datepicker-inline {
+    box-shadow: 0px 10px 20px $dark5;
 }

@@ -1,5 +1,7 @@
 import datepicker from 'air-datepicker'
 
+let myDatepicker = document.querySelector('.field_js-datepicker')
+
 $('.field_js-datepicker').datepicker({
     minDate: new Date(),
     range: true,
@@ -12,9 +14,18 @@ $('.field_js-datepicker').datepicker({
     offset: 6
 })
 
-let myDatepicker = $('.field_js-datepicker').datepicker().data('datepicker')
+// let myDatepickerJQuerry = $('.field_js-datepicker').datepicker().data('datepicker')
 
-console.log(myDatepicker)
-$('.datepicker--nav-action[data-action=prev]').html('<i class="material-icons datepicker--icon">arrow_back</i>')
-$('.datepicker--nav-action[data-action=next]').html('<i class="material-icons datepicker--icon">arrow_forward</i>')
-console.log($('.datepicker--nav-action'))
+
+let datepickerButtonsContainer = myDatepicker.querySelector('.datepicker--buttons')
+datepickerButtonsContainer.innerHTML = ''
+
+let buttonForDatepickerClear = document.createElement('button')
+buttonForDatepickerClear.classList.add('datepicker--button')
+buttonForDatepickerClear.innerHTML = '<h3 class="button__text_color_purple" data-action="clear">Очистить</h3>'
+datepickerButtonsContainer.append(buttonForDatepickerClear)
+
+let buttonForDatepickerApply = document.createElement('button')
+buttonForDatepickerApply.classList.add('datepicker--button')
+buttonForDatepickerApply.innerHTML = '<h3 class="button__text_color_purple">Применить</h3>'
+datepickerButtonsContainer.append(buttonForDatepickerApply)

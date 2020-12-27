@@ -1,1 +1,3 @@
 [0929/103349.377:ERROR:http_transport_win.cc(276)] WinHttpSendRequest: Операция успешно завершена. (0x0)
+[1223/115536.298:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+[1227/102105.563:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
