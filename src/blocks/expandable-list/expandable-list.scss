@@ -1,45 +1,37 @@
 @import '../../style/variables.scss';
 
-.expandable-list {
+.expandable-list__button {
     position: relative;
+    height: 44px;
 
-    // &_width {
-
-    //     &_266 {
-    //         width: 266px;
-    //     }
-
-    //     &_292 {
-    //         width: 292px;
-    //     }
-    // }
-
-    &_with-icon {
-        position: relative;
-
-        &::after {
-            content: 'keyboard_arrow_down';
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            position: absolute;
-            top: 0;
-            right: 0;
-            font-family: "Material Icons", sans-serif;
-            font-size: torem(24);
-            line-height: torem(24);
-            color: $dark50;
-        }
+    &::after {
+        content: 'keyboard_arrow_down';
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-family: "Material Icons", sans-serif;
+        font-size: torem(24);
+        line-height: torem(24);
+        color: $dark50;
     }
 
     &:hover {
         cursor: pointer;
     }
+}
 
-    &__checkbox-container {
-        // width: 266px;
-        padding-top: 16px;
+.expandable-list__title {
+    line-height: torem(44);
+}
+
+.expandable-list__checkbox-container {
+
+    &_display_none {
+        display: none;
     }
 }
