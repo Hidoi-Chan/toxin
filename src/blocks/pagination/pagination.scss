@@ -1,7 +1,7 @@
 @import '../../style/variables.scss';
 
 .pagination {
-    max-width: 240px;
+    max-width: 100%;
     text-align: center;
 
     &__list {
@@ -26,12 +26,28 @@
             cursor: auto;
         }
 
-        &.next,
-        &.prev {
+        &:hover {
             background: $secondaryGradient;
             color: white;
+        }
+
+        &.next,
+        &.prev {
             font-size: torem(24);
             line-height: torem(20);
         }
+    }
+
+    span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        float: left;
+        border-radius: 22px;
+        font-size: torem(12);
+        line-height: torem(15);
+        color: $dark50;
     }
 }
