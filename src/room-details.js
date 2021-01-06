@@ -19,7 +19,7 @@ import '@blocks/like-button/like-button.scss'
 import '@blocks/review/review.scss'
 import '@blocks/bullet-list/bullet-list.scss'
 import '@blocks/pie/pie.scss'
-import '@blocks/pie/pie.js'
+import drow from '@blocks/pie/pie.js'
 import '@blocks/field/field.scss'
 import '@blocks/dropdown/dropdown.scss'
 import '@blocks/dropdown/dropdown.js'
@@ -28,6 +28,45 @@ import '@blocks/footer/footer.scss'
 import '@pages/room-details/room-details.scss'
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';
+import {capitalizedString} from '@/functions.js'
+
+let roomIndex = 0
+let url = `http://localhost:3000/rooms?index=${roomIndex}`
+
+function renderRoom(data) {
+    let cardNumber = document.querySelector('.js-card-number')
+    cardNumber.innerHTML = `
+        № ${data.roomNumber}
+        ${data.luxury ? '<span class="h3 card__room-characteristics_color_purple">  люкс</span>' : ''}
+    `
+
+    let cardCost = document.querySelector('.js-card-cost')
+    cardCost.prepend(data.cost)
+
+    let RoomInfoItemsBlock = document.querySelector('.js-room-info-items')
+    let RoomInfoItemsBlockHTML = `<h2>Сведения о номере</h2>`
+    let iconArr = ['mood', 'location_city', 'whatshot']
+    data.additionalInformation.map((item, index) => {
+        RoomInfoItemsBlockHTML += `
+            <div class='room-info-item form-elements__room-info-item'>
+                <i class='material-icons room-info-item__icon'>
+                    ${iconArr[index]}
+                </i>
+                <div class='room-info-item__text'>
+                    <p class='room-info-item__text-title'>${capitalizedString(item.title)}</p>
+                    <p class='room-info-item__text-description'>${capitalizedString(item.description)}</p>
+                </div>
+            </div>
+        `
+    })
+    RoomInfoItemsBlock.innerHTML = RoomInfoItemsBlockHTML
+
+    drow(data.impressions)
+}
+
+fetch(url)
+    .then(response => response.json())
+    .then(data => renderRoom(data[0]))
 
 $('.owl-carousel').owlCarousel({
     items: 1,

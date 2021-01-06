@@ -1,6 +1,6 @@
-mixin colors-variables(discription, color)
+mixin colors-variables(description, color)
     div.colors-variables(class!=attributes.class)
-        case discription        
+        case description        
             when "Dark Shade 100%"
                 div.colors-variables__square.colors-variables__square_color_dark100
             when "Dark Shade 75%"
@@ -16,5 +16,5 @@ mixin colors-variables(discription, color)
             when "Green"
                 div.colors-variables__square.colors-variables__square_color_green
         div.colors-variables__text-block.h2
-            p.colors-variables__discription=discription
+            p.colors-variables__description=description
             p.colors-variables__text-num=color

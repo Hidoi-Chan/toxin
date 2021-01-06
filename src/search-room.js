@@ -9,7 +9,7 @@ import '@blocks/nav/nav.js'
 import '@blocks/burger/burger.scss'
 import '@blocks/header/header.scss'
 import '@blocks/range-slider/range-slider.scss'
-import '@blocks/range-slider/range-slider.js'
+import {livenUpTheRangeSlider} from '@blocks/range-slider/range-slider.js'
 import '@blocks/expandable-list/expandable-list.scss'
 import '@blocks/expandable-list/expandable-list.js'
 import '@blocks/checkbox/checkbox.scss'
@@ -19,10 +19,11 @@ import '@blocks/rate/rate.scss'
 import '@blocks/pagination/pagination.scss'
 import '@blocks/field/field.scss'
 import '@blocks/dropdown/dropdown.scss'
-import '@blocks/dropdown/dropdown.js'
+import {livenUpTheDropdown} from '@blocks/dropdown/dropdown.js'
 import '@blocks/copyright-bar/copyright-bar.scss'
 import '@blocks/footer/footer.scss'
 import '@pages/search-room/search-room.scss'
+import {declOfNum} from '@/functions.js'
 
 let filterButton = document.querySelector('.js-filter-button')
 let leftSidebarCloseButton = document.querySelector('.js-left-sidebar-close')
@@ -44,18 +45,12 @@ filterButton.addEventListener('click', function() {
 leftSidebarCloseButton.addEventListener('click', closeSidebar)
 leftSidebarAcceptButton.addEventListener('click', closeSidebar)
 
+let filterParams = {}
+livenUpTheDropdown(filterParams)
+
 
 // Fetch
 let roomCardContainer = document.querySelector('.main__room-card-container')
-
-function declOfNum(n, text_forms) {  
-    n = Math.abs(n) % 100
-    let n1 = n % 10;
-    if (n > 10 && n < 20) { return text_forms[2]; }
-    if (n1 > 1 && n1 < 5) { return text_forms[1]; }
-    if (n1 == 1) { return text_forms[0]; }
-    return text_forms[2];
-}
 
 function renderPagination(pagination) {
 
@@ -184,6 +179,21 @@ function renderRoomCards(pagination) {
     renderPagination(pagination)
 }
 
+function defaultSettingsFilterParams(data, resultObj) {
+    resultObj.cost = {
+        min: Infinity,
+        max: 0
+    }
+    data.map(item => {
+        if (item.cost < resultObj.cost.min) {
+            resultObj.cost.min = item.cost
+        }
+        if (item.cost > resultObj.cost.max) {
+            resultObj.cost.max = item.cost
+        }
+    })
+}
+
 let url = 'http://localhost:3000/rooms'
 
 fetch(url)
@@ -237,4 +247,8 @@ fetch(url)
             renderRoomCards(pagination)
             window.scrollTo(0,0)
         })
+
+        defaultSettingsFilterParams(data, filterParams)
+
+        livenUpTheRangeSlider(filterParams.cost)
   })

@@ -1,12 +1,13 @@
 include ../../blocks/field/field.pug
 
-mixin dropdown(className, placeholder, arr, footer, buttonClear, buttonApply)
+mixin dropdown(className, placeholder, obj, footer, buttonClear, buttonApply)
     div(class!=`dropdown js-dropdown ${className}`)
         div.field__wrapper.dropdown__field-wrapper.js-dropdown__field-wrapper
             +field('', 'text', `${placeholder}`, true)
         div.dropdown__container.js-dropdown__container
-            each val in arr
-                +dropdown__item(val)
+            //- each val in arr
+            each val, key in obj
+                +dropdown__item(key, val)
             if footer
                 div.dropdown__footer.js-dropdown__footer
                     +buttonWithoutFill(...buttonClear)
@@ -25,9 +26,9 @@ mixin dropdown(className, placeholder, arr, footer, buttonClear, buttonApply)
 //-                         +buttonWithoutFill(...buttonClear)
 //-                         +buttonWithoutFill(...buttonApply)
 
-mixin dropdown__item(itemName)
+mixin dropdown__item(itemName, nameAtr)
     div.dropdown__item.js-dropdown__item
-        h3.dropdown__item-name.js-dropdown__item-name= itemName
+        h3(name!=nameAtr).dropdown__item-name.js-dropdown__item-name= itemName
         div.dropdown__counter-block
             +buttonRound('js-dropdown__button-decrement', '-')
             h3.dropdown__counter-block-counter.js-dropdown__counter 0

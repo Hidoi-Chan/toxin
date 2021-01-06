@@ -22,11 +22,7 @@ block content
         div.main__container
             div.main__content
                 div.main__room-information
-                    div.main__room-information-block
-                        h2 Сведения о номере
-                        +room-info-item('form-elements__room-info-item', 'mood', 'Комфорт', 'Шумопоглощающие стены')
-                        +room-info-item('form-elements__room-info-item', 'location_city', 'Удобство', 'Окно в каждой из спален')
-                        +room-info-item('form-elements__room-info-item', 'whatshot', 'Уют', 'Номер оснащён камином')
+                    div.main__room-information-block.js-room-info-items
                     div.main__room-information-block
                         h2.main__pie Впечатления от номера
                         include ../../blocks/pie/pie.pug
@@ -45,9 +41,8 @@ block content
                         p Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.            
             form(action="").card
                 div.card__element.card__room-characteristics
-                    h1.h1 № 888
-                        span.h3.card__room-characteristics_color_purple  люкс
-                    h2.card__price 9 990р
+                    h1.h1.js-card-number 
+                    h2.card__price.js-card-cost
                         span.card__price_thin  в сутки
                 div.card__element.card__row
                     div
@@ -70,11 +65,13 @@ block content
                         td Сбор за услуги: скидка 2 179р
                         td 
                             +buttonRound('card__button_round', 'i')
+                            div.card__tooltip Сбор за услуги: скидка 2 179р
                         td 0р
                     tr
                         td Сбор за дополнительные услуги
                         td
                             +buttonRound('card__button_round', 'i')
+                            div.card__tooltip Сбор за дополнительные услуги
                         td 300р
                 div.card__element.card__room-characteristics
                     h2.h2 Итого
