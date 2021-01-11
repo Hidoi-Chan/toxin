@@ -132,15 +132,15 @@ export function livenUpTheDropdown(resultObj) {
                 }
             })
     
-            if (name == 'bedrooms') {
-                buttonIncrement.dispatchEvent(click)
-                buttonIncrement.dispatchEvent(click)
-            }
+            // if (name == 'bedrooms') {
+            //     buttonIncrement.dispatchEvent(click)
+            //     buttonIncrement.dispatchEvent(click)
+            // }
     
-            if (name == 'bed') {
-                buttonIncrement.dispatchEvent(click)
-                buttonIncrement.dispatchEvent(click)
-            }
+            // if (name == 'bed') {
+            //     buttonIncrement.dispatchEvent(click)
+            //     buttonIncrement.dispatchEvent(click)
+            // }
         }
     
         if (buttonClear && buttonApply) {

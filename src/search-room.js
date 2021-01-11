@@ -18,6 +18,8 @@ import '@blocks/room-card/room-card.js'
 import '@blocks/rate/rate.scss'
 import '@blocks/pagination/pagination.scss'
 import '@blocks/field/field.scss'
+import '@blocks/datepicker/datepicker.scss'
+import {myDatepicker} from '@blocks/datepicker/datepicker.js'
 import '@blocks/dropdown/dropdown.scss'
 import {livenUpTheDropdown} from '@blocks/dropdown/dropdown.js'
 import '@blocks/copyright-bar/copyright-bar.scss'
@@ -42,15 +44,53 @@ filterButton.addEventListener('click', function() {
     }
 })
 
-leftSidebarCloseButton.addEventListener('click', closeSidebar)
-leftSidebarAcceptButton.addEventListener('click', closeSidebar)
-
 let filterParams = {}
+
+filterParams.selectableOptions = []
+filterBlock.addEventListener('change', function(event) {
+    let target
+    if (event.target.closest('input[type="checkbox"]')) {
+        target = event.target
+    }
+
+    let arr = filterParams.selectableOptions
+    if (arr.indexOf(target.value) == -1) {
+        arr.push(target.value)
+    } else {
+        arr.splice(arr.indexOf(target.value), 1)
+    }
+})
+
 livenUpTheDropdown(filterParams)
+myDatepicker(filterParams)
 
 
 // Fetch
 let roomCardContainer = document.querySelector('.main__room-card-container')
+
+class Pagination {
+    constructor(data) {
+        this.currentPage = 1
+        this.onPage = 12
+        this.allCards = data.length
+        this.firstRoomIndex = function() {
+            return (this.currentPage - 1) * this.onPage
+        }
+        this.lastRoomIndex = function() {
+            if (this.currentPage == this.allPages()) {
+                return data.length - 1
+            } else {
+                return (this.currentPage * this.onPage) - 1
+            }
+        }
+        this.allPages = function() {
+            return Math.ceil(this.allCards / 12)
+        }
+        this.data = function() {
+            return data.slice(this.firstRoomIndex(), this.lastRoomIndex() + 1)
+        }
+    }
+}
 
 function renderPagination(pagination) {
 
@@ -115,7 +155,14 @@ function renderPagination(pagination) {
 
     let description = document.createElement('p')
     description.classList.add('pagination__description')
-    description.innerText = `${pagination.firstRoomIndex() + 1} – ${pagination.lastRoomIndex() + 1} из ${pagination.allCards <= 100? pagination.allCards : '100+'} вариантов аренды`
+    let variantStr = function() {
+        if (pagination.allCards <= 100) {
+            return pagination.allCards + ' ' + declOfNum(pagination.allCards, ['варианта', 'вариантов', 'вариантов'])
+        } else {
+            return '100+ вариантов'
+        }
+    }
+    description.innerText = `${pagination.firstRoomIndex() + 1} – ${pagination.lastRoomIndex() + 1} из ${variantStr()} аренды`
 
     paginationDiv.append(paginationList)
     paginationDiv.append(description)
@@ -175,8 +222,6 @@ function renderRoomCards(pagination) {
         // navText: ['expand_more','expand_more'],
         dotsEach: true
     })
-
-    renderPagination(pagination)
 }
 
 function defaultSettingsFilterParams(data, resultObj) {
@@ -194,34 +239,56 @@ function defaultSettingsFilterParams(data, resultObj) {
     })
 }
 
-let url = 'http://localhost:3000/rooms'
+function filterData(data, filterObj) {
+    console.log(filterObj)
 
-fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        let pagination = {
-            currentPage: 1,
-            onPage: 12,
-            firstRoomIndex: function() {
-                return (this.currentPage - 1) * this.onPage
-            },
-            lastRoomIndex: function() {
-                if (this.currentPage == this.allPages()) {
-                    return data.length - 1
-                } else {
-                    return (this.currentPage * this.onPage) - 1
+    let newData = data.filter(room => {
+        let result = true
+
+        if (filterObj.selectableOptions) {
+            for (let option of filterObj.selectableOptions) {
+                if (room.selectableOptions[option] === false) {
+                    result = false
                 }
-            },
-            allCards: data.length,
-            allPages: function() {
-                return Math.ceil(this.allCards / 12)
-            },
-            data: function() {
-                return data.slice(this.firstRoomIndex(), this.lastRoomIndex() + 1)
             }
         }
 
+        if (filterObj.guests.babies || filterObj.guests.guests) {
+            for (let option in filterObj.guests) {
+                if (room.guests[option] !== filterObj.guests[option]) {
+                    result = false
+                }
+            }            
+        }
+
+        if (filterObj.conveniences.bathrooms || filterObj.conveniences.bed || filterObj.conveniences.bedrooms) {
+            for (let option in filterObj.conveniences) {
+                if (filterObj.conveniences[option] && room.conveniences[option] !== filterObj.conveniences[option]) {
+                    result = false
+                }
+            }
+        }
+
+        if (room.cost > filterObj.cost.max || room.cost < filterObj.cost.min) {
+            result = false
+        }
+        
+        return result
+    })
+    console.log(newData)
+    return newData
+}
+
+let url = 'http://localhost:3000/rooms'
+
+fetch(url)
+    .catch(error => console.error(error)) // НЕ РАБОТАЕТ
+    .then(response => response.json())
+    .then(data => {
+        let pagination = new Pagination(data)
         renderRoomCards(pagination)
+        renderPagination(pagination)
+        
 
         let paginationForListener = document.querySelector('.pagination')
 
@@ -232,11 +299,11 @@ fetch(url)
             } else {
                 return
             }
-
+        
             if (target.innerText == pagination.currentPage) {
                 return
             }
-
+        
             if (target.innerText == 'arrow_back') {
                 pagination.currentPage -= 1
             } else if (target.innerText == 'arrow_forward') {
@@ -245,10 +312,43 @@ fetch(url)
                 pagination.currentPage = target.innerText
             }
             renderRoomCards(pagination)
+            renderPagination(pagination)
             window.scrollTo(0,0)
         })
 
         defaultSettingsFilterParams(data, filterParams)
-
         livenUpTheRangeSlider(filterParams.cost)
-  })
+        
+
+
+        leftSidebarCloseButton.addEventListener('click', function(event) {
+            closeSidebar()
+            
+            pagination = new Pagination(data)
+            renderRoomCards(pagination)
+            renderPagination(pagination)
+            window.scrollTo(0,0)
+        })
+
+        leftSidebarAcceptButton.addEventListener('click', function() {
+            closeSidebar()
+            console.log(filterParams)
+
+            let newData = filterData(data, filterParams)
+
+            if (newData.length) {
+                pagination = new Pagination(newData)
+                renderRoomCards(pagination)
+                renderPagination(pagination)
+            } else {
+                if (roomCardContainer.nextElementSibling) {
+                    roomCardContainer.nextElementSibling.remove()
+                }
+                roomCardContainer.parentElement.querySelector('.h1').innerText = 'К сожалению, по выбранным фильтрам подходящих номеров не нашлось'
+
+                roomCardContainer.innerHTML = ''
+            }
+            
+            window.scrollTo(0,0)
+        })
+    })

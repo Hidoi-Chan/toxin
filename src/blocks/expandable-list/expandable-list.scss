@@ -3,6 +3,7 @@
 .expandable-list__button {
     position: relative;
     height: 44px;
+    width: 100%;
 
     &::after {
         content: 'keyboard_arrow_down';

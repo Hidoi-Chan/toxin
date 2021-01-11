@@ -17,7 +17,7 @@ block content
                 div
                     h3.field__title даты пребывания в отеле
                     div.field__wrapper.field__wrapper_for-datepicker
-                        +field('', 'text', '19 авг - 23 авг', true)
+                        +field('field_js-datepicker', 'text', 'Выберите дату для бронирования', true)
                 div
                     h3.field__title Гости
                     +dropdown('js-dropdown-guests', 'Сколько гостей', {'взрослые': 'guests', 'дети': 'guests', 'младенцы': 'babies'})
@@ -28,18 +28,18 @@ block content
                 div
                     h3 правила дома
                     div.left-sidebar__checkbox-container
-                        each val in [['', 'Можно курить'], ['', 'Можно с питомцами'], ['', 'Можно пригласить гостей (до 10 человек)']]
+                        each val in [['', 'Можно курить', 'smoking'], ['', 'Можно с питомцами', 'pets'], ['', 'Можно пригласить гостей (до 10 человек)', 'guests']]
                             +checkbox(...val)
                 div
                     h3 доступность
                     div.left-sidebar__checkbox-container
-                        each val in [['', 'Широкий коридор', '', 'Ширина коридоров в номере не менее 91 см.'], ['', 'Помощник для инвалидов', '', 'На 1 этаже вас встретит специалист и проводит до номера.']]
+                        each val in [['', 'Широкий коридор', 'wideCorridor', 'Ширина коридоров в номере не менее 91 см.'], ['', 'Помощник для инвалидов', 'disabledAssistant', 'На 1 этаже вас встретит специалист и проводит до номера.']]
                             +checkbox(...val)
                 div
                     h3.field__title удобства номера
-                    +dropdown('js-dropdown-room', '2 спальни, 2 кровати...', {'спальни': 'bedrooms', 'кровати': 'bed', 'ванные комнаты': 'bathrooms'})
-                +expandable-list('expandable-list_width_266 expandable-list_with-icon', 'дополнительные удобства', [['', 'Завтрак'], ['', 'Письменный стол'], ['', 'Стул для кормления'], ['', 'Кроватка'], ['', 'Телевизор'], ['', 'Шампунь']])
-                div.main__row
+                    +dropdown('js-dropdown-room', 'Спальни, кровати...', {'спальни': 'bedrooms', 'кровати': 'bed', 'ванные комнаты': 'bathrooms'})
+                +expandable-list('expandable-list_width_266 expandable-list_with-icon', 'дополнительные удобства', [['', 'Завтрак', 'breakfast'], ['', 'Письменный стол', 'desk'], ['', 'Стул для кормления', 'feedingChair'], ['', 'Кроватка', 'crib'], ['', 'Телевизор', 'tv'], ['', 'Шампунь', 'shampoo']])
+                div.left-sidebar__buttons-row
                     +button('left-sidebar__button js-left-sidebar-close', 'Отменить', true)
                     +button('left-sidebar__button js-left-sidebar-accept', 'Применить')
             div.main__content

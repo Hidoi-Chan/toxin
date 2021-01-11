@@ -129,3 +129,26 @@
         background-color: white;
     }
 }
+
+@include large-up {
+
+    // .room-card__text-block {
+    //     padding: 20px 10px;
+    // }
+
+    // .h2 {
+    //     font-size: calc( 110% )
+    // }
+
+    // .h3 {
+    //     font-size: calc( 65% )
+    // }
+    
+    // .room-card__price {
+    //     font-size: calc( 90% )
+    // }
+
+    // .room-card__price_thin {
+    //     font-size: calc( 80% )
+    // }
+}
