@@ -1,4 +1,4 @@
-mixin radio(className, title, value)
+mixin radio(className, title, value, name)
     label(class!=`radio ${className}`)
-        input(type='radio' name='radio' value= value)
+        input(type='radio' name= name value= value)
         div.radio__text= title

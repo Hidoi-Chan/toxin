@@ -16,6 +16,16 @@ mixin buttonDisabled(className, text, border)
         else
             h3.button__text= text
 
+mixin linkButton(className, link, text, border)
+    if border
+        a(class!=`button ${className}` href=link)
+            h3.button__text_color_purple= text
+            div.button__border-gradient
+                h3.button__text_color_purple= text
+    else
+        a(class!=`button ${className}` href=link)
+            h3.button__text= text
+
 mixin buttonWithoutFill(className, text, color)
     button(class!=`${className}`)
         h3(class!=`button__text_color_${color}`)= text

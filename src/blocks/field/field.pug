@@ -1,2 +1,2 @@
-mixin field(className, type, placeholder, readonly=false)
-    input(class!=`field ${className}`, type!= type, placeholder!= placeholder, readonly!= readonly, spellcheck='false')
+mixin field(className, type, placeholder, required=false, readonly=false)
+    input(class!=`field ${className}`, type!= type, placeholder!= placeholder, required!= required, readonly!= readonly, spellcheck='false')

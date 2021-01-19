@@ -9,25 +9,25 @@ include ../../blocks/toggle/toggle.pug
 block content
     +header('header_fixed')
     main.first-screen
-        form(action="").card.registration__card
+        form(action="").card.registration__card.js-registration--form
             h1.card__element.h1 Регистрация аккаунта
             div.card__element.card__element_margin-bottom_10
-                +field('', 'text', 'Имя')
-                +field('', 'text', 'Фамилия')
+                +field('js-registration--name-field', 'text', 'Имя', true)
+                +field('js-registration--surname-field', 'text', 'Фамилия', true)
                 div.card__row-for-radio
-                    +radio('', 'Мужчина', 'male')
-                    +radio('', 'Женщина', 'female')
+                    +radio('', 'Мужчина', 'male', 'gender')
+                    +radio('', 'Женщина', 'female', 'gender')
             div.card__element
                 h3.field__title дата рождения
-                +field('field_js-date', 'text', 'ДД.ММ.ГГГГ')
+                +field('field_js-date js-registration--birthday-field', 'text', 'ДД.ММ.ГГГГ', true)
             div.card__element
                 h3.field__title данные для входа в сервис
                 div.card__element_margin-bottom_10
-                    +field('', 'text', 'Email')
-                    +field('', 'text', 'Пароль')
-                    +toggle('', 'Получать спецпредложения', 'get special offers')
-            +button('card__element button_width_320', 'перейти к оплате')
+                    +field('js-registration--email-field', 'email', 'Email', true)
+                    +field('js-registration--password-field', 'password', 'Пароль', true)
+                    +toggle('', 'Получать спецпредложения', 'get-offers', 'offers')
+            +button('card__element button_width_320 js-registration--btn-submit', 'зарегистрироваться')
             div.card__element.card__submit-block
                 p.card__submit-block-text Уже есть аккаунт на Toxin
-                +button('', 'войти', true)
+                +linkButton('', '/sign-in.html', 'войти', true)
     include ../../blocks/footer/footer.pug

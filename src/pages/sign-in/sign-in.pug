@@ -6,13 +6,13 @@ include ../../blocks/button/button.pug
 block content
     +header('header_fixed')
     main.first-screen
-        form(action="").card
+        form(action="").card.js-sign-in--form
             h1.card__element.h1 Войти
             div.card__element.card__element_margin-bottom_10
-                +field('', 'text', 'Email')
-                +field('', 'text', 'Пароль')
-            +button('card__element button_width_320', 'Войти')
+                +field('js-sign-in--email-field', 'email', 'Email', true)
+                +field('js-sign-in--password-field', 'password', 'Пароль', true)
+            +button('js-sign-in--btn-submit card__element button_width_320', 'Войти')
             div.card__element.card__submit-block
                 p.card__submit-block-text Нет аккаунта на Toxin?
-                +button('', 'создать', true)
+                +linkButton('', '/registration.html', 'создать', true)
     include ../../blocks/footer/footer.pug

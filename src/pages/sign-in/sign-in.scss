@@ -12,6 +12,15 @@
     align-items: center;
 }
 
+.error {
+    border-color: red;
+}
+
+.error-text {
+    color: red;
+    text-align: center;
+}
+
 @include small {
 
     .first-screen {
