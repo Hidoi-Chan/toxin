@@ -1,6 +1,5 @@
 include ../logo/logo.pug
 include ../nav/nav.pug
-include ../sign-in/sign-in.pug
 include ../burger/burger.pug
 
 mixin header(className, username)
@@ -10,4 +9,4 @@ mixin header(className, username)
             +burger('', 'burger')
             div.header__container-for-burger
                 +nav('header__nav')
-                +sign-in('', username)
+                div.sign-in.js-sign-in

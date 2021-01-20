@@ -26,6 +26,7 @@
 }
 
 .header__container-for-burger {
+    position: relative;
     flex-grow: 1;
     display:flex;
     align-items: center;
@@ -54,7 +55,7 @@
             flex-grow: 0;
             order: 2;
             width: 100%;
-            margin: 20px;
+            margin: 60px 20px 20px;
         }
     
         .nav__menu {
@@ -81,10 +82,10 @@
     
         .sign-in {
             margin: 0 10px;
+            flex-direction: column;
     
             .button {
                 margin: 0 auto;
-                display: block;
                 width: 100%;
 
                 &:first-child {
@@ -101,6 +102,20 @@
     
             &::before {
                 content: none;
+            }
+        }
+
+        .sign-in__logout {
+            display: flex;
+            width: 100%;
+            box-shadow: none;
+
+            &:hover {
+                background-color: white;
+            }
+
+            a {
+                padding: 10px;
             }
         }
     }

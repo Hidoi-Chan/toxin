@@ -1,66 +1,77 @@
 let headerNav = [
     {
-        name: 'О нас', 
-        isActive: true
+        name: 'О нас',
+        href: '/'
     },
     {
-        name: 'Услуги', 
-        isActive: false,
+        name: 'Услуги',
         childItem: [
             {
                 name: 'Lorem ipsum dolor',
-                isActive: false,
+                href: '/registration.html'
             },
             {
                 name: 'Lorem',
-                isActive: false,
+                href: '/'
             },
             {
                 name: 'Lorem',
-                isActive: false,
+                href: '/'
             }
         ]
     },
     {
-        name: 'Вакансии', 
-        isActive: false
+        name: 'Вакансии',
+        href: '/sign-in.html'
     },
     {
-        name: 'Новости', 
-        isActive: false
+        name: 'Новости',
+        href: '/search-room.html'
     },
     {
-        name: 'Соглашения', 
-        isActive: false,
+        name: 'Соглашения',
         childItem: [
             {
                 name: 'Lorem',
-                isActive: false,
+                href: '/'
             },
             {
                 name: 'Lorem ipsum dolor',
-                isActive: false,
+                href: '/'
             },
             {
                 name: 'Lorem',
-                isActive: false,
+                href: '/'
             }
         ]
     }
 ]
 
+function renderItem(item) {
+    if (item.href) {
+        return `
+            <li class="nav__item">
+                <a href="${item.href}" class="nav__link">
+                    ${item.name}
+                </a>
+            </li>
+        `
+    } else {
+        return `
+        <li class="nav__item">
+            <div class="nav__link nav__link_expandable">
+                    ${item.name}
+            </div>
+            ${renderMenu(item.childItem)} 
+        </li>
+    `
+    }
+}
+
 function renderMenu(arrMenu) {
     let html = ''
-    arrMenu.map((item, index) => {
-        html += `<li class="nav__item">
-            <a href="#" 
-                class="nav__link
-                ${item.isActive ? 'nav__link_active' : ''}
-                ${item.childItem ? 'nav__link_expandable' : ''}">
-                    ${item.name}
-            </a>
-            ${item.childItem ? renderMenu(item.childItem) : ''} 
-        </li>`
+    arrMenu.map(item => {
+        html += renderItem(item)
     })
     return '<ul class="nav__menu">' + html + '</ul>'
 }
@@ -68,4 +79,17 @@ function renderMenu(arrMenu) {
 let nav = document.querySelectorAll('.nav')
 for (let menu of nav) {
     menu.insertAdjacentHTML('beforeend', renderMenu(headerNav))
+
+    let items = menu.querySelectorAll('.nav__link')
+    for (let item of items) {
+        if (item.href === document.URL) {
+            item.classList.add('active')
+        }
+
+        if (item.classList.contains('nav__link_expandable')) {
+            item.addEventListener('click', () => {
+                item.nextElementSibling.classList.toggle('nav__menu_open')
+            })
+        }
+    }
 }

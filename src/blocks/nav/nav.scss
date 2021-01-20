@@ -4,6 +4,10 @@
     display: flex;
     justify-content: flex-end;
 
+    &_open {
+        display: block !important;
+    }
+
     .nav__menu {
         display: none;
         position: absolute;
@@ -39,6 +43,7 @@
 .nav__link {
     display: block;
     padding: 0 10px;
+    cursor: pointer;
     color: $dark50;
     line-height: 40px;
     transition: 300ms ease;
@@ -48,9 +53,15 @@
     }
 }
 
-.nav__link_active {
+// .nav__link_active,
+.nav__link.active {
     font-weight: 700;
     color: $dark75;
+
+    &::after {
+        font-weight: 400;
+        color: $dark50;
+    }
 }
 
 .nav__link_expandable {
@@ -73,6 +84,23 @@
 
         & + .nav__menu {
             display: block;
+        }
+    }
+}
+
+@include large {
+
+    .nav__menu {
+
+        .nav__menu {
+            position: relative;
+
+            .nav__item {
+                
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
         }
     }
 }

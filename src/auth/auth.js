@@ -40,10 +40,9 @@ export function authWithEmailAndPassword(email, password) {
             'Content-Type': 'application/json'
         }
     })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            return data.localId
-        },
-            error => console.log(error)) //ЗДЕСЬ ДОЛЖЕН ПРОИСХОДИТЬ ОТЛОВ НЕПРАВИЛЬНОЙ АВТОРИЗАЦИИ
+        .catch(error => alert(error))
+        .then(response => response.json(),
+            error => alert(error))
+        .then(data => data.localId,
+            error => alert(error)) //ЗДЕСЬ ДОЛЖЕН ПРОИСХОДИТЬ ОТЛОВ НЕПРАВИЛЬНОЙ АВТОРИЗАЦИИ
 }

@@ -9,6 +9,7 @@ import '@blocks/nav/nav.scss'
 import '@blocks/nav/nav.js'
 import '@blocks/burger/burger.scss'
 import '@blocks/header/header.scss'
+import '@blocks/header/header.js'
 import '@blocks/radio/radio.scss'
 import '@blocks/toggle/toggle.scss'
 import '@blocks/card/card.scss'
@@ -90,7 +91,7 @@ function registrationFormHandler(event) {
             })
             .then(obj => addNewUserToDatabase(obj))
             .then(obj => localStorage.setItem('user', JSON.stringify(obj)))
-            // .then(() => document.location.href = "/")
+            .then(() => document.location.href = "/")
     }
     catch (e) {
         console.log(e)
