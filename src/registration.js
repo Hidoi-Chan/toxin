@@ -82,18 +82,35 @@ function registrationFormHandler(event) {
     }
 
     btn.disabled = true
-    try {
-        registrationWithEmailAndPassword(email, password)
-            .then(localId => {
-                obj.localId = localId
-                btn.disabled = false
-                return obj
-            })
-            .then(obj => addNewUserToDatabase(obj))
-            .then(obj => localStorage.setItem('user', JSON.stringify(obj)))
-            .then(() => document.location.href = "/")
-    }
-    catch (e) {
-        console.log(e)
-    }
+    registrationWithEmailAndPassword(email, password)
+        .then(localId => {
+            obj.localId = localId
+            btn.disabled = false
+            return obj
+        })
+        .then(obj => addNewUserToDatabase(obj))
+        .then(obj => localStorage.setItem('user', JSON.stringify(obj)))
+        .then(() => document.location.href = "/")
+        .catch(error => {
+            if (!target.querySelector('p.error-text')) {
+                let p = document.createElement('p')
+                p.classList.add('error-text')
+                btn.before(p)
+            }
+            let message
+            switch (error.message) {
+                case 'EMAIL_EXISTS':
+                    message = 'Адрес электронной почты уже используется другой учетной записью'
+                    break
+                case 'OPERATION_NOT_ALLOWED':
+                    message = 'Пароль для входа в этот проект отключен'
+                    break
+                case 'TOO_MANY_ATTEMPTS_TRY_LATER':
+                    message = 'Мы заблокировали все запросы с этого устройства из-за необычной активности. Попробуйте позже'
+                    break
+            }
+            target.querySelector('p.error-text').innerText = message
+
+            btn.disabled = false
+        })
 }

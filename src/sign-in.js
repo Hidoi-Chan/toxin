@@ -62,4 +62,26 @@ function authFormHandler(event) {
             btn.disabled = false
             document.location.href = "/"
         })
+        .catch(error => {
+            if (!target.querySelector('p.error-text')) {
+                let p = document.createElement('p')
+                p.classList.add('error-text')
+                btn.before(p)
+            }
+            let message
+            switch (error.message) {
+                case 'EMAIL_NOT_FOUND':
+                    message = 'Нет пользовательской записи, соответствующей этому идентификатору. Возможно, пользователь был удален'
+                    break
+                case 'INVALID_PASSWORD':
+                    message = 'Пароль недействителен или у пользователя нет пароля'
+                    break
+                case 'USER_DISABLED':
+                    message = 'Учетная запись пользователя отключена администратором'
+                    break
+            }
+            target.querySelector('p.error-text').innerText = message
+
+            btn.disabled = false
+        })
 }

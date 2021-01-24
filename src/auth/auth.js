@@ -29,7 +29,13 @@ export function registrationWithEmailAndPassword(email, password) {
         }
     })
         .then(response => response.json())
-        .then(data => data.localId)
+        .then(data => {
+            if (data.error) {
+                throw new Error(data.error.message)
+            } else {
+                return data.localId
+            }
+        })
 }
 
 export function authWithEmailAndPassword(email, password) {
@@ -41,8 +47,12 @@ export function authWithEmailAndPassword(email, password) {
         }
     })
         .catch(error => alert(error))
-        .then(response => response.json(),
-            error => alert(error))
-        .then(data => data.localId,
-            error => alert(error)) //ЗДЕСЬ ДОЛЖЕН ПРОИСХОДИТЬ ОТЛОВ НЕПРАВИЛЬНОЙ АВТОРИЗАЦИИ
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                throw new Error(data.error.message)
+            } else {
+                return data.localId
+            }
+        })
 }

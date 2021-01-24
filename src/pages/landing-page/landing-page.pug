@@ -13,15 +13,15 @@ block content
                 div.card__element.card__row
                     div
                         h3.field__title Прибытие
-                        div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150
-                            +field('', 'text', 'ДД.ММ.ГГГГ', true)
+                        div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150.js-field__wrapper
+                            +field('field_js-datepicker', 'text', 'ДД.ММ.ГГГГ', false, true)
                     div
                         h3.field__title Выезд
-                        div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150
-                            +field('', 'text', 'ДД.ММ.ГГГГ', true)
+                        div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150.js-field__wrapper
+                            +field('field_js-datepicker-altfield', 'text', 'ДД.ММ.ГГГГ', false, true)
                 div.card__element
                     h3.field__title Гости
-                    +dropdown('js-dropdown-guests', 'Сколько гостей', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button js-dropdown-button-clear', 'Очистить', 'purple'], ['dropdown__footer-button js-dropdown-button-apply', 'Применить', 'purple'])
-                +button('card__element button_width_320', 'подобрать номер')
+                    +dropdown('js-dropdown-guests', 'Сколько гостей', {'взрослые': 'guests', 'дети': 'guests', 'младенцы': 'babies'}, true)
+                +linkButton('js-link-button card__element button_with-icon', '/search-room.html', 'подобрать номер')
             h1.first-screen__h1 Лучшие номера для вашей работы, отдыха и просто вдохновения
     include ../../blocks/footer/footer.pug

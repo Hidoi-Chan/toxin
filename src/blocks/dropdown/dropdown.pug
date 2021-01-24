@@ -3,15 +3,15 @@ include ../../blocks/field/field.pug
 mixin dropdown(className, placeholder, obj, footer, buttonClear, buttonApply)
     div(class!=`dropdown js-dropdown ${className}`)
         div.field__wrapper.dropdown__field-wrapper.js-dropdown__field-wrapper
-            +field('', 'text', `${placeholder}`, true)
+            +field('', 'text', `${placeholder}`, false, true)
         div.dropdown__container.js-dropdown__container
             //- each val in arr
             each val, key in obj
                 +dropdown__item(key, val)
             if footer
                 div.dropdown__footer.js-dropdown__footer
-                    +buttonWithoutFill(...buttonClear)
-                    +buttonWithoutFill(...buttonApply)
+                    +buttonWithoutFill('dropdown__footer-button js-dropdown-button-clear', 'Очистить', 'purple')
+                    +buttonWithoutFill('dropdown__footer-button js-dropdown-button-apply', 'Применить', 'purple')
 
 //- mixin dropdown266(className, placeholder, arr, footer, buttonClear, buttonApply)
 //-     div(class!=`dropdown ${className}`)

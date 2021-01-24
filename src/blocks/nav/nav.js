@@ -1,49 +1,24 @@
 let headerNav = [
     {
-        name: 'О нас',
+        name: 'Главная',
         href: '/'
     },
     {
-        name: 'Услуги',
+        name: 'Авторизация',
         childItem: [
             {
-                name: 'Lorem ipsum dolor',
+                name: 'Регистрация',
                 href: '/registration.html'
             },
             {
-                name: 'Lorem',
-                href: '/'
-            },
-            {
-                name: 'Lorem',
-                href: '/'
+                name: 'Вход',
+                href: '/sign-in.html'
             }
         ]
     },
     {
-        name: 'Вакансии',
-        href: '/sign-in.html'
-    },
-    {
-        name: 'Новости',
+        name: 'Подбор комнаты',
         href: '/search-room.html'
-    },
-    {
-        name: 'Соглашения',
-        childItem: [
-            {
-                name: 'Lorem',
-                href: '/'
-            },
-            {
-                name: 'Lorem ipsum dolor',
-                href: '/'
-            },
-            {
-                name: 'Lorem',
-                href: '/'
-            }
-        ]
     }
 ]
 
