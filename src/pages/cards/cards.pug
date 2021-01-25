@@ -23,7 +23,7 @@ block content
                 div.card__element
                     h3.field__title Гости
                     +dropdown('js-dropdown-guests', 'Сколько гостей', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button js-dropdown-button-clear', 'Очистить', 'purple'], ['dropdown__footer-button js-dropdown-button-apply', 'Применить', 'purple'])
-                +button('card__element button_width_320', 'подобрать номер')
+                +button('card__element button_with-icon', 'подобрать номер')
             form(action="").card
                 h1.card__element.h1 Регистрация аккаунта
                 div.card__element.card__element_margin-bottom_10
@@ -41,7 +41,7 @@ block content
                         +field('', 'text', 'Email')
                         +field('', 'text', 'Пароль')
                         +toggle('', 'Получать спецпредложения', 'get special offers')
-                +button('card__element button_width_320', 'перейти к оплате')
+                +button('card__element button_with-icon', 'перейти к оплате')
                 div.card__element.card__submit-block
                     p.card__submit-block-text Уже есть аккаунт на Toxin
                     +button('', 'войти', true)
@@ -84,13 +84,13 @@ block content
                 div.card__element.card__room-characteristics
                     h2.h2 Итого
                     h2.h2 38 081р
-                +button('card__button-reservation card__element button_width_320', 'Забронировать')
+                +button('card__button-reservation card__element button_with-icon', 'Забронировать')
             form(action="").card
                 h1.card__element.h1 Войти
                 div.card__element.card__element_margin-bottom_10
                     +field('', 'text', 'Email')
                     +field('', 'text', 'Пароль')
-                +button('card__element button_width_320', 'Войти')
+                +button('card__element button_with-icon', 'Войти')
                 div.card__element.card__submit-block
                     p.card__submit-block-text Нет аккаунта на Toxin?
                     +button('', 'создать', true)

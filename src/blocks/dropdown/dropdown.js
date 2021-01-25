@@ -1,21 +1,21 @@
 import {declOfNum} from '@/functions.js'
 
-export function livenUpTheDropdown(resultObj) {
-
-    function nameArr(name) {
-        switch (name) {
-            case 'guests':
-            return ['гость', 'гостя', 'гостей']
-            case 'babies':
-            return ['младенец', 'младенца', 'младенцев']
-            case 'bedrooms':
-            return ['спальня', 'спальни', 'спален']
-            case 'bed':
-            return ['кровать', 'кровати', 'кроватей']
-            case 'bathrooms':
-            return ['ванная комната', 'ванные комнаты', 'ванных комнат']
-        }
+function nameArr(name) {
+    switch (name) {
+        case 'guests':
+        return ['гость', 'гостя', 'гостей']
+        case 'babies':
+        return ['младенец', 'младенца', 'младенцев']
+        case 'bedrooms':
+        return ['спальня', 'спальни', 'спален']
+        case 'bed':
+        return ['кровать', 'кровати', 'кроватей']
+        case 'bathrooms':
+        return ['ванная комната', 'ванные комнаты', 'ванных комнат']
     }
+}
+
+export function myDropdown(resultObj) {
     
     let dropdownsArr = document.querySelectorAll('.js-dropdown')
     
@@ -27,14 +27,19 @@ export function livenUpTheDropdown(resultObj) {
         let buttonClear = container.querySelector('.js-dropdown-button-clear')
         let buttonApply = container.querySelector('.js-dropdown-button-apply')
     
-        let click = new Event('click')
+        // let click = new Event('click')
     
         function nullResult() {
             if (dropdown.classList.contains('js-dropdown-guests')) {
-                resultObj.guests = {
-                    guests: 0,
-                    babies: 0
-                }
+                // if (resultObj.localStorage) {
+                //     resultObj.guests = resultObj.localStorage.guests
+                //     delete resultObj.localStorage.guests
+                // } else {
+                    resultObj.guests = {
+                        guests: 0,
+                        babies: 0
+                    }
+                // }
             }
             if (dropdown.classList.contains('js-dropdown-room')) {
                 resultObj.conveniences = {
@@ -55,6 +60,15 @@ export function livenUpTheDropdown(resultObj) {
             } else {
                 dropdown.classList.add('dropdown_hover')
                 container.style.display = 'block'
+            }
+        })
+
+        document.body.addEventListener('click', (event) => {
+            if (!event.target.closest('.js-dropdown')) {
+                if (dropdown.classList.contains('dropdown_hover')) {
+                    dropdown.classList.remove('dropdown_hover')
+                }
+                container.style.display = ''
             }
         })
     

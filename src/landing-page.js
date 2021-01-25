@@ -15,7 +15,7 @@ import '@blocks/field/field.scss'
 import {myDatepicker} from '@blocks/datepicker/datepicker.js'
 import '@blocks/datepicker/datepicker.scss'
 import '@blocks/dropdown/dropdown.scss'
-import {livenUpTheDropdown} from '@blocks/dropdown/dropdown.js'
+import {myDropdown} from '@blocks/dropdown/dropdown.js'
 import '@blocks/copyright-bar/copyright-bar.scss'
 import '@blocks/footer/footer.scss'
 import '@pages/landing-page/landing-page.scss'
@@ -26,21 +26,17 @@ const altField = document.querySelector('.field_js-datepicker-altfield')
 const linkButton = document.querySelector('.js-link-button')
 
 let filterParams = {}
-livenUpTheDropdown(filterParams)
-myDatepicker(filterParams)
-
+myDropdown(filterParams)
 const datepicker = myDatepicker(filterParams)
 
 for (let datepickerField of datepickerFields) {
     datepickerField.addEventListener('click', () => {
-        // field.classList.add('field_hover')
-        // altField.classList.add('field_hover')
+        field.classList.add('field_hover')
+        altField.classList.add('field_hover')
         datepicker.show()
     })
 }
 
-linkButton.addEventListener('click', (event) => {
-    event.preventDefault()
-    // localStorage.setItem('filters', JSON.stringify(filterParams))
-    // console.log(filterParams.bookedDate)
+linkButton.addEventListener('click', () => {
+    localStorage.setItem('filters', JSON.stringify(filterParams))
 })

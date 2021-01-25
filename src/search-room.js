@@ -22,7 +22,7 @@ import '@blocks/field/field.scss'
 import '@blocks/datepicker/datepicker.scss'
 import {myDatepicker} from '@blocks/datepicker/datepicker.js'
 import '@blocks/dropdown/dropdown.scss'
-import {livenUpTheDropdown} from '@blocks/dropdown/dropdown.js'
+import {myDropdown} from '@blocks/dropdown/dropdown.js'
 import '@blocks/copyright-bar/copyright-bar.scss'
 import '@blocks/footer/footer.scss'
 import '@pages/search-room/search-room.scss'
@@ -32,6 +32,15 @@ let filterButton = document.querySelector('.js-filter-button')
 let leftSidebarCloseButton = document.querySelector('.js-left-sidebar-close')
 let leftSidebarAcceptButton = document.querySelector('.js-left-sidebar-accept')
 let filterBlock = document.querySelector('.left-sidebar')
+let filterParams = {}
+let filters
+let click = new Event('click')
+
+let dropdownGuests = document.querySelector('.js-dropdown-guests')
+let dropdownGuestsStr = dropdownGuests.querySelector('.js-dropdown__item-name[name="guests"]').parentElement
+let dropdownIncrButtonGuest = dropdownGuestsStr.querySelector('.js-dropdown__button-increment')
+let dropdownBabiesStr = dropdownGuests.querySelector('.js-dropdown__item-name[name="babies"]').parentElement
+let dropdownIncrButtonBabies = dropdownBabiesStr.querySelector('.js-dropdown__button-increment')
 
 function closeSidebar() {
     filterBlock.style.left = -400 + 'px'
@@ -45,7 +54,8 @@ filterButton.addEventListener('click', function() {
     }
 })
 
-let filterParams = {}
+myDropdown(filterParams)
+let datepicker = myDatepicker(filterParams)
 
 filterParams.selectableOptions = []
 filterBlock.addEventListener('change', function(event) {
@@ -62,8 +72,7 @@ filterBlock.addEventListener('change', function(event) {
     }
 })
 
-livenUpTheDropdown(filterParams)
-myDatepicker(filterParams)
+
 
 
 // Fetch
@@ -167,6 +176,35 @@ function renderPagination(pagination) {
 
     paginationDiv.append(paginationList)
     paginationDiv.append(description)
+
+    
+        
+
+    let paginationForListener = document.querySelector('.pagination')
+
+    paginationForListener.addEventListener('click', function(event) {
+        let target
+        if (event.target.closest('.pagination__link')) {
+            target = event.target.closest('.pagination__link')
+        } else {
+            return
+        }
+    
+        if (target.innerText == pagination.currentPage) {
+            return
+        }
+    
+        if (target.innerText == 'arrow_back') {
+            pagination.currentPage -= 1
+        } else if (target.innerText == 'arrow_forward') {
+            pagination.currentPage += 1
+        } else {
+            pagination.currentPage = target.innerText
+        }
+        renderRoomCards(pagination)
+        renderPagination(pagination)
+        window.scrollTo(0,0)
+    })
 }
 
 function renderRoomCards(pagination) {
@@ -220,7 +258,6 @@ function renderRoomCards(pagination) {
         items: 1,
         mouseDrag: false,
         nav: true,
-        // navText: ['expand_more','expand_more'],
         dotsEach: true
     })
 }
@@ -241,7 +278,6 @@ function defaultSettingsFilterParams(data, resultObj) {
 }
 
 function filterData(data, filterObj) {
-    console.log(filterObj)
 
     let newData = data.filter(room => {
         let result = true
@@ -276,50 +312,68 @@ function filterData(data, filterObj) {
         
         return result
     })
-    console.log(newData)
     return newData
 }
 
-let url = 'http://localhost:3000/rooms'
+function applyFilterData(data, filterParams) {
 
-fetch(url)
-    .catch(error => console.error(error)) // НЕ РАБОТАЕТ
-    .then(response => response.json())
-    .then(data => {
-        let pagination = new Pagination(data)
+    let newData = filterData(data, filterParams)
+
+    if (newData.length) {
+        let pagination = new Pagination(newData)
         renderRoomCards(pagination)
         renderPagination(pagination)
-        
+        window.scrollTo(0,0)
+        return pagination
+    } else {
+        if (roomCardContainer.nextElementSibling) {
+            roomCardContainer.nextElementSibling.remove()
+        }
+        roomCardContainer.parentElement.querySelector('.h1').innerText = 'К сожалению, по выбранным фильтрам подходящих номеров не нашлось'
 
-        let paginationForListener = document.querySelector('.pagination')
+        roomCardContainer.innerHTML = ''
+        window.scrollTo(0,0)
+    }
+}
 
-        paginationForListener.addEventListener('click', function(event) {
-            let target
-            if (event.target.closest('.pagination__link')) {
-                target = event.target.closest('.pagination__link')
-            } else {
-                return
-            }
-        
-            if (target.innerText == pagination.currentPage) {
-                return
-            }
-        
-            if (target.innerText == 'arrow_back') {
-                pagination.currentPage -= 1
-            } else if (target.innerText == 'arrow_forward') {
-                pagination.currentPage += 1
-            } else {
-                pagination.currentPage = target.innerText
-            }
-            renderRoomCards(pagination)
-            renderPagination(pagination)
-            window.scrollTo(0,0)
-        })
+let url = 'https://toxin-b35b5-default-rtdb.firebaseio.com/rooms.json'
 
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        let pagination
+        
         defaultSettingsFilterParams(data, filterParams)
         livenUpTheRangeSlider(filterParams.cost)
         
+        
+        if (localStorage.hasOwnProperty('filters')) {
+            filters = JSON.parse(localStorage.getItem('filters'))
+            localStorage.removeItem('filters')
+            // console.log(filters)
+            
+            for (let key in filters.guests) {
+                while(filters.guests[key]) {
+                    if (key == 'guests') {
+                        dropdownIncrButtonGuest.dispatchEvent(click)
+                    }
+                    if (key == 'babies') {
+                        dropdownIncrButtonBabies.dispatchEvent(click)
+                    }
+                    filters.guests[key] -= 1
+                }
+            }
+
+            if (filters.bookedDate) {
+                datepicker.selectDate([new Date(filters.bookedDate[0]), new Date(filters.bookedDate[1])])
+                console.log(datepicker)
+            }
+
+            // console.log(filterParams)
+        }
+        pagination = applyFilterData(data, filterParams)
+        renderRoomCards(pagination)
+        renderPagination(pagination)
 
 
         leftSidebarCloseButton.addEventListener('click', function(event) {
@@ -333,23 +387,8 @@ fetch(url)
 
         leftSidebarAcceptButton.addEventListener('click', function() {
             closeSidebar()
-            console.log(filterParams)
 
-            let newData = filterData(data, filterParams)
-
-            if (newData.length) {
-                pagination = new Pagination(newData)
-                renderRoomCards(pagination)
-                renderPagination(pagination)
-            } else {
-                if (roomCardContainer.nextElementSibling) {
-                    roomCardContainer.nextElementSibling.remove()
-                }
-                roomCardContainer.parentElement.querySelector('.h1').innerText = 'К сожалению, по выбранным фильтрам подходящих номеров не нашлось'
-
-                roomCardContainer.innerHTML = ''
-            }
-            
-            window.scrollTo(0,0)
+            pagination = applyFilterData(data, filterParams)
         })
-    })
+    })    
+    .catch(error => console.log(error)) //'Failed to fetch'
