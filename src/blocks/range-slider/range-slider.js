@@ -1,4 +1,4 @@
-export function livenUpTheRangeSlider(resultObj) {
+export function myRangeSlider(resultObj) {
 
     let slider = document.querySelector('.range-slider')
     let thumbMin = slider.querySelector('.range-slider__minPoint')

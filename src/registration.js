@@ -108,6 +108,12 @@ function registrationFormHandler(event) {
                 case 'TOO_MANY_ATTEMPTS_TRY_LATER':
                     message = 'Мы заблокировали все запросы с этого устройства из-за необычной активности. Попробуйте позже'
                     break
+                case 'WEAK_PASSWORD : Password should be at least 6 characters':
+                    message = 'Пароль должен состоять не менее чем из 6 символов'
+                    break
+                default:
+                    message = error.message
+                    break 
             }
             target.querySelector('p.error-text').innerText = message
 

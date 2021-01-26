@@ -79,6 +79,9 @@ function authFormHandler(event) {
                 case 'USER_DISABLED':
                     message = 'Учетная запись пользователя отключена администратором'
                     break
+                default:
+                    message = error.message
+                    break 
             }
             target.querySelector('p.error-text').innerText = message
 

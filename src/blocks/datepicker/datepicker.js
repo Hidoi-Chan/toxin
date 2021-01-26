@@ -1,5 +1,7 @@
 import 'air-datepicker'
 
+const months = ['Янв', 'Фев', 'Мар ', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек']
+
 function getAltField() {
     if (document.querySelector('.field_js-datepicker-altfield')) {
         return document.querySelector('.field_js-datepicker-altfield')
@@ -45,6 +47,13 @@ export function myDatepicker(resultObj) {
                     inst.$altField.value = formattedDateArr[1]
                 }
             }
+
+            if (date.length === 1) {
+                let tomorrow = new Date(date[0].getTime() + msInDay)
+                date.push(tomorrow)
+            }
+            
+            if (date) resultObj.bookedDate = [date[0].setHours(13), date[1].setHours(12)]
         }
     })
 
@@ -57,6 +66,7 @@ export function myDatepicker(resultObj) {
     buttonForDatepickerClear.classList.add('datepicker--button')
     buttonForDatepickerClear.innerHTML = '<h3 class="button__text_color_purple" data-action="clear">Очистить</h3>'
     buttonForDatepickerClear.addEventListener('click', () => {
+        delete resultObj.bookedDate
         if (datepicker.$altField) {
             datepicker.$altField.value = ''
         }
@@ -67,39 +77,16 @@ export function myDatepicker(resultObj) {
     buttonForDatepickerApply.innerHTML = '<h3 class="button__text_color_purple">Применить</h3>'
     buttonForDatepickerApply.addEventListener('click', () => {
 
-        // resultObj.bookedDate = []
-        // let date = datepicker.selectedDates
-        // if (date.length == 2) {
-        //     let firstDay = new Date(date[0].setDate(date[0].getDate() + 1))
-        //     let lastDay = date[1]
-        //     while (firstDay.getTime() != lastDay.getTime()) {
-        //         resultObj.bookedDate.push(firstDay)
-        //         firstDay = new Date(firstDay.setDate(firstDay.getDate() + 1))
-        //     }
-        // } 
-        // if (date.length == 1) {
-        //     let oneDay = new Date(date[0].setDate(date[0].getDate() - 1))
-        //     resultObj.bookedDate.push(oneDay)
-
-        //     let tomorrowStr = new Date(oneDay.setDate(oneDay.getDate() + 1))
-        //     datepicker.$altField.value = `${('0' + tomorrowStr.getDate()).slice(-2)}.${('0' + (tomorrowStr.getMonth() + 1)).slice(-2)}.${tomorrowStr.getFullYear()}`
-        // }
-        
-        // console.log(datepicker)
-
         let selectedDates = datepicker.selectedDates
-
         if (selectedDates.length === 1) {
             let tomorrow = new Date(selectedDates[0].getTime() + msInDay)
-            selectedDates.push(tomorrow)
             if (datepicker.$altField) {
                 datepicker.$altField.value = `${('0' + tomorrow.getDate()).slice(-2)}.${('0' + (tomorrow.getMonth() + 1)).slice(-2)}.${tomorrow.getFullYear()}`
+            } else {
+                datepicker.el.value = `${selectedDates[0].getDate()} ${months[selectedDates[0].getMonth()]} - ${tomorrow.getDate()} ${months[tomorrow.getMonth()]}`
             }
         }
-        
-        // selectedDates[0].setHours(13)
-        // selectedDates[1].setHours(12)
-        resultObj.bookedDate = [selectedDates[0].setHours(13), selectedDates[1].setHours(12)]
+
         datepicker.hide()
     })
     datepickerButtonsContainer.append(buttonForDatepickerApply)

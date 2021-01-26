@@ -1,3 +1,5 @@
+// import '@img/room_1.jpg'
+// import '@img/room_2.jpg'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 import '@style/global.scss'
@@ -10,7 +12,7 @@ import '@blocks/burger/burger.scss'
 import '@blocks/header/header.scss'
 import '@blocks/header/header.js'
 import '@blocks/range-slider/range-slider.scss'
-import {livenUpTheRangeSlider} from '@blocks/range-slider/range-slider.js'
+import {myRangeSlider} from '@blocks/range-slider/range-slider.js'
 import '@blocks/expandable-list/expandable-list.scss'
 import '@blocks/expandable-list/expandable-list.js'
 import '@blocks/checkbox/checkbox.scss'
@@ -28,12 +30,14 @@ import '@blocks/footer/footer.scss'
 import '@pages/search-room/search-room.scss'
 import {declOfNum} from '@/functions.js'
 
+
+// Переменные
 let filterButton = document.querySelector('.js-filter-button')
 let leftSidebarCloseButton = document.querySelector('.js-left-sidebar-close')
 let leftSidebarAcceptButton = document.querySelector('.js-left-sidebar-accept')
 let filterBlock = document.querySelector('.left-sidebar')
 let filterParams = {}
-let filters
+let filters, pagination
 let click = new Event('click')
 
 let dropdownGuests = document.querySelector('.js-dropdown-guests')
@@ -42,42 +46,12 @@ let dropdownIncrButtonGuest = dropdownGuestsStr.querySelector('.js-dropdown__but
 let dropdownBabiesStr = dropdownGuests.querySelector('.js-dropdown__item-name[name="babies"]').parentElement
 let dropdownIncrButtonBabies = dropdownBabiesStr.querySelector('.js-dropdown__button-increment')
 
-function closeSidebar() {
-    filterBlock.style.left = -400 + 'px'
-}
+const datepickerField = document.querySelector('.js-field__wrapper')
 
-filterButton.addEventListener('click', function() {
-    if (filterBlock.style.left == '0px') {
-        closeSidebar()
-    } else {
-        filterBlock.style.left = 0
-    }
-})
-
-myDropdown(filterParams)
-let datepicker = myDatepicker(filterParams)
-
-filterParams.selectableOptions = []
-filterBlock.addEventListener('change', function(event) {
-    let target
-    if (event.target.closest('input[type="checkbox"]')) {
-        target = event.target
-    }
-
-    let arr = filterParams.selectableOptions
-    if (arr.indexOf(target.value) == -1) {
-        arr.push(target.value)
-    } else {
-        arr.splice(arr.indexOf(target.value), 1)
-    }
-})
-
-
-
-
-// Fetch
 let roomCardContainer = document.querySelector('.main__room-card-container')
 
+
+// Функции
 class Pagination {
     constructor(data) {
         this.currentPage = 1
@@ -177,8 +151,7 @@ function renderPagination(pagination) {
     paginationDiv.append(paginationList)
     paginationDiv.append(description)
 
-    
-        
+            
 
     let paginationForListener = document.querySelector('.pagination')
 
@@ -201,6 +174,7 @@ function renderPagination(pagination) {
         } else {
             pagination.currentPage = target.innerText
         }
+        // history.pushState(null, null, `/search-room.html/page=${pagination.currentPage}`)
         renderRoomCards(pagination)
         renderPagination(pagination)
         window.scrollTo(0,0)
@@ -282,6 +256,15 @@ function filterData(data, filterObj) {
     let newData = data.filter(room => {
         let result = true
 
+        if (filterObj.bookedDate) {
+            for (let date of room.bookedDate) {
+                let dateMS = new Date(date).getTime()
+                if (dateMS >= filterObj.bookedDate[0] && dateMS <= filterObj.bookedDate[1]) {
+                    result = false
+                }
+            }
+        }
+
         if (filterObj.selectableOptions) {
             for (let option of filterObj.selectableOptions) {
                 if (room.selectableOptions[option] === false) {
@@ -315,6 +298,16 @@ function filterData(data, filterObj) {
     return newData
 }
 
+function returnStringIfNoData(str) {
+    if (roomCardContainer.nextElementSibling) {
+        roomCardContainer.nextElementSibling.remove()
+    }
+    roomCardContainer.parentElement.querySelector('.h1').innerText = str
+
+    roomCardContainer.innerHTML = ''
+    window.scrollTo(0,0)
+}
+
 function applyFilterData(data, filterParams) {
 
     let newData = filterData(data, filterParams)
@@ -326,31 +319,56 @@ function applyFilterData(data, filterParams) {
         window.scrollTo(0,0)
         return pagination
     } else {
-        if (roomCardContainer.nextElementSibling) {
-            roomCardContainer.nextElementSibling.remove()
-        }
-        roomCardContainer.parentElement.querySelector('.h1').innerText = 'К сожалению, по выбранным фильтрам подходящих номеров не нашлось'
-
-        roomCardContainer.innerHTML = ''
-        window.scrollTo(0,0)
+        returnStringIfNoData('К сожалению, по выбранным фильтрам подходящих номеров не нашлось')
     }
 }
 
+function closeSidebar() {
+    filterBlock.style.left = -400 + 'px'
+}
+
+
+// Выполнение кода на странице
+filterButton.addEventListener('click', () => {
+    if (filterBlock.style.left == '0px') {
+        closeSidebar()
+    } else {
+        filterBlock.style.left = 0
+    }
+})
+
+myDropdown(filterParams)
+const datepicker = myDatepicker(filterParams)
+datepickerField.addEventListener('click', () => datepicker.show())
+
+filterParams.selectableOptions = []
+filterBlock.addEventListener('change', function(event) {
+    let target
+    if (event.target.closest('input[type="checkbox"]')) {
+        target = event.target
+    }
+
+    let arr = filterParams.selectableOptions
+    if (arr.indexOf(target.value) == -1) {
+        arr.push(target.value)
+    } else {
+        arr.splice(arr.indexOf(target.value), 1)
+    }
+})
+
+
+// Fetch
 let url = 'https://toxin-b35b5-default-rtdb.firebaseio.com/rooms.json'
 
 fetch(url)
     .then(response => response.json())
     .then(data => {
-        let pagination
         
-        defaultSettingsFilterParams(data, filterParams)
-        livenUpTheRangeSlider(filterParams.cost)
-        
+        defaultSettingsFilterParams(data, filterParams)        
         
         if (localStorage.hasOwnProperty('filters')) {
             filters = JSON.parse(localStorage.getItem('filters'))
             localStorage.removeItem('filters')
-            // console.log(filters)
             
             for (let key in filters.guests) {
                 while(filters.guests[key]) {
@@ -366,14 +384,13 @@ fetch(url)
 
             if (filters.bookedDate) {
                 datepicker.selectDate([new Date(filters.bookedDate[0]), new Date(filters.bookedDate[1])])
-                console.log(datepicker)
             }
-
-            // console.log(filterParams)
         }
+
         pagination = applyFilterData(data, filterParams)
-        renderRoomCards(pagination)
-        renderPagination(pagination)
+        // pagination = new Pagination(data) Проверка скорости загрузки
+
+        myRangeSlider(filterParams.cost)
 
 
         leftSidebarCloseButton.addEventListener('click', function(event) {
@@ -391,4 +408,4 @@ fetch(url)
             pagination = applyFilterData(data, filterParams)
         })
     })    
-    .catch(error => console.log(error)) //'Failed to fetch'
+    .catch(error => returnStringIfNoData('Произошла ошибка при загрузке данных. Пожалуйста, попробуйте еще раз')) //'Failed to fetch'

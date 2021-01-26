@@ -16,8 +16,8 @@ block content
             div.left-sidebar
                 div
                     h3.field__title даты пребывания в отеле
-                    div.field__wrapper.field__wrapper_for-datepicker
-                        +field('field_js-datepicker', 'text', 'Выберите дату для бронирования', true)
+                    div.field__wrapper.field__wrapper_for-datepicker.js-field__wrapper
+                        +field('field_js-datepicker', 'text', 'Выберите дату для бронирования', false, true)
                 div
                     h3.field__title Гости
                     +dropdown('js-dropdown-guests', 'Сколько гостей', {'взрослые': 'guests', 'дети': 'guests', 'младенцы': 'babies'})
