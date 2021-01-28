@@ -205,7 +205,7 @@ function renderRoomCards(pagination) {
                 <img src='assets/images/room_2.jpg' alt='room_2'>
                 <img src='assets/images/room_2.jpg' alt='room_2'>
             </div>
-            <div class='room-card__text-block'>
+            <a href='/room-details.html?number=${room.roomNumber}' class='room-card__text-block js-link-to-room'>
                 <div class='room-card__text-block-item room-card__characteristics'>
                     <h1 class='h2'>
                         № ${room.roomNumber}<span class='h3 room-card__characteristics_color_purple'>  ${room.luxury? 'люкс' : ''}</span>
@@ -222,7 +222,7 @@ function renderRoomCards(pagination) {
                         ${room.reviews.quantity} <span class='room-card__price_thin room-card__price_size_14'>  ${declOfNum(room.reviews.quantity, ['Отзыв', 'Отзыва', 'Отзывов'])}</span>
                     </h2>
                 </div>
-            </div>
+            </a>
         </div>
         `
     })
@@ -234,6 +234,8 @@ function renderRoomCards(pagination) {
         nav: true,
         dotsEach: true
     })
+
+    // let linkToRoom = js-link-to-room
 }
 
 function defaultSettingsFilterParams(data, resultObj) {
@@ -316,6 +318,9 @@ function applyFilterData(data, filterParams) {
         let pagination = new Pagination(newData)
         renderRoomCards(pagination)
         renderPagination(pagination)
+
+        roomCardContainer.parentElement.querySelector('.h1').innerText = 'Номера, которые мы для вас подобрали'
+
         window.scrollTo(0,0)
         return pagination
     } else {

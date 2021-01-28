@@ -31,8 +31,14 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';
 import {capitalizedString} from '@/functions.js'
 
-let roomIndex = 0
-let url = `http://localhost:3000/rooms?index=${roomIndex}`
+let params = {}
+location.search.slice(1).split('&').map(item => {
+    let arr = item.split('=')
+    params[arr[0]] = arr[1]
+})
+let roomNumber = params.number // Разобраться с get запросами
+
+let url = `https://toxin-b35b5-default-rtdb.firebaseio.com/rooms.json?roomNumber=${roomNumber}`
 
 function renderRoom(data) {
     let cardNumber = document.querySelector('.js-card-number')
@@ -67,7 +73,10 @@ function renderRoom(data) {
 
 fetch(url)
     .then(response => response.json())
-    .then(data => renderRoom(data[0]))
+    .then(data => {
+        renderRoom(data[0])
+        console.log(data)
+    })
 
 $('.owl-carousel').owlCarousel({
     items: 1,

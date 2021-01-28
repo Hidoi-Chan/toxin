@@ -10,6 +10,7 @@
 }
 
 .room-card__text-block {
+    display: block;
     padding: 20px;
 }
 
@@ -77,6 +78,7 @@
     position: absolute;
     top: 0;
     background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 99.99%, rgba(255, 255, 255, 0) 100%);
+    z-index: 200;
 
     span {
         display: none;

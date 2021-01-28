@@ -36,8 +36,6 @@ export default function draw(obj) {
     for (let key in obj) {
         rating[key].amount = obj[key]
     }
-
-    console.log(rating)
     
     let sum = 0
 
