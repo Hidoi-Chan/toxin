@@ -205,7 +205,7 @@ function renderRoomCards(pagination) {
                 <img src='assets/images/room_2.jpg' alt='room_2'>
                 <img src='assets/images/room_2.jpg' alt='room_2'>
             </div>
-            <a href='/room-details.html?number=${room.roomNumber}' class='room-card__text-block js-link-to-room'>
+            <a href='/room-details.html?orderBy="index"&equalTo=${room.index}' class='room-card__text-block js-link-to-room'>
                 <div class='room-card__text-block-item room-card__characteristics'>
                     <h1 class='h2'>
                         № ${room.roomNumber}<span class='h3 room-card__characteristics_color_purple'>  ${room.luxury? 'люкс' : ''}</span>
@@ -235,7 +235,17 @@ function renderRoomCards(pagination) {
         dotsEach: true
     })
 
-    // let linkToRoom = js-link-to-room
+    let linksToRoom = roomCardContainer.querySelectorAll('.js-link-to-room')
+    for (let link of linksToRoom) {
+        link.addEventListener('click', () => {
+            let filters = {}
+            filters.guests = filterParams.guests
+            if (filterParams.bookedDate) {
+                filters.bookedDate = filterParams.bookedDate
+            }
+            localStorage.setItem('filters', JSON.stringify(filters))
+        })
+    }
 }
 
 function defaultSettingsFilterParams(data, resultObj) {

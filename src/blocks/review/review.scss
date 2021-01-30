@@ -2,7 +2,7 @@
 
 .review {
     display: grid;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: min-content auto;
     grid-template-rows: repeat(2, auto);
     gap: 10px;
 
@@ -20,10 +20,10 @@
         border-radius: 50%;
     }
 
-    &__header-text,
-    &__text {
-        max-width: 653px;
-    }
+    // &__header-text,
+    // &__text {
+    //     text-align: left;
+    // }
 
     &__username {
         font-weight: 700;

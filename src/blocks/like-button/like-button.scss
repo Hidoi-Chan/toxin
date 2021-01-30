@@ -18,6 +18,10 @@
                 content: 'favorite';
             }            
         }
+
+        &:disabled + .like-button__btn {
+            cursor: auto;
+        }
     }
 
     &:hover {

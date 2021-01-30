@@ -74,7 +74,7 @@ export function myDatepicker(resultObj) {
     datepickerButtonsContainer.append(buttonForDatepickerClear)
     
     let buttonForDatepickerApply = document.createElement('button')
-    buttonForDatepickerApply.innerHTML = '<h3 class="button__text_color_purple">Применить</h3>'
+    buttonForDatepickerApply.innerHTML = '<h3 class="button__text_color_purple js-datepicker-apply">Применить</h3>'
     buttonForDatepickerApply.addEventListener('click', () => {
 
         let selectedDates = datepicker.selectedDates

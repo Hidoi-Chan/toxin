@@ -145,6 +145,8 @@
 }
 
 .main__review-block {
+    display: flex;
+    flex-direction: column;
     margin-top: 10px;
 
     .review {
@@ -155,6 +157,21 @@
 .main__review-block-description {
     line-height: 1rem;
     color: $dark50;
+}
+
+.reviews-button {
+    margin-top: 20px;
+    padding: 4px 8px;
+    border: 1px solid $dark25;
+    color: $dark50;
+    transition: 300ms ease;
+    align-self: center;
+
+    &:hover,
+    &:focus {
+        border: 1px solid $dark50;
+        color: $dark75;        
+    }
 }
 
 .main__rules {
@@ -169,6 +186,24 @@
 
 .card {
     align-self: flex-start;
+
+    &_form-sent {
+        color: $purple;
+        text-align: center;
+    }
+}
+
+.card__room-total-cost {
+    margin: 20px 0;
+}
+
+.card__button-reservation {
+    margin-top: 0 !important;
+}
+
+.error-text {
+    color: red;
+    text-align: center;
 }
 
 @include large-up {
