@@ -79,8 +79,8 @@ export default function draw(obj) {
             gradient.addColorStop(1, rating[key].color.to)
             ctx.strokeStyle = gradient
 
-            let percent = Math.round(rating[key].amount * 100 / sum)
-            let arcLength = Math.round((360 - objLength * 2) * percent / 100)
+            let percent = rating[key].amount * 100 / sum
+            let arcLength = (360 - objLength * 2) * percent / 100
             let end = begin - arcLength
             if (end < 0) {
                 end = 360 + end

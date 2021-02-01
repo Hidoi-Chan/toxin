@@ -19,21 +19,21 @@
         grid-column-end: 3; 
         grid-row-start: 1; 
         grid-row-end: 3;
-        background-image: url('../../img/room-details.jpg');
+        // background-image: url('../../img/room-details.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
     }
 
     &:nth-child(2) {
-        background-image: url('../../img/room-details-2.jpg');
+        // background-image: url('../../img/room-details-2.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
     }
 
     &:last-child {
-        background-image: url('../../img/room-details-3.jpg');
+        // background-image: url('../../img/room-details-3.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -258,13 +258,13 @@
 
     .main__room-information-block {
         width: 100%;
-        padding: 0;
 
         h2 {
             text-align: center;
         }
 
         &:first-child {
+            padding: 0;
             margin-bottom: 10px;
         }
     }

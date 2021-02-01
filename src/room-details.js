@@ -57,6 +57,7 @@ const field = document.querySelector('.field_js-datepicker')
 const altField = document.querySelector('.field_js-datepicker-altfield')
 
 let firstScreenImgBlocks = document.querySelectorAll('.js-main__first-screen-image')
+let firstScreenCarouselImages = document.querySelectorAll('.owl-carousel-image')
 
 let card = document.querySelector('.js-card')
 let cardNumber = card.querySelector('.js-card-number')
@@ -127,16 +128,13 @@ function renderReviews(arrReviews, container) {
 }
 
 function renderRoom(data) {
-    let imgArr = []
-    data.images.map(imgSrc => {
+
+    data.images.map((imgSrc, index) => {
         downloadFullExample(imgSrc, function f(url) {
-            imgArr.push(url)
+            firstScreenImgBlocks[index].style.backgroundImage = `url(${url})`
+            firstScreenCarouselImages[index].src = url
         })
     })
-
-    // Array.from(firstScreenImgBlocks).map((imgBlock, index) => {
-    //     imgBlock.style.backgroundImage = `url(${imgArr[index]})`
-    // })
 
     cardNumber.innerHTML = `
         № ${data.roomNumber}

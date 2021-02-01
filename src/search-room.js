@@ -268,40 +268,44 @@ function filterData(data, filterObj) {
     let newData = data.filter(room => {
         let result = true
 
-        if (filterObj.bookedDate) {
+        if (filterObj.bookedDate && result) {
             for (let date of room.bookedDate) {
                 let dateMS = new Date(date).getTime()
                 if (dateMS >= filterObj.bookedDate[0] && dateMS <= filterObj.bookedDate[1]) {
                     result = false
+                    break
                 }
             }
         }
 
-        if (filterObj.selectableOptions) {
+        if (filterObj.selectableOptions && result) {
             for (let option of filterObj.selectableOptions) {
                 if (room.selectableOptions[option] === false) {
                     result = false
+                    break
                 }
             }
         }
 
-        if (filterObj.guests.babies || filterObj.guests.guests) {
+        if ((filterObj.guests.babies || filterObj.guests.guests) && result) {
             for (let option in filterObj.guests) {
                 if (room.guests[option] !== filterObj.guests[option]) {
                     result = false
+                    break
                 }
             }            
         }
 
-        if (filterObj.conveniences.bathrooms || filterObj.conveniences.bed || filterObj.conveniences.bedrooms) {
+        if ((filterObj.conveniences.bathrooms || filterObj.conveniences.bed || filterObj.conveniences.bedrooms) && result) {
             for (let option in filterObj.conveniences) {
                 if (filterObj.conveniences[option] && room.conveniences[option] !== filterObj.conveniences[option]) {
                     result = false
+                    break
                 }
             }
         }
 
-        if (room.cost > filterObj.cost.max || room.cost < filterObj.cost.min) {
+        if ((room.cost > filterObj.cost.max || room.cost < filterObj.cost.min) && result) {
             result = false
         }
         
