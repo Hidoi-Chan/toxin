@@ -29,6 +29,8 @@ import '@blocks/copyright-bar/copyright-bar.scss'
 import '@blocks/footer/footer.scss'
 import '@pages/search-room/search-room.scss'
 import {declOfNum} from '@/functions.js'
+import firebase from "firebase/app"
+import {downloadFullExample, firebaseConfig} from '@/firebase-storage.js'
 
 
 // Переменные
@@ -39,6 +41,7 @@ let filterBlock = document.querySelector('.left-sidebar')
 let filterParams = {}
 let filters, pagination
 let click = new Event('click')
+let change = new Event('change')
 
 let dropdownGuests = document.querySelector('.js-dropdown-guests')
 let dropdownGuestsStr = dropdownGuests.querySelector('.js-dropdown__item-name[name="guests"]').parentElement
@@ -52,28 +55,126 @@ let roomCardContainer = document.querySelector('.main__room-card-container')
 
 
 // Функции
-class Pagination {
-    constructor(data) {
-        this.currentPage = 1
-        this.onPage = 12
-        this.allCards = data.length
-        this.firstRoomIndex = function() {
-            return (this.currentPage - 1) * this.onPage
-        }
-        this.lastRoomIndex = function() {
-            if (this.currentPage == this.allPages()) {
-                return data.length - 1
-            } else {
-                return (this.currentPage * this.onPage) - 1
-            }
-        }
-        this.allPages = function() {
-            return Math.ceil(this.allCards / 12)
-        }
-        this.data = function() {
-            return data.slice(this.firstRoomIndex(), this.lastRoomIndex() + 1)
+// class Pagination {
+//     constructor(data) {
+//         this.currentPage = 1
+//         this.onPage = 12
+//         this.allCards = data.length
+//         this.firstRoomIndex = function() {
+//             return (this.currentPage - 1) * this.onPage
+//         }
+//         this.lastRoomIndex = function() {
+//             if (this.currentPage == this.allPages()) {
+//                 return data.length - 1
+//             } else {
+//                 return (this.currentPage * this.onPage) - 1
+//             }
+//         }
+//         this.allPages = function() {
+//             return Math.ceil(this.allCards / 12)
+//         }
+//         this.data = function() {
+//             return data.slice(this.firstRoomIndex(), this.lastRoomIndex() + 1)
+//         }
+//     }
+// }
+function Pagination(data) {
+    this.currentPage = 1
+    this.onPage = 12
+    this.allCards = data.length
+    this.firstRoomIndex = function() {
+        return (this.currentPage - 1) * this.onPage
+    }
+    this.lastRoomIndex = function() {
+        if (this.currentPage == this.allPages()) {
+            return data.length - 1
+        } else {
+            return (this.currentPage * this.onPage) - 1
         }
     }
+    this.allPages = function() {
+        return Math.ceil(this.allCards / 12)
+    }
+    this.data = function() {
+        return data.slice(this.firstRoomIndex(), this.lastRoomIndex() + 1)
+    }
+}
+
+function renderRoomCards(pagination) {
+
+    roomCardContainer.innerHTML = ''
+    pagination.data().map(room => {
+        let stringRate = ''
+        for (let i = 1; i <= 5; i++) {
+            if (i <= room.reviews.rating) {
+                stringRate += `
+                    <span class='active'></span>
+                `
+            } else {
+                stringRate += `
+                    <span></span>
+                `                    
+            }
+        }
+
+        let roomCard = document.createElement('div')
+        roomCard.classList.add('room-card')
+        
+        let link = document.createElement('a')
+        link.href = `/room-details.html?orderBy="index"&equalTo=${room.index}`
+        link.className = 'room-card__text-block js-link-to-room'
+        link.innerHTML = `
+            <div class='room-card__text-block-item room-card__characteristics'>
+                <h1 class='h2'>
+                    № ${room.roomNumber}<span class='h3 room-card__characteristics_color_purple'>  ${room.luxury? 'люкс' : ''}</span>
+                </h1>
+                <h2 class='room-card__price'>
+                    ${room.cost}р <span class='room-card__price_thin'>  в сутки</span>
+                </h2>
+            </div>
+            <div class='room-card__text-block-item room-card__rating'>
+                <div class='rate-result'>
+                    ${stringRate}
+                </div>
+                <h2 class='room-card__price'>
+                    ${room.reviews.quantity} <span class='room-card__price_thin room-card__price_size_14'>  ${declOfNum(room.reviews.quantity, ['Отзыв', 'Отзыва', 'Отзывов'])}</span>
+                </h2>
+            </div>
+        `
+        roomCard.append(link)
+
+        link.addEventListener('click', () => {
+            let filters = {}
+            filters.guests = filterParams.guests
+            if (filterParams.bookedDate) {
+                filters.bookedDate = filterParams.bookedDate
+            }
+            localStorage.setItem('filters', JSON.stringify(filters))
+        })
+
+        Promise.all(room.promiseArr)
+            .then(urls => {
+                room.images = urls
+
+                let carousel = document.createElement('div')
+                carousel.className = 'owl-carousel owl-theme'
+                for (let url of room.images) {
+                    let img = document.createElement('img')
+                    img.src = url
+                    carousel.append(img)
+                }
+                roomCard.prepend(carousel)
+
+                $('.owl-carousel').owlCarousel({
+                    items: 1,
+                    mouseDrag: false,
+                    nav: true,
+                    dotsEach: true
+                })
+            })
+
+        roomCardContainer.append(roomCard)
+    })
 }
 
 function renderPagination(pagination) {
@@ -150,12 +251,14 @@ function renderPagination(pagination) {
 
     paginationDiv.append(paginationList)
     paginationDiv.append(description)
+    
+    clicksForPagination(paginationDiv, pagination)
+}
 
-            
+function clicksForPagination(elem, paginationObj) {
 
-    let paginationForListener = document.querySelector('.pagination')
+    function clickForPagination(event) {
 
-    paginationForListener.addEventListener('click', function(event) {
         let target
         if (event.target.closest('.pagination__link')) {
             target = event.target.closest('.pagination__link')
@@ -163,89 +266,29 @@ function renderPagination(pagination) {
             return
         }
     
-        if (target.innerText == pagination.currentPage) {
+        if (target.innerText == paginationObj.currentPage) {
             return
         }
     
         if (target.innerText == 'arrow_back') {
-            pagination.currentPage -= 1
+            paginationObj.currentPage -= 1
         } else if (target.innerText == 'arrow_forward') {
-            pagination.currentPage += 1
+            paginationObj.currentPage = +paginationObj.currentPage + 1
         } else {
-            pagination.currentPage = target.innerText
+            paginationObj.currentPage = target.innerText
         }
-        // history.pushState(null, null, `/search-room.html/page=${pagination.currentPage}`)
-        renderRoomCards(pagination)
-        renderPagination(pagination)
+
+        elem.removeEventListener('click', clickForPagination)
+
+        history.pushState(JSON.stringify(paginationObj), '', `/search-room.html/?page=${paginationObj.currentPage}`)
+
+        renderRoomCards(paginationObj)
+        renderPagination(paginationObj)
         window.scrollTo(0,0)
-    })
-}
-
-function renderRoomCards(pagination) {
-    let newData = ''
-    pagination.data().map(room => {
-        let stringRate = ''
-        for (let i = 1; i <= 5; i++) {
-            if (i <= room.reviews.rating) {
-                stringRate += `
-                    <span class='active'></span>
-                `
-            } else {
-                stringRate += `
-                    <span></span>
-                `                    
-            }
-        }
-
-        newData += `
-        <div class='room-card'>
-            <div class='owl-carousel owl-theme'>
-                <img src='assets/images/room_1.jpg' alt='room_1'>
-                <img src='assets/images/room_2.jpg' alt='room_2'>
-                <img src='assets/images/room_2.jpg' alt='room_2'>
-                <img src='assets/images/room_2.jpg' alt='room_2'>
-            </div>
-            <a href='/room-details.html?orderBy="index"&equalTo=${room.index}' class='room-card__text-block js-link-to-room'>
-                <div class='room-card__text-block-item room-card__characteristics'>
-                    <h1 class='h2'>
-                        № ${room.roomNumber}<span class='h3 room-card__characteristics_color_purple'>  ${room.luxury? 'люкс' : ''}</span>
-                    </h1>
-                    <h2 class='room-card__price'>
-                        ${room.cost}р <span class='room-card__price_thin'>  в сутки</span>
-                    </h2>
-                </div>
-                <div class='room-card__text-block-item room-card__rating'>
-                    <div class='rate-result'>
-                        ${stringRate}
-                    </div>
-                    <h2 class='room-card__price'>
-                        ${room.reviews.quantity} <span class='room-card__price_thin room-card__price_size_14'>  ${declOfNum(room.reviews.quantity, ['Отзыв', 'Отзыва', 'Отзывов'])}</span>
-                    </h2>
-                </div>
-            </a>
-        </div>
-        `
-    })
-    roomCardContainer.innerHTML = newData
-
-    $('.owl-carousel').owlCarousel({
-        items: 1,
-        mouseDrag: false,
-        nav: true,
-        dotsEach: true
-    })
-
-    let linksToRoom = roomCardContainer.querySelectorAll('.js-link-to-room')
-    for (let link of linksToRoom) {
-        link.addEventListener('click', () => {
-            let filters = {}
-            filters.guests = filterParams.guests
-            if (filterParams.bookedDate) {
-                filters.bookedDate = filterParams.bookedDate
-            }
-            localStorage.setItem('filters', JSON.stringify(filters))
-        })
     }
+
+    elem.addEventListener('click', clickForPagination)
+
 }
 
 function defaultSettingsFilterParams(data, resultObj) {
@@ -346,6 +389,18 @@ function closeSidebar() {
     filterBlock.style.left = -400 + 'px'
 }
 
+function addPicturesToData(data) {
+    for (let room of data) {
+        room.promiseArr = []
+        room.images.map(imgSrc => {
+            room.promiseArr.push(downloadFullExample(imgSrc, function f(url) {    
+                return url
+            }))
+        })
+    }
+    return data
+}
+
 
 // Выполнение кода на странице
 filterButton.addEventListener('click', () => {
@@ -375,12 +430,12 @@ filterBlock.addEventListener('change', function(event) {
     }
 })
 
-
 // Fetch
 let url = 'https://toxin-b35b5-default-rtdb.firebaseio.com/rooms.json'
 
 fetch(url)
     .then(response => response.json())
+    .then(data => addPicturesToData(data))
     .then(data => {
         
         defaultSettingsFilterParams(data, filterParams)        
@@ -406,6 +461,7 @@ fetch(url)
             }
         }
 
+
         pagination = applyFilterData(data, filterParams)
         // pagination = new Pagination(data) Проверка скорости загрузки
 
@@ -419,6 +475,13 @@ fetch(url)
             renderRoomCards(pagination)
             renderPagination(pagination)
             window.scrollTo(0,0)
+            
+            datepicker.clear()
+            for (let checkbox of filterBlock.querySelectorAll('input[type="checkbox"]:checked')) {
+                checkbox.parentElement.dispatchEvent(change)
+                console.log(checkbox)
+            }
+            console.log(filterParams)
         })
 
         leftSidebarAcceptButton.addEventListener('click', function() {
@@ -426,5 +489,14 @@ fetch(url)
 
             pagination = applyFilterData(data, filterParams)
         })
-    })    
+    })
     .catch(error => returnStringIfNoData('Произошла ошибка при загрузке данных. Пожалуйста, попробуйте еще раз')) //'Failed to fetch'
+
+window.addEventListener('popstate', event => {
+    console.log(event)
+    // renderRoomCards(paginationObj)
+    // renderPagination(paginationObj)
+    // window.scrollTo(0,0)
+})
+
+firebase.initializeApp(firebaseConfig)

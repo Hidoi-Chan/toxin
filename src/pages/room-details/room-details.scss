@@ -45,9 +45,20 @@
 
     .owl-carousel {
         width: 100%;
-        max-height: 460px;
+        max-height: 380px;
         overflow: hidden;
-        position: relative;
+        position: relative;        
+
+        .owl-item {
+            min-height: 100%;
+        }
+    
+        img {            
+            width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            object-position: 0 0;
+        }
     }
     
     .owl-carousel .owl-nav button.owl-prev,
@@ -242,10 +253,26 @@
     }
 }
 
+@include medium {
+
+    .owl-carousel {
+        height: 270px;
+
+        .owl-item {
+            min-height: 270px;
+        }
+    
+        img {
+            height: 270px;
+        }
+    }
+}
+
 @include small {
 
     .main__container {
         padding: 0;
+        margin-top: 0;
     }
 
     .main__content {

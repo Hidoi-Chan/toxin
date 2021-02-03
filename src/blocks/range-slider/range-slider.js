@@ -25,12 +25,12 @@ export function myRangeSlider(resultObj) {
     
     function moveSlider(elem) {
         let point = (max - min) / (slider.offsetWidth - elem.offsetWidth)
-        elem.addEventListener('mousedown', function(event) {
+        elem.addEventListener('pointerdown', function(event) {
             event.preventDefault()
             let shiftX = event.clientX - elem.getBoundingClientRect().left
-            document.addEventListener('mousemove', drag)
-            document.addEventListener('mouseup', (event) => {
-                document.removeEventListener('mousemove', drag)
+            document.addEventListener('pointermove', drag)
+            document.addEventListener('pointerup', (event) => {
+                document.removeEventListener('pointermove', drag)
             })
             function drag(event) {
                 let left = event.clientX - slider.getBoundingClientRect().left - shiftX

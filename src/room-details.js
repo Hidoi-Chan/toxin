@@ -30,7 +30,7 @@ import '@blocks/footer/footer.scss'
 import '@pages/room-details/room-details.scss'
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';
-import {capitalizedString, declOfNum, timeHasPassed, randomInteger} from '@/functions.js'
+import {capitalizedString, declOfNum, timeHasPassed} from '@/functions.js'
 import firebase from "firebase/app"
 import {downloadFullExample, firebaseConfig} from '@/firebase-storage.js'
 

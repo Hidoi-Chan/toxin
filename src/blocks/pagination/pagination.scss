@@ -5,7 +5,9 @@
     text-align: center;
 
     &__list {
-        display: inline-block;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     &__link {
