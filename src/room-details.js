@@ -30,18 +30,12 @@ import '@blocks/footer/footer.scss'
 import '@pages/room-details/room-details.scss'
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';
-import {capitalizedString, declOfNum, timeHasPassed} from '@/functions.js'
+import {capitalizedString, declOfNum, timeHasPassed, getParamsFromUrl} from '@/functions.js'
 import firebase from "firebase/app"
 import {downloadFullExample, firebaseConfig} from '@/firebase-storage.js'
 
-// let params = {}
-let searchStr = location.search.slice(1)
-// searchStr.split('&').map(item => {
-//     let arr = item.split('=')
-//     params[arr[0]] = arr[1]
-// })
 
-let url = `https://toxin-b35b5-default-rtdb.firebaseio.com/rooms.json?${searchStr}`
+let url = `https://toxin-b35b5-default-rtdb.firebaseio.com/rooms.json?orderBy="index"&equalTo=${getParamsFromUrl().index}`
 let filterParams = {}
 let filters
 let click = new Event('click')

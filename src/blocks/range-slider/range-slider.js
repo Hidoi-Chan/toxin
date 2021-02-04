@@ -1,9 +1,10 @@
 export function myRangeSlider(resultObj) {
 
     let slider = document.querySelector('.range-slider')
-    let thumbMin = slider.querySelector('.range-slider__minPoint')
-    let thumbMax = slider.querySelector('.range-slider__maxPoint')
-    let filling = slider.querySelector('.range-slider__fill')
+    let sliderField = slider.querySelector('.range-slider__field')
+    let thumbMin = sliderField.querySelector('.range-slider__minPoint')
+    let thumbMax = sliderField.querySelector('.range-slider__maxPoint')
+    let filling = sliderField.querySelector('.range-slider__fill')
     let rangeResult = slider.querySelector('.range-slider__range')
 
     let min = resultObj.min
@@ -17,14 +18,14 @@ export function myRangeSlider(resultObj) {
     
     function fillingCoords() {
         filling.style.left = thumbMin.offsetLeft + thumbMin.offsetWidth / 2 + 'px'
-        filling.style.right = slider.offsetWidth - thumbMax.offsetLeft - thumbMax.offsetWidth / 2 + 'px'
+        filling.style.right = sliderField.offsetWidth - thumbMax.offsetLeft - thumbMax.offsetWidth / 2 + 'px'
     }
     thumbMin.style.left = 0 + 'px'
-    thumbMax.style.left = slider.offsetWidth - thumbMax.offsetWidth + 'px'
+    thumbMax.style.left = sliderField.offsetWidth - thumbMax.offsetWidth + 'px'
     fillingCoords()
     
     function moveSlider(elem) {
-        let point = (max - min) / (slider.offsetWidth - elem.offsetWidth)
+        let point = (max - min) / (sliderField.offsetWidth - elem.offsetWidth)
         elem.addEventListener('pointerdown', function(event) {
             event.preventDefault()
             let shiftX = event.clientX - elem.getBoundingClientRect().left
@@ -33,7 +34,7 @@ export function myRangeSlider(resultObj) {
                 document.removeEventListener('pointermove', drag)
             })
             function drag(event) {
-                let left = event.clientX - slider.getBoundingClientRect().left - shiftX
+                let left = event.clientX - sliderField.getBoundingClientRect().left - shiftX
     
                 if (elem == thumbMin) {
                     if (left < 0) {
@@ -48,8 +49,8 @@ export function myRangeSlider(resultObj) {
                     if (left < thumbMin.offsetLeft) {
                         left = thumbMin.offsetLeft
                     }
-                    if (left > slider.offsetWidth - elem.offsetWidth) {
-                        left = slider.offsetWidth - elem.offsetWidth
+                    if (left > sliderField.offsetWidth - elem.offsetWidth) {
+                        left = sliderField.offsetWidth - elem.offsetWidth
                     }
                 }
     

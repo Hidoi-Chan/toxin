@@ -3,13 +3,18 @@
 .range-slider {
     height: 30px;
     width: 266px;
-    display: flex;
-    align-items: flex-end;
     position: relative;
 
     &:hover {
         cursor: pointer;
     }
+}
+
+.range-slider__field {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
 }
 
 .range-slider__base {

@@ -38,3 +38,12 @@ export function randomInteger(min, max) {
     let rand = min - 0.5 + Math.random() * (max - min + 1);
     return Math.round(rand);
 }
+
+export function getParamsFromUrl() {
+    let params = {}
+    location.search.slice(1).split('&').map(item => {
+        let arr = item.split('=')
+        params[arr[0]] = arr[1]
+    })
+    return params
+}

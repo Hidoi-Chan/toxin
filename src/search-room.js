@@ -28,7 +28,7 @@ import {myDropdown} from '@blocks/dropdown/dropdown.js'
 import '@blocks/copyright-bar/copyright-bar.scss'
 import '@blocks/footer/footer.scss'
 import '@pages/search-room/search-room.scss'
-import {declOfNum} from '@/functions.js'
+import {declOfNum, getParamsFromUrl} from '@/functions.js'
 import firebase from "firebase/app"
 import {downloadFullExample, firebaseConfig} from '@/firebase-storage.js'
 
@@ -55,39 +55,17 @@ let roomCardContainer = document.querySelector('.main__room-card-container')
 
 
 // Функции
-// class Pagination {
-//     constructor(data) {
-//         this.currentPage = 1
-//         this.onPage = 12
-//         this.allCards = data.length
-//         this.firstRoomIndex = function() {
-//             return (this.currentPage - 1) * this.onPage
-//         }
-//         this.lastRoomIndex = function() {
-//             if (this.currentPage == this.allPages()) {
-//                 return data.length - 1
-//             } else {
-//                 return (this.currentPage * this.onPage) - 1
-//             }
-//         }
-//         this.allPages = function() {
-//             return Math.ceil(this.allCards / 12)
-//         }
-//         this.data = function() {
-//             return data.slice(this.firstRoomIndex(), this.lastRoomIndex() + 1)
-//         }
-//     }
-// }
 function Pagination(data) {
     this.currentPage = 1
     this.onPage = 12
-    this.allCards = data.length
+    this.allData = data
+    this.allCards = this.allData.length
     this.firstRoomIndex = function() {
         return (this.currentPage - 1) * this.onPage
     }
     this.lastRoomIndex = function() {
         if (this.currentPage == this.allPages()) {
-            return data.length - 1
+            return this.allData.length - 1
         } else {
             return (this.currentPage * this.onPage) - 1
         }
@@ -96,7 +74,7 @@ function Pagination(data) {
         return Math.ceil(this.allCards / 12)
     }
     this.data = function() {
-        return data.slice(this.firstRoomIndex(), this.lastRoomIndex() + 1)
+        return this.allData.slice(this.firstRoomIndex(), this.lastRoomIndex() + 1)
     }
 }
 
@@ -121,7 +99,7 @@ function renderRoomCards(pagination) {
         roomCard.classList.add('room-card')
         
         let link = document.createElement('a')
-        link.href = `/room-details.html?orderBy="index"&equalTo=${room.index}`
+        link.href = `/room-details.html?index=${room.index}`
         link.className = 'room-card__text-block js-link-to-room'
         link.innerHTML = `
             <div class='room-card__text-block-item room-card__characteristics'>
@@ -252,10 +230,18 @@ function renderPagination(pagination) {
     paginationDiv.append(paginationList)
     paginationDiv.append(description)
     
-    clicksForPagination(paginationDiv, pagination)
+    addEventsForPagination(paginationDiv, pagination)
+
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+    })
+
+    
 }
 
-function clicksForPagination(elem, paginationObj) {
+function addEventsForPagination(elem, paginationObj) {
 
     function clickForPagination(event) {
 
@@ -280,11 +266,10 @@ function clicksForPagination(elem, paginationObj) {
 
         elem.removeEventListener('click', clickForPagination)
 
-        history.pushState(JSON.stringify(paginationObj), '', `/search-room.html/?page=${paginationObj.currentPage}`)
+        history.pushState('', '', `/search-room.html?page=${paginationObj.currentPage}`)
 
         renderRoomCards(paginationObj)
         renderPagination(paginationObj)
-        window.scrollTo(0,0)
     }
 
     elem.addEventListener('click', clickForPagination)
@@ -364,21 +349,26 @@ function returnStringIfNoData(str) {
     roomCardContainer.parentElement.querySelector('.h1').innerText = str
 
     roomCardContainer.innerHTML = ''
-    window.scrollTo(0,0)
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+    })
 }
 
-function applyFilterData(data, filterParams) {
+function applyFilterData(data, filterParams, pageNum) {
 
     let newData = filterData(data, filterParams)
 
     if (newData.length) {
         let pagination = new Pagination(newData)
+        pagination.currentPage = pageNum
         renderRoomCards(pagination)
         renderPagination(pagination)
+        history.pushState('', '', `/search-room.html?page=1`)
 
         roomCardContainer.parentElement.querySelector('.h1').innerText = 'Номера, которые мы для вас подобрали'
 
-        window.scrollTo(0,0)
         return pagination
     } else {
         returnStringIfNoData('К сожалению, по выбранным фильтрам подходящих номеров не нашлось')
@@ -386,7 +376,10 @@ function applyFilterData(data, filterParams) {
 }
 
 function closeSidebar() {
-    filterBlock.style.left = -400 + 'px'
+    if (filterBlock.classList.contains('left-sidebar_open')) {
+        filterBlock.classList.remove('left-sidebar_open')
+        document.body.classList.remove('hidden')
+    }
 }
 
 function addPicturesToData(data) {
@@ -404,11 +397,8 @@ function addPicturesToData(data) {
 
 // Выполнение кода на странице
 filterButton.addEventListener('click', () => {
-    if (filterBlock.style.left == '0px') {
-        closeSidebar()
-    } else {
-        filterBlock.style.left = 0
-    }
+    filterBlock.classList.toggle('left-sidebar_open')
+    document.body.classList.toggle('hidden')
 })
 
 myDropdown(filterParams)
@@ -460,9 +450,12 @@ fetch(url)
                 datepicker.selectDate([new Date(filters.bookedDate[0]), new Date(filters.bookedDate[1])])
             }
         }
+        let page = 1
+        if (location.search) {
+            page = getParamsFromUrl().page
+        }
 
-
-        pagination = applyFilterData(data, filterParams)
+        pagination = applyFilterData(data, filterParams, page)
         // pagination = new Pagination(data) Проверка скорости загрузки
 
         myRangeSlider(filterParams.cost)
@@ -474,7 +467,7 @@ fetch(url)
             pagination = new Pagination(data)
             renderRoomCards(pagination)
             renderPagination(pagination)
-            window.scrollTo(0,0)
+            history.pushState('', '', `/search-room.html?page=1`)
             
             datepicker.clear()
             for (let checkbox of filterBlock.querySelectorAll('input[type="checkbox"]:checked')) {
@@ -487,16 +480,21 @@ fetch(url)
         leftSidebarAcceptButton.addEventListener('click', function() {
             closeSidebar()
 
-            pagination = applyFilterData(data, filterParams)
+            pagination = applyFilterData(data, filterParams, 1)
         })
     })
     .catch(error => returnStringIfNoData('Произошла ошибка при загрузке данных. Пожалуйста, попробуйте еще раз')) //'Failed to fetch'
 
-window.addEventListener('popstate', event => {
-    console.log(event)
-    // renderRoomCards(paginationObj)
-    // renderPagination(paginationObj)
-    // window.scrollTo(0,0)
+window.addEventListener('popstate', () => {
+
+    if (location.search.includes('page')) {
+        pagination.currentPage = getParamsFromUrl().page
+    } else {
+        pagination.currentPage = 1
+    }
+
+    renderRoomCards(pagination)
+    renderPagination(pagination)
 })
 
 firebase.initializeApp(firebaseConfig)
