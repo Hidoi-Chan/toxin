@@ -1,10 +1,10 @@
 @import '../../style/variables.scss';
 
 .form-elements {
-    margin: 142px auto;
-    width: 1160px;
+    margin: 140px auto;
+    max-width: 1160px;
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: 374px 320px 320px;
     column-gap: 72px;
     row-gap: 100px;
 
@@ -18,6 +18,12 @@
 
         &:nth-child(4) {
             margin-bottom: 72px;
+            max-width: 266px;
+        }
+
+        &:nth-child(7) {
+            // margin-right: 54px;
+            max-width: 266px;
         }
 
         &:nth-child(8) {
@@ -133,6 +139,10 @@
         }
     }
 
+    &_max-width_266 {
+        max-width: 266px;
+    }
+
     &__expandable-list-container {
         position: relative;
         top: -14px;
@@ -140,5 +150,21 @@
 
     &__room-info-item {
         padding-top: 0;
+    }
+}
+
+.form-elements__pagination {
+    text-align: start;
+
+    .pagination__list {
+        justify-content: left;
+    }
+}
+
+@include large-up {
+
+    .form-elements {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }

@@ -28,7 +28,8 @@
             cursor: auto;
         }
 
-        &:hover {
+        &:hover,
+        &_hover {
             background: $secondaryGradient;
             color: white;
         }

@@ -27,14 +27,14 @@ const optimization = () => {
         splitChunks: {
             cacheGroups: {
                 colorstype: {
-                    test: /colorstype.js/,
+                    test: /colors-type.js/,
                     name: 'colors-type', // имя чанка
                     chunks: 'initial',
                     enforce: true,
                 },
                 formelements: {
-                    test: /formelements.js/,
-                    name: 'formelements',
+                    test: /form-elements.js/,
+                    name: 'form-elements',
                     chunks: 'initial',
                     enforce: true,
                 },
@@ -45,8 +45,8 @@ const optimization = () => {
                     enforce: true,
                 },
                 headersfooters: {
-                    test: /headersfooters.js/,
-                    name: 'headersfooters',
+                    test: /headers-footers.js/,
+                    name: 'headers-footers',
                     chunks: 'initial',
                     enforce: true,
                 },
@@ -121,15 +121,15 @@ module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: 'development',
     entry: {
-        colorstype: './colors-type.js',
-        formelements: './form-elements.js',
-        cards: './cards.js',
-        headersfooters: './headers-footers.js',
-        landingpage: './landing-page.js',
-        searchroom: './search-room.js',
-        roomdetails: './room-details.js',
-        registration: './registration.js',
-        signin: './sign-in.js',
+        'colors-type': './colors-type.js',
+        'form-elements': './form-elements.js',
+        'cards': './cards.js',
+        'headers-footers': './headers-footers.js',
+        'landing-page': './landing-page.js',
+        'search-room': './search-room.js',
+        'room-details': './room-details.js',
+        'registration': './registration.js',
+        'sign-in': './sign-in.js',
     },
     output: {
         filename: filename('js'),
@@ -152,7 +152,7 @@ module.exports = {
         new HTMLWebpackPlugin({
             filename: 'colors-type.html',
             template: './pages/colors-type/colors-type.pug',
-            chunks: ['colorstype']
+            chunks: ['colors-type']
             // minify: {                                   // для html
             //     collapseWhitespace: isProd
             // }
@@ -160,7 +160,7 @@ module.exports = {
         new HTMLWebpackPlugin({
             filename: 'form-elements.html',
             template: './pages/form-elements/form-elements.pug',
-            chunks: ['formelements']
+            chunks: ['form-elements']
         }),
         new HTMLWebpackPlugin({
             filename: 'cards.html',
@@ -170,22 +170,22 @@ module.exports = {
         new HTMLWebpackPlugin({
             filename: 'headers-footers.html',
             template: './pages/headers-footers/headers-footers.pug',
-            chunks: ['headersfooters']
+            chunks: ['headers-footers']
         }),
         new HTMLWebpackPlugin({
             filename: 'index.html',
             template: './pages/landing-page/landing-page.pug',
-            chunks: ['landingpage']
+            chunks: ['landing-page']
         }),
         new HTMLWebpackPlugin({
             filename: 'search-room.html',
             template: './pages/search-room/search-room.pug',
-            chunks: ['searchroom']
+            chunks: ['search-room']
         }),
         new HTMLWebpackPlugin({
             filename: 'room-details.html',
             template: './pages/room-details/room-details.pug',
-            chunks: ['roomdetails']
+            chunks: ['room-details']
         }),
         new HTMLWebpackPlugin({
             filename: 'registration.html',
@@ -195,7 +195,7 @@ module.exports = {
         new HTMLWebpackPlugin({
             filename: 'sign-in.html',
             template: './pages/sign-in/sign-in.pug',
-            chunks: ['signin']
+            chunks: ['sign-in']
         }),
         new CleanWebpackPlugin(),
         // new CopyWebpackPlugin({

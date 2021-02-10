@@ -72,15 +72,9 @@
     position: relative;
     overflow: hidden;
 
-    // .owl-stage-outer,
-    // .owl-stage,
-    // .owl-item {
-    //     height: 100%
-    // }
-    // img {
-    //     object-fit: contain;
-    //     object-position: center top;
-    // }
+    .owl-stage-outer {
+        top: -10%;
+    }
 }
 
 .owl-carousel .owl-nav button.owl-prev,

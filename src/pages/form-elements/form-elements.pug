@@ -19,39 +19,38 @@ block content
         div.form-elements__grid-item
             div
                 h3.field__title Text Field
-                +field('', 'text', 'Email')
+                +field('', 'email', 'Email')
             div
                 h3.field__title Text Field
-                +field('field_hover', 'text', 'This is pretty awesome')
+                +field('field_hover', 'email', 'This is pretty awesome')
             div
                 h3.field__title Dropdown
-                +dropdown('js-dropdown-guests', 'Сколько гостей', ['взрослые', 'дети', 'младенцы'])
+                +dropdown('js-dropdown-guests', 'Сколько гостей', {'взрослые': 'guests', 'дети': 'guests', 'младенцы': 'babies'})
             div.form-elements_margin_22
                 h3.field__title masked text field
                 +field('field_js-date', 'text', 'ДД.ММ.ГГГГ')
             div.form-elements__container.form-elements_margin_42
                 div
                     h3.field__title date Dropdown
-                    div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150
-                        +field('', 'text', 'ДД.ММ.ГГГГ', true)
+                    div.field__wrapper.field__wrapper_for-datepicker
+                        +field('', 'text', 'ДД.ММ.ГГГГ', false, true)
                 div
                     h3.field__title date Dropdown
-                    div.field__wrapper.field__wrapper_for-datepicker.field__wrapper_width_150
-                        +field('', 'text', '19.08.2019', true)
-            div.form-elements_margin_40
+                    div.field__wrapper.field__wrapper_for-datepicker
+                        +field('', 'text', '19.08.2019', false, true)
+            div.form-elements_margin_40.form-elements_max-width_266
                 h3.field__title filter date dropdown
                 div.field__wrapper.field__wrapper_for-datepicker
-                    +field('', 'text', '19 авг - 23 авг', true)
-            div.form-elements_margin_40
+                    +field('', 'text', '19 авг - 23 авг', false, true)
+            div.form-elements_margin_40.form-elements_max-width_266
                 h3.field__title subscription text field
                 div.field__wrapper.field__wrapper_for-subscription
                     +field('', 'text', 'Email')
         div.form-elements__grid-item
             div.form-elements__checkbox-container
                 h3.form-elements__title_margin-bottom_18 Checkbox Buttons
-                +checkbox('', 'Можно курить')
-                +checkbox('checkbox_checked', 'Можно с питомцами')
-                +checkbox('checkbox_checked', `Можно пригласить гостей (до 10 человек)`)
+                each val in [['', 'Можно курить', 'smoking'], ['checkbox_checked', 'Можно с питомцами', 'pets'], ['checkbox_checked', 'Можно пригласить гостей (до 10 человек)', 'guests']]
+                    +checkbox(...val)
             div.form-elements_margin_30
                 h3.form-elements__title_margin-bottom_13 Radio Buttons
                 div.form-elements__container
@@ -90,22 +89,22 @@ block content
                     +button('button_with-icon', 'перейти к оплате')
             div.form-elements_margin_10
                 h3.form-elements__title_margin-bottom_18 pagination
-                +pagination('', '1 – 12 из 100+ вариантов аренды')
+                +pagination('form-elements__pagination', '1 – 12 из 100+ вариантов аренды')
         div.form-elements__grid-item
             div
                 h3.field__title Dropdown
-                +dropdown('js-dropdown-room', '2 спальни, 2 кровати…', ['спальни', 'кровати', 'ванные комнаты'])
+                +dropdown('js-dropdown-room', '2 спальни, 2 кровати…', {'спальни': 'bedrooms', 'кровати': 'bed', 'ванные комнаты': 'bathrooms'})
             div
                 h3.field__title Dropdown
-                +dropdown('dropdown_hover js-dropdown-room', '2 спальни, 2 кровати…', ['спальни', 'кровати', 'ванные комнаты'])
+                +dropdown('js-dropdown-room dropdown_hover dropdown_open', '2 спальни, 2 кровати…', {'спальни': 'bedrooms', 'кровати': 'bed', 'ванные комнаты': 'bathrooms'})
         div.form-elements__grid-item
             div
                 h3.field__title Dropdown
-                +dropdown('dropdown_hover js-dropdown-guests', 'Сколько гостей', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button js-dropdown-button-clear', 'Очистить', 'purple'], ['dropdown__footer-button js-dropdown-button-apply', 'Применить', 'purple'])
+                +dropdown('js-dropdown-guests dropdown_hover dropdown_open', 'Сколько гостей', {'взрослые': 'guests', 'дети': 'guests', 'младенцы': 'babies'}, true)
         div.form-elements__grid-item
             div
                 h3.field__title Dropdown
-                +dropdown('dropdown_hover js-dropdown-guests', '3 гостя', ['взрослые', 'дети', 'младенцы'], true, ['dropdown__footer-button js-dropdown-button-clear', 'Очистить', 'purple'], ['dropdown__footer-button js-dropdown-button-apply', 'Применить', 'purple'])
+                +dropdown('js-dropdown-guests dropdown_hover dropdown_open', '3 гостя', {'взрослые': 'guests', 'дети': 'guests', 'младенцы': 'babies'}, true)
         div.form-elements__grid-item
             div.form-elements__expandable-list-container
                 +expandable-list('', 'expandable checkbox list', [['', 'Завтрак'], ['checkbox_checked', 'Письменный стол'], ['checkbox_checked', 'Стул для кормления'], ['checkbox_checked', 'Кроватка'], ['', 'Телевизор'], ['', 'Шампунь']])

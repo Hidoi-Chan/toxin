@@ -50,7 +50,6 @@ let dropdownGuestsStr = dropdownGuests.querySelector('.js-dropdown__item-name[na
 let dropdownIncrButtonGuest = dropdownGuestsStr.querySelector('.js-dropdown__button-increment')
 let dropdownBabiesStr = dropdownGuests.querySelector('.js-dropdown__item-name[name="babies"]').parentElement
 let dropdownIncrButtonBabies = dropdownBabiesStr.querySelector('.js-dropdown__button-increment')
-let dropdownButtonsClear = document.querySelectorAll('.js-dropdown-button-clear')
 
 let datepickerField = document.querySelector('.js-field__wrapper')
 
@@ -82,82 +81,98 @@ function Pagination(data) {
     }
 }
 
-function renderRoomCards(pagination) {
+// function renderRoomCard(roomObj) {
+//     let stringRate = ''
+//     for (let i = 1; i <= 5; i++) {
+//         if (i <= roomObj.reviews.rating) {
+//             stringRate += `
+//                 <span class='active'></span>
+//             `
+//         } else {
+//             stringRate += `
+//                 <span></span>
+//             `                    
+//         }
+//     }
 
-    roomCardContainer.innerHTML = ''
-    pagination.data().map(room => {
-        let stringRate = ''
-        for (let i = 1; i <= 5; i++) {
-            if (i <= room.reviews.rating) {
-                stringRate += `
-                    <span class='active'></span>
-                `
-            } else {
-                stringRate += `
-                    <span></span>
-                `                    
-            }
-        }
+//     let roomCard = document.createElement('div')
+//     roomCard.classList.add('room-card')
 
-        let roomCard = document.createElement('div')
-        roomCard.classList.add('room-card')
-        
-        let link = document.createElement('a')
-        link.href = `/room-details.html?index=${room.index}`
-        link.className = 'room-card__text-block js-link-to-room'
-        link.innerHTML = `
-            <div class='room-card__text-block-item room-card__characteristics'>
-                <h1 class='h2'>
-                    № ${room.roomNumber}<span class='h3 room-card__characteristics_color_purple'>  ${room.luxury? 'люкс' : ''}</span>
-                </h1>
-                <h2 class='room-card__price'>
-                    ${room.cost}р <span class='room-card__price_thin'>  в сутки</span>
-                </h2>
-            </div>
-            <div class='room-card__text-block-item room-card__rating'>
-                <div class='rate-result'>
-                    ${stringRate}
-                </div>
-                <h2 class='room-card__price'>
-                    ${room.reviews.quantity} <span class='room-card__price_thin room-card__price_size_14'>  ${declOfNum(room.reviews.quantity, ['Отзыв', 'Отзыва', 'Отзывов'])}</span>
-                </h2>
-            </div>
-        `
-        roomCard.append(link)
+//     // let carousel = document.createElement('div')
+//     // carousel.className = 'owl-carousel owl-theme'
+//     // for (let url of roomObj.promiseArr) {
+//     //     let img = document.createElement('img')
+//     //     img.src = url
+//     //     carousel.append(img)
+//     // }
+//     // roomCard.append(carousel)
+    
+//     let link = document.createElement('a')
+//     link.href = `/room-details.html?index=${roomObj.index}`
+//     link.className = 'room-card__text-block js-link-to-room'
+//     link.innerHTML = `
+//         <div class='room-card__text-block-item room-card__characteristics'>
+//             <h1 class='h2'>
+//                 № ${roomObj.roomNumber}<span class='h3 room-card__characteristics_color_purple'>  ${roomObj.luxury? 'люкс' : ''}</span>
+//             </h1>
+//             <h2 class='room-card__price'>
+//                 ${roomObj.cost}р <span class='room-card__price_thin'>  в сутки</span>
+//             </h2>
+//         </div>
+//         <div class='room-card__text-block-item room-card__rating'>
+//             <div class='rate-result'>
+//                 ${stringRate}
+//             </div>
+//             <h2 class='room-card__price'>
+//                 ${roomObj.reviews.quantity} <span class='room-card__price_thin room-card__price_size_14'>  ${declOfNum(roomObj.reviews.quantity, ['Отзыв', 'Отзыва', 'Отзывов'])}</span>
+//             </h2>
+//         </div>
+//     `
+//     roomCard.append(link)
 
-        link.addEventListener('click', () => {
-            let filters = {}
-            filters.guests = filterParams.guests
-            if (filterParams.bookedDate) {
-                filters.bookedDate = filterParams.bookedDate
-            }
-            localStorage.setItem('filters', JSON.stringify(filters))
-        })
+//     link.addEventListener('click', () => {
+//         let filters = {}
+//         filters.guests = filterParams.guests
+//         if (filterParams.bookedDate) {
+//             filters.bookedDate = filterParams.bookedDate
+//         }
+//         localStorage.setItem('filters', JSON.stringify(filters))
+//     })
 
-        Promise.all(room.promiseArr)
-            .then(urls => {
-                room.images = urls
+//     Promise.all(room.promiseArr)
+//         .then(urls => {
+//             room.images = urls
 
-                let carousel = document.createElement('div')
-                carousel.className = 'owl-carousel owl-theme'
-                for (let url of room.images) {
-                    let img = document.createElement('img')
-                    img.src = url
-                    carousel.append(img)
-                }
-                roomCard.prepend(carousel)
+//             let carousel = document.createElement('div')
+//             carousel.className = 'owl-carousel owl-theme'
+//             for (let url of room.images) {
+//                 let img = document.createElement('img')
+//                 img.src = url
+//                 carousel.append(img)
+//             }
+//             roomCard.prepend(carousel)
 
-                $('.owl-carousel').owlCarousel({
-                    items: 1,
-                    mouseDrag: false,
-                    nav: true,
-                    dotsEach: true
-                })
-            })
+//             $('.owl-carousel').owlCarousel({
+//                 items: 1,
+//                 mouseDrag: false,
+//                 nav: true,
+//                 dotsEach: true
+//             })
+//         })
+//     console.log(roomCard)
+//     return roomCard
+// }
 
-        roomCardContainer.append(roomCard)
-    })
-}
+
+// function renderRoomCards(pagination) {
+
+//     roomCardContainer.innerHTML = ''
+//     pagination.data().map(room => {
+
+
+//         roomCardContainer.append(roomCard)
+//     })
+// }
 
 function renderPagination(pagination) {
 
@@ -384,14 +399,25 @@ function closeSidebar() {
     }
 }
 
+function addPicturesToRoom(room) {
+    console.log(room)
+    let promiseArr = []
+    for (let imgSrc of room.images) {
+        let promise = downloadFullExample(imgSrc, url => url)
+        promiseArr.push(promise)
+    }
+
+    let results = []
+    Promise.all(promiseArr).then(url => {
+        results.push(url)
+    })
+    return results
+}
+
 function addPicturesToData(data) {
     for (let room of data) {
-        room.promiseArr = []
-        room.images.map(imgSrc => {
-            room.promiseArr.push(downloadFullExample(imgSrc, function f(url) {    
-                return url
-            }))
-        })
+        addPicturesToRoom(room)
+            .then(results => console.log(results))
     }
     return data
 }
@@ -440,7 +466,7 @@ fetch(url)
     .then(response => response.json())
     .then(data => addPicturesToData(data))
     .then(data => {
-        
+
         defaultSettingsFilterParams(data, filterParams)        
         
         if (localStorage.hasOwnProperty('filters')) {
@@ -472,34 +498,25 @@ fetch(url)
         // pagination = new Pagination(data) Проверка скорости загрузки
 
         myRangeSlider(filterParams.cost)
-        console.log(filterParams)
 
 
         leftSidebarCloseButton.addEventListener('click', function(event) {
-            event.preventDefault()
             closeSidebar()
             
             pagination = new Pagination(data)
-            roomCardContainer.parentElement.querySelector('.h1').innerText = 'Номера, которые мы для вас подобрали'
             renderRoomCards(pagination)
             renderPagination(pagination)
             history.pushState('', '', `/search-room.html?page=1`)
-            defaultSettingsFilterParams(data, filterParams)
-            for (let button of dropdownButtonsClear) {
-                button.dispatchEvent(click)
+            
+            datepicker.clear()
+            for (let checkbox of filterBlock.querySelectorAll('input[type="checkbox"]:checked')) {
+                checkbox.parentElement.dispatchEvent(change)
+                console.log(checkbox)
             }
-
-            for (let key in filterParams) {
-                if (Array.isArray(filterParams[key])) {
-                    filterParams[key] = []
-                }
-            }
-            myRangeSlider(filterParams.cost)
-            filterBlock.reset()
+            console.log(filterParams)
         })
 
-        leftSidebarAcceptButton.addEventListener('click', function(event) {
-            event.preventDefault()
+        leftSidebarAcceptButton.addEventListener('click', function() {
             closeSidebar()
 
             pagination = applyFilterData(data, filterParams, 1)

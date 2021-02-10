@@ -19,21 +19,18 @@
         grid-column-end: 3; 
         grid-row-start: 1; 
         grid-row-end: 3;
-        // background-image: url('../../img/room-details.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
     }
 
     &:nth-child(2) {
-        // background-image: url('../../img/room-details-2.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
     }
 
     &:last-child {
-        // background-image: url('../../img/room-details-3.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -43,23 +40,11 @@
 .main__owl-calousel {
     display: none;
 
-    .owl-carousel {
-        width: 100%;
-        max-height: 380px;
-        overflow: hidden;
-        position: relative;        
-
-        .owl-item {
-            min-height: 100%;
-        }
-    
-        img {            
-            width: 100%;
-            min-height: 100%;
-            object-fit: cover;
-            object-position: 0 0;
-        }
-    }
+    // .owl-carousel {
+    //     width: 100%;
+    //     overflow: hidden;
+    //     position: relative;
+    // }
     
     .owl-carousel .owl-nav button.owl-prev,
     .owl-carousel .owl-nav button.owl-next {
@@ -225,14 +210,6 @@
 }
 
 @include large {
-
-    .main__first-screen {
-        display: none;
-    }
-
-    .main__owl-calousel {
-        display: block;
-    }
  
     .main__container {
         flex-direction: column;
@@ -255,20 +232,39 @@
 
 @include medium {
 
-    .owl-carousel {
-        height: 270px;
+    .main__first-screen {
+        display: none;
+    }
 
-        .owl-item {
-            min-height: 270px;
-        }
-    
-        img {
-            height: 270px;
+    .main__owl-calousel {
+        display: block;
+    }
+
+    .owl-stage-outer,
+    .owl-stage,
+    .owl-item {
+        height: 400px;
+        text-align: center;
+    }
+
+    .owl-item {
+        overflow: hidden;
+
+        img {            
+            width: auto !important;
+            min-width: 100%;
+            height: 100%;
         }
     }
 }
 
 @include small {
+
+    .owl-stage-outer,
+    .owl-stage,
+    .owl-item {
+        height: 280px;
+    }
 
     .main__container {
         padding: 0;

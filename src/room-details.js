@@ -57,6 +57,7 @@ let card = document.querySelector('.js-card')
 let cardNumber = card.querySelector('.js-card-number')
 let cardCost = card.querySelector('.js-card-cost')
 let cardTable = card.querySelector('.js-card__table')
+let cardButtons = card.querySelectorAll('.card__button_round')
 let totalCostBlock = card.querySelector('.js-total-cost')
 let buttonSubmit = card.querySelector('.js-card-submit-button')
 
@@ -288,6 +289,12 @@ document.addEventListener('click', (event) => {
     if (!card.querySelector('p.error-text')) return;
     card.querySelector('p.error-text').innerText = ''
 })
+
+for (let button of cardButtons) {
+    button.onclick = (event) => {
+        event.preventDefault()
+    }
+}
 
 //Fetch
 

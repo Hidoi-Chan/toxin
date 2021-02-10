@@ -148,9 +148,13 @@
         }
     }
 
-    .footer__subscription,
     .footer__logo-block {
         max-width: 100%;
         margin-bottom: 30px;
+    }
+
+    .footer__subscription {
+        max-width: 100%;
+        margin-bottom: 50px;
     }
 }

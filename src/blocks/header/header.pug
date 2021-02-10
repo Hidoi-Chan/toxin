@@ -2,7 +2,7 @@ include ../logo/logo.pug
 include ../nav/nav.pug
 include ../burger/burger.pug
 
-mixin header(className, username)
+mixin header(className, buttons=false)
     header(class!=`header ${className}`)
         div.header__container
             +logo('')
@@ -10,3 +10,10 @@ mixin header(className, username)
             div.header__container-for-burger
                 +nav('header__nav')
                 div.sign-in.js-sign-in
+                if buttons
+                    a(href="/sign-in.html").button.sign-in__button
+                        h3.button__text_color_purple войти
+                        div.button__border-gradient
+                            h3.button__text_color_purple войти
+                    a(href="/registration.html").button.sign-in__button
+                        h3.button__text зарегистрироваться

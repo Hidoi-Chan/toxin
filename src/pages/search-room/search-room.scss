@@ -13,6 +13,7 @@
 
 .main__content {
     flex-grow: 1;
+    position: relative;
 }
 
 .main__title {
@@ -37,7 +38,7 @@
 }
 
 .left-sidebar {
-    min-width: 266px;
+    width: 266px;
     padding-right: 60px;
     transition: 300ms ease;
     background-color: white;
@@ -120,8 +121,8 @@
 
     .left-sidebar {
         height: calc(100vh - 110px);
-        min-width: auto;
-        max-width: 80%;
+        // width: 286px;
+        // max-width: 80%;
         position: fixed;
         left: -400px;
         top: 70px;
@@ -143,18 +144,19 @@
     }
 
     .main__room-card-container {
-        justify-content: space-around;
+        justify-content: space-between;
     }
 }
 
 @include medium {
   
     .main__room-card-container {
+        justify-content: space-around;
     
         .room-card {
             width: 100%;
         }
-    }  
+    }
 }
 
 @include small {
