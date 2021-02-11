@@ -138,6 +138,8 @@ function renderRoomCards(pagination) {
             .then(urls => {
                 room.images = urls
 
+                // let carouselContainer = document.createElement('div')
+                // carouselContainer.classList = 'owl-carousel__container'
                 let carousel = document.createElement('div')
                 carousel.className = 'owl-carousel owl-theme'
                 for (let url of room.images) {
@@ -145,6 +147,7 @@ function renderRoomCards(pagination) {
                     img.src = url
                     carousel.append(img)
                 }
+                // carouselContainer.append(carousel)
                 roomCard.prepend(carousel)
 
                 $('.owl-carousel').owlCarousel({

@@ -1,17 +1,21 @@
 @import '../../style/variables.scss';
 
 .main {
+    width: 100%;
     padding-top: 70px;
     border-bottom: 1px solid $dark25;
 }
 
 .main__container {
+    width: 100%;
     max-width: 1160px;
     margin: 30px auto 70px;
     display: flex;
 }
 
 .main__content {
+    width: 100%;
+    max-width: calc(100% - 326px);
     flex-grow: 1;
     position: relative;
 }
@@ -89,10 +93,33 @@
     display: flex;
     flex-wrap: wrap;
     margin: 0 -6px;
+    width: 100%;
+    max-width: 100%;
 
     .room-card {
         width: calc(1/3*100% - 12px);
-        margin: 6px;
+        margin: 4px;
+        
+
+        .owl-stage-outer,
+        .owl-stage,
+        .owl-item {
+            height: 150px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    
+        .owl-item {
+            overflow: hidden;
+    
+            img {            
+                width: auto !important;
+                min-width: 100%;
+                height: 100%;
+                text-align: center;
+            }
+        }
     }
 }
 
@@ -107,22 +134,46 @@
     .main {
         padding-left: 20px;
         padding-right: 20px;
+        box-sizing: border-box;
     }
 
     .main__room-card-container {
+        margin: 0;
     
         .room-card {
-            width: calc(1/2*100% - 12px);
+            width: calc(50% - 12px);
+            margin: 6px;
+
+            .owl-carousel {
+                height: auto;
+
+                .owl-stage-outer,
+                .owl-stage,
+                .owl-item {
+                    height: 300px;
+                }
+            }
         }
     }
 }
 
 @include large {
 
+    .main__content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .main__room-card-container {
+        
+        .room-card {
+            width: 48%;
+            margin: 1%;
+        }
+    }
+
     .left-sidebar {
         height: calc(100vh - 110px);
-        // width: 286px;
-        // max-width: 80%;
         position: fixed;
         left: -400px;
         top: 70px;
@@ -142,24 +193,68 @@
     .filter-button {
         display: block;
     }
-
-    .main__room-card-container {
-        justify-content: space-between;
-    }
 }
 
 @include medium {
   
     .main__room-card-container {
-        justify-content: space-around;
-    
+        
         .room-card {
-            width: 100%;
+            width: 50%;
+            padding: 0 5px;
+            box-sizing: border-box;
+            margin: 0;
+
+            .owl-carousel {
+
+                .owl-stage-outer,
+                .owl-stage,
+                .owl-item {
+                    height: 200px;
+                }
+            }
         }
     }
 }
 
+@media screen and (max-width: 600px) {
+
+    .main__room-card-container {
+        
+        .room-card {
+            width: 100%;
+            padding: 0;
+            margin: 5px 0;
+
+            .owl-carousel {
+
+                .owl-stage-outer,
+                .owl-stage,
+                .owl-item {
+                    height: 400px;
+                }
+            }
+        }
+    }
+
+}
+
 @include small {
+
+    .main__room-card-container {
+        
+        .room-card {
+
+            .owl-carousel {
+
+                .owl-stage-outer,
+                .owl-stage,
+                .owl-item {
+                    height: 300px;
+                }
+            }
+        }
+    }
   
     .main__title {
         flex-direction: column;
@@ -175,6 +270,26 @@
     
         &+& {
             margin-left: 5px;
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+
+    .main__room-card-container {
+        
+        .room-card {
+            width: 100%;
+            padding: 0;
+
+            .owl-carousel {
+
+                .owl-stage-outer,
+                .owl-stage,
+                .owl-item {
+                    height: 220px;
+                }
+            }
         }
     }
 }
