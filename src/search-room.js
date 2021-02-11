@@ -28,7 +28,6 @@ import '@blocks/dropdown/dropdown.scss'
 import {myDropdown} from '@blocks/dropdown/dropdown.js'
 import '@blocks/copyright-bar/copyright-bar.scss'
 import '@blocks/footer/footer.scss'
-// import '@blocks/preloader/preloader.scss'
 import '@pages/search-room/search-room.scss'
 import {declOfNum, getParamsFromUrl} from '@/functions.js'
 import firebase from "firebase/app"
@@ -137,9 +136,7 @@ function renderRoomCards(pagination) {
         Promise.all(room.promiseArr)
             .then(urls => {
                 room.images = urls
-
-                // let carouselContainer = document.createElement('div')
-                // carouselContainer.classList = 'owl-carousel__container'
+                
                 let carousel = document.createElement('div')
                 carousel.className = 'owl-carousel owl-theme'
                 for (let url of room.images) {
@@ -147,7 +144,6 @@ function renderRoomCards(pagination) {
                     img.src = url
                     carousel.append(img)
                 }
-                // carouselContainer.append(carousel)
                 roomCard.prepend(carousel)
 
                 $('.owl-carousel').owlCarousel({
@@ -427,7 +423,10 @@ filterBlock.addEventListener('change', function(event) {
 
 document.body.addEventListener('click', (event) => {
 
-    if (event.target.closest('.left-sidebar') || event.target.closest('.js-filter-button')) {
+    if (event.target.closest('.left-sidebar') || 
+        event.target.closest('.js-filter-button') ||
+        event.target.closest('.datepicker') ||
+        event.target.closest('.datepicker--cell')) {
         return
     }
 
@@ -472,7 +471,6 @@ fetch(url)
         }
 
         pagination = applyFilterData(data, filterParams, page)
-        // pagination = new Pagination(data) Проверка скорости загрузки
 
         myRangeSlider(filterParams.cost)
         console.log(filterParams)
@@ -508,12 +506,7 @@ fetch(url)
             pagination = applyFilterData(data, filterParams, 1)
         })
     })
-    .catch(error => returnStringIfNoData('Произошла ошибка при загрузке данных. Пожалуйста, попробуйте еще раз')) //'Failed to fetch'
-
-// setTimeout(() => {
-//     preloader.style.display = 'none'
-//     document.body.style.overflow = 'auto'
-// }, 3000)
+    .catch(error => returnStringIfNoData('Произошла ошибка при загрузке данных. Пожалуйста, попробуйте еще раз'))
 
 window.addEventListener('popstate', () => {
 

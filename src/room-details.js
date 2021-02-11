@@ -279,7 +279,7 @@ if (localStorage.hasOwnProperty('filters')) {
         }
     }
 
-    if (filters.bookedDate) {
+    if (filters.bookedDate && filters.bookedDate.length) {
         datepicker.selectDate([new Date(filters.bookedDate[0]), new Date(filters.bookedDate[1])])
     }
 }

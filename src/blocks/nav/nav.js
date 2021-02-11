@@ -4,21 +4,29 @@ let headerNav = [
         href: '/'
     },
     {
-        name: 'Авторизация',
-        childItem: [
-            {
-                name: 'Регистрация',
-                href: '/registration.html'
-            },
-            {
-                name: 'Вход',
-                href: '/sign-in.html'
-            }
-        ]
-    },
-    {
         name: 'Подбор комнаты',
         href: '/search-room.html'
+    },
+    {
+        name: 'UI Kit',
+        childItem: [
+            {
+                name: 'Цвета и шрифты',
+                href: '/colors-type.html'
+            },
+            {
+                name: 'Элементы',
+                href: '/form-elements.html'
+            },
+            {
+                name: 'Формы',
+                href: '/cards.html'
+            },
+            {
+                name: 'Шапка и подвал',
+                href: '/headers-footers.html'
+            }
+        ]
     }
 ]
 
