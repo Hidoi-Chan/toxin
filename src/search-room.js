@@ -40,9 +40,11 @@ let leftSidebarCloseButton = document.querySelector('.js-left-sidebar-close')
 let leftSidebarAcceptButton = document.querySelector('.js-left-sidebar-accept')
 let filterBlock = document.querySelector('.left-sidebar')
 let filterParams = {}
-let filters, pagination
+let filters, pagination = {}
 let click = new Event('click')
 let change = new Event('change')
+
+let paginationDiv = document.querySelector('.pagination')
 
 let dropdownGuests = document.querySelector('.js-dropdown-guests')
 let dropdownGuestsStr = dropdownGuests.querySelector('.js-dropdown__item-name[name="guests"]').parentElement
@@ -62,7 +64,6 @@ function Pagination(data) {
     this.currentPage = 1
     this.onPage = 12
     this.allData = data
-    this.allCards = this.allData.length
     this.firstRoomIndex = function() {
         return (this.currentPage - 1) * this.onPage
     }
@@ -74,7 +75,7 @@ function Pagination(data) {
         }
     }
     this.allPages = function() {
-        return Math.ceil(this.allCards / 12)
+        return Math.ceil(this.allData.length / 12)
     }
     this.data = function() {
         return this.allData.slice(this.firstRoomIndex(), this.lastRoomIndex() + 1)
@@ -158,19 +159,36 @@ function renderRoomCards(pagination) {
     })
 }
 
-function renderPagination(pagination) {
+function clickForPagination(event) {
 
-    let paginationDiv
-    if (document.querySelector('.pagination')) {
-        paginationDiv = document.querySelector('.pagination')
+    let target
+    if (event.target.closest('.pagination__link')) {
+        target = event.target.closest('.pagination__link')
     } else {
-        paginationDiv = document.createElement('div')
-        paginationDiv.classList.add('pagination')
-        paginationDiv.classList.add('main__pagination')
-        
-        roomCardContainer.parentElement.append(paginationDiv)
+        return
+    }
+    
+    if (target.innerText == pagination.currentPage) {
+        return
     }
 
+    if (target.innerText == 'arrow_back') {
+        pagination.currentPage -= 1
+    } else if (target.innerText == 'arrow_forward') {
+        pagination.currentPage = +pagination.currentPage + 1
+    } else {
+        pagination.currentPage = target.innerText
+    }
+
+    history.pushState('', '', `/search-room.html?page=${pagination.currentPage}`)
+
+    renderRoomCards(pagination)
+    renderPagination(pagination)
+}
+
+function renderPagination(pagination) {
+
+    paginationDiv.removeEventListener('click', clickForPagination)
     paginationDiv.innerHTML = ''
 
     let paginationList = document.createElement('div')
@@ -222,8 +240,8 @@ function renderPagination(pagination) {
     let description = document.createElement('p')
     description.classList.add('pagination__description')
     let variantStr = function() {
-        if (pagination.allCards <= 100) {
-            return pagination.allCards + ' ' + declOfNum(pagination.allCards, ['варианта', 'вариантов', 'вариантов'])
+        if (pagination.allData.length <= 100) {
+            return pagination.allData.length + ' ' + declOfNum(pagination.allData.length, ['варианта', 'вариантов', 'вариантов'])
         } else {
             return '100+ вариантов'
         }
@@ -233,48 +251,13 @@ function renderPagination(pagination) {
     paginationDiv.append(paginationList)
     paginationDiv.append(description)
     
-    addEventsForPagination(paginationDiv, pagination)
+    paginationDiv.addEventListener('click', clickForPagination)
 
     window.scrollTo({
         top: 0,
         left: 0,
         behavior: "smooth"
     })    
-}
-
-function addEventsForPagination(elem, paginationObj) {
-
-    function clickForPagination(event) {
-
-        let target
-        if (event.target.closest('.pagination__link')) {
-            target = event.target.closest('.pagination__link')
-        } else {
-            return
-        }
-    
-        if (target.innerText == paginationObj.currentPage) {
-            return
-        }
-    
-        if (target.innerText == 'arrow_back') {
-            paginationObj.currentPage -= 1
-        } else if (target.innerText == 'arrow_forward') {
-            paginationObj.currentPage = +paginationObj.currentPage + 1
-        } else {
-            paginationObj.currentPage = target.innerText
-        }
-
-        elem.removeEventListener('click', clickForPagination)
-
-        history.pushState('', '', `/search-room.html?page=${paginationObj.currentPage}`)
-
-        renderRoomCards(paginationObj)
-        renderPagination(paginationObj)
-    }
-
-    elem.addEventListener('click', clickForPagination)
-
 }
 
 function defaultSettingsFilterParams(data, resultObj) {
@@ -362,15 +345,13 @@ function applyFilterData(data, filterParams, pageNum) {
     let newData = filterData(data, filterParams)
 
     if (newData.length) {
-        let pagination = new Pagination(newData)
+        pagination = new Pagination(newData)
         pagination.currentPage = pageNum
         renderRoomCards(pagination)
         renderPagination(pagination)
         history.pushState('', '', `/search-room.html?page=1`)
 
         roomCardContainer.parentElement.querySelector('.h1').innerText = 'Номера, которые мы для вас подобрали'
-
-        return pagination
     } else {
         returnStringIfNoData('К сожалению, по выбранным фильтрам подходящих номеров не нашлось')
     }
@@ -470,18 +451,18 @@ fetch(url)
             page = getParamsFromUrl().page
         }
 
-        pagination = applyFilterData(data, filterParams, page)
+        applyFilterData(data, filterParams, page)
 
         myRangeSlider(filterParams.cost)
-        console.log(filterParams)
 
 
         leftSidebarCloseButton.addEventListener('click', function(event) {
             event.preventDefault()
             closeSidebar()
             
-            pagination = new Pagination(data)
+            pagination.allData = data
             roomCardContainer.parentElement.querySelector('.h1').innerText = 'Номера, которые мы для вас подобрали'
+            
             renderRoomCards(pagination)
             renderPagination(pagination)
             history.pushState('', '', `/search-room.html?page=1`)
@@ -503,7 +484,7 @@ fetch(url)
             event.preventDefault()
             closeSidebar()
 
-            pagination = applyFilterData(data, filterParams, 1)
+            applyFilterData(data, filterParams, 1)
         })
     })
     .catch(error => returnStringIfNoData('Произошла ошибка при загрузке данных. Пожалуйста, попробуйте еще раз'))

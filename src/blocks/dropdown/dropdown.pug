@@ -13,19 +13,6 @@ mixin dropdown(className, placeholder, obj, footer, buttonClear, buttonApply)
                     +buttonWithoutFill('dropdown__footer-button js-dropdown-button-clear', 'Очистить', 'purple')
                     +buttonWithoutFill('dropdown__footer-button js-dropdown-button-apply', 'Применить', 'purple')
 
-//- mixin dropdown266(className, placeholder, arr, footer, buttonClear, buttonApply)
-//-     div(class!=`dropdown ${className}`)
-//-         div.field__wrapper.dropdown__field-wrapper.dropdown__field-wrapper_width_266
-//-             +field('', 'text', `${placeholder}`, true)
-//-         if arr
-//-             div.dropdown__container.dropdown__container_width_266
-//-                 each val in arr
-//-                     +dropdown__item(val)
-//-                 if footer
-//-                     div.dropdown__footer
-//-                         +buttonWithoutFill(...buttonClear)
-//-                         +buttonWithoutFill(...buttonApply)
-
 mixin dropdown__item(itemName, nameAtr)
     div.dropdown__item.js-dropdown__item
         h3(name!=nameAtr).dropdown__item-name.js-dropdown__item-name= itemName
