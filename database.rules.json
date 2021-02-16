@@ -1,7 +1,7 @@
 {
   "rules": {
-    ".read": "now < 1613595600000",  // 2021-2-18
-    ".write": "now < 1613595600000",  // 2021-2-18
+    ".read": "true",
+    ".write": "false",
     "rooms": {
       ".indexOn": "index"
     }
