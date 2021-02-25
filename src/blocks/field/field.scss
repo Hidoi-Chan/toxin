@@ -73,7 +73,6 @@
     }
 
     &_for-subscription {
-        // width: 266px;
 
         &::after {
             background: $gradient;
@@ -84,7 +83,6 @@
     }
 
     &_for-datepicker {
-        // width: 266px;
 
         &::after {
             content: 'expand_more';
@@ -99,9 +97,4 @@
             }
         }
     }
-
-    // &_width_150 {  // изменить
-    //     max-width: 150px;
-    //     width: 100%;
-    // }
 }

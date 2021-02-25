@@ -5,6 +5,10 @@
     display: block;
     margin-bottom: 12px;
 
+    &:last-child {
+        margin-bottom: 0;
+    }
+
     &:hover {
         .checkbox__text-block:before {
             border: 1px solid $purple;

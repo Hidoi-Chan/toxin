@@ -1,20 +1,6 @@
 mixin colors-variables(description, color)
     div.colors-variables(class!=attributes.class)
-        case description        
-            when "Dark Shade 100%"
-                div.colors-variables__square.colors-variables__square_color_dark100
-            when "Dark Shade 75%"
-                div.colors-variables__square.colors-variables__square_color_dark75
-            when "Dark Shade 50%"
-                div.colors-variables__square.colors-variables__square_color_dark50
-            when "Dark Shade 25%"
-                div.colors-variables__square.colors-variables__square_color_dark25
-            when "Dark Shade 5%"
-                div.colors-variables__square.colors-variables__square_color_dark5
-            when "Purple"
-                div.colors-variables__square.colors-variables__square_color_purple
-            when "Green"
-                div.colors-variables__square.colors-variables__square_color_green
+        div.colors-variables__square
         div.colors-variables__text-block.h2
             p.colors-variables__description=description
             p.colors-variables__text-num=color

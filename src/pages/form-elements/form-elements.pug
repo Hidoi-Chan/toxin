@@ -19,17 +19,19 @@ block content
         div.form-elements__grid-item
             div
                 h3.field__title Text Field
+                p.form-elements__description-text Default
                 +field('', 'email', 'Email')
             div
                 h3.field__title Text Field
+                p.form-elements__description-text Hover / Focus
                 +field('field_hover', 'email', 'This is pretty awesome')
             div
                 h3.field__title Dropdown
                 +dropdown('js-dropdown-guests', 'Сколько гостей', {'взрослые': 'guests', 'дети': 'guests', 'младенцы': 'babies'})
-            div.form-elements_margin_22
+            div
                 h3.field__title masked text field
                 +field('field_js-date', 'text', 'ДД.ММ.ГГГГ')
-            div.form-elements__container.form-elements_margin_42
+            div.form-elements__container.form-elements_margin_40
                 div
                     h3.field__title date Dropdown
                     div.field__wrapper.field__wrapper_for-datepicker
@@ -51,21 +53,21 @@ block content
                 h3.form-elements__title_margin-bottom_18 Checkbox Buttons
                 each val in [['', 'Можно курить', 'smoking'], ['checkbox_checked', 'Можно с питомцами', 'pets'], ['checkbox_checked', 'Можно пригласить гостей (до 10 человек)', 'guests']]
                     +checkbox(...val)
-            div.form-elements_margin_30
+            div
                 h3.form-elements__title_margin-bottom_13 Radio Buttons
                 div.form-elements__container
                     +radio('radio_checked', 'Мужчина', 'male')
                     +radio('', 'Женщина', 'female')
-            div.form-elements_margin_40
+            div
                 h3.form-elements__title_margin-bottom_13 Toggle
                 +toggle('toggle_checked', 'Получать спецпредложения', 'get special offers')
                 +toggle('form-elements_margin_10', 'Получать спецпредложения', 'get special offers')
-            div.form-elements_margin_44
+            div
                 h3.form-elements__title_margin-bottom_13 like button
                 div.form-elements__container.form-elements__container_padding-top_3.form-elements__container_margin-right
                     +like-button('', 2)
                     +like-button('like-button_checked', 12)
-            div.form-elements_margin_40
+            div
                 h3.form-elements__title_margin-bottom_13 rate button
                 div.form-elements__container.form-elements__container_padding-top_5
                     +rate-result('', 4)
@@ -74,7 +76,7 @@ block content
             div
                 h3 Range Slider
                 +range-slider('')
-            div.form-elements__buttons-wrapper.form-elements_margin_25
+            div.form-elements__buttons-wrapper
                 h3.form-elements__title_margin-bottom_13 buttons
                 div.form-elements__container
                     +button('', 'click me')
@@ -87,15 +89,17 @@ block content
                     +buttonWithoutFill('', 'click me', 'dark50')
                 div.form-elements__container
                     +button('button_with-icon', 'перейти к оплате')
-            div.form-elements_margin_10
+            div
                 h3.form-elements__title_margin-bottom_18 pagination
                 +pagination('form-elements__pagination', '1 – 12 из 100+ вариантов аренды')
         div.form-elements__grid-item
             div
                 h3.field__title Dropdown
+                p.form-elements__description-text Default
                 +dropdown('js-dropdown-room', '2 спальни, 2 кровати…', {'спальни': 'bedrooms', 'кровати': 'bed', 'ванные комнаты': 'bathrooms'})
             div
                 h3.field__title Dropdown
+                p.form-elements__description-text expanded
                 +dropdown('js-dropdown-room dropdown_hover dropdown_open', '2 спальни, 2 кровати…', {'спальни': 'bedrooms', 'кровати': 'bed', 'ванные комнаты': 'bathrooms'})
         div.form-elements__grid-item
             div
@@ -108,7 +112,7 @@ block content
         div.form-elements__grid-item
             div.form-elements__expandable-list-container
                 +expandable-list('', 'expandable checkbox list', [['', 'Завтрак'], ['checkbox_checked', 'Письменный стол'], ['checkbox_checked', 'Стул для кормления'], ['checkbox_checked', 'Кроватка'], ['', 'Телевизор'], ['', 'Шампунь']])
-                +expandable-list('form-elements_margin_22', 'expandable checkbox list', [['', 'Завтрак'], ['checkbox_checked', 'Письменный стол'], ['checkbox_checked', 'Стул для кормления'], ['checkbox_checked', 'Кроватка'], ['', 'Телевизор'], ['', 'Шампунь']])
+                +expandable-list('', 'expandable checkbox list', [['', 'Завтрак'], ['checkbox_checked', 'Письменный стол'], ['checkbox_checked', 'Стул для кормления'], ['checkbox_checked', 'Кроватка'], ['', 'Телевизор'], ['', 'Шампунь']])
         div.form-elements__grid-item
             div
                 h3.form-elements__title_margin-bottom_18 rich Checkbox Buttons

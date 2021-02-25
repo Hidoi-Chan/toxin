@@ -1,7 +1,7 @@
 @import '../../style/variables.scss';
 
 .form-elements {
-    margin: 140px auto;
+    margin: 143px auto;
     max-width: 1160px;
     display: grid;
     grid-template-columns: 374px 320px 320px;
@@ -16,22 +16,29 @@
             margin-right: 54px;
         }
 
+        &:nth-child(2),
+        &:nth-child(3) {
+            & > * {
+                margin-top: 40px;
+    
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
+        }
+
         &:nth-child(4) {
-            margin-bottom: 72px;
+            margin-bottom: 76px;
             max-width: 266px;
         }
 
         &:nth-child(7) {
-            // margin-right: 54px;
             max-width: 266px;
-        }
-
-        &:nth-child(8) {
-            margin-bottom: 110px;
         }
 
         & > * {
             margin-top: 20px;
+            position: relative;
 
             &:first-child {
                 margin-top: 0;
@@ -41,7 +48,7 @@
 
     &__description-text {
         position: absolute;
-        bottom: 52px;
+        top: 0;
         right: 0;
         font-size: torem(12);
         line-height: torem(15);
@@ -99,6 +106,10 @@
         & > .form-elements__container {
             margin-bottom: 30px;
             margin-top: 16px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 
@@ -114,28 +125,8 @@
             margin-top: 10px;
         }
     
-        &_22 {
-            margin-top: 22px;
-        }
-    
-        &_25 {
-            margin-top: 25px;
-        }
-    
-        &_30 {
-            margin-top: 30px;
-        }
-    
         &_40 {
             margin-top: 40px;
-        }
-    
-        &_42 {
-            margin-top: 42px;
-        }
-    
-        &_44 {
-            margin-top: 44px;
         }
     }
 
@@ -146,18 +137,14 @@
     &__expandable-list-container {
         position: relative;
         top: -14px;
+
+        .expandable-list:first-child {
+            margin-bottom: 20px;
+        }
     }
 
     &__room-info-item {
         padding-top: 0;
-    }
-}
-
-.form-elements__pagination {
-    text-align: start;
-
-    .pagination__list {
-        justify-content: left;
     }
 }
 

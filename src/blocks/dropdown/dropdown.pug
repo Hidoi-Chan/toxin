@@ -5,7 +5,6 @@ mixin dropdown(className, placeholder, obj, footer, buttonClear, buttonApply)
         div.field__wrapper.dropdown__field-wrapper.js-dropdown__field-wrapper
             +field('', 'text', `${placeholder}`, false, true)
         div.dropdown__container.js-dropdown__container
-            //- each val in arr
             each val, key in obj
                 +dropdown__item(key, val)
             if footer

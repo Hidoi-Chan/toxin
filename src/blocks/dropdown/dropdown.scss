@@ -26,7 +26,7 @@
 .dropdown__field-wrapper {
 
     .field {
-        border-radius: 2px 2px 0 0;
+        border-radius: 4px 4px 0 0;
         cursor: pointer;
 
         &::placeholder {
@@ -38,10 +38,6 @@
         content: 'expand_more';
         color: $dark50;
     }
-
-    // &_width_266 {
-    //     width: 266px;
-    // }
 
     &:hover,
     &:focus {
@@ -60,7 +56,6 @@
 .dropdown__container {
     width: 100%;
     display: none;
-    // width: 320px;
     box-sizing: border-box;
     padding: 7px 7px 0 15px;
     position: absolute;
@@ -71,10 +66,6 @@
     border-top: none;
     border-radius: 0 0 2px 2px;
     box-shadow: 0px 10px 20px $dark5;
-
-    // &_width_266 {
-    //     width: 266px;
-    // }
 }
 
 .dropdown__item {
