@@ -35,20 +35,54 @@ export function myRangeSlider(resultObj) {
     }
     
     function moveSlider(elem) {
-        elem.addEventListener('mousedown', function(event) {
+            
+        let target, left
+    
+        function drag(event) {
+            if (event.type === 'touchmove') {
+                left = event.targetTouches[0].clientX - thumbMax.offsetWidth / 2 - elem.getBoundingClientRect().left
+            } else {
+                left = event.clientX - thumbMax.offsetWidth / 2 - elem.getBoundingClientRect().left
+            }
+    
+            if (target == thumbMin) {
+                if (left < 0) {
+                    left = 0
+                }
+                if (left > thumbMax.offsetLeft) {
+                    left = thumbMax.offsetLeft
+                }
+            }
+    
+            if (target == thumbMax) {
+                if (left < thumbMin.offsetLeft) {
+                    left = thumbMin.offsetLeft
+                }
+                if (left > sliderField.offsetWidth - target.offsetWidth) {
+                    left = sliderField.offsetWidth - target.offsetWidth
+                }
+            }
+            renderFinallyValues(target, left)
+        }
+
+        function handleClick(event) {            
             event.preventDefault()
             
-            let target, left
+            let clientX = event.clientX
+            if (event.type === 'touchstart') {
+                clientX = event.targetTouches[0].clientX
+            }
+
             if(event.target != thumbMin && event.target != thumbMax) {
-                if (event.clientX >= thumbMax.getBoundingClientRect().left ||
-                    thumbMax.getBoundingClientRect().left + thumbMax.offsetWidth / 2 - event.clientX <= event.clientX - thumbMin.getBoundingClientRect().left - thumbMin.offsetWidth / 2) {
+                if (clientX >= thumbMax.getBoundingClientRect().left ||
+                    thumbMax.getBoundingClientRect().left + thumbMax.offsetWidth / 2 - clientX <= clientX - thumbMin.getBoundingClientRect().left - thumbMin.offsetWidth / 2) {
                     target = thumbMax
                 }
-                if (event.clientX <= thumbMin.getBoundingClientRect().left ||
-                    event.clientX - thumbMin.getBoundingClientRect().left - thumbMin.offsetWidth / 2 < thumbMax.getBoundingClientRect().left + thumbMax.offsetWidth / 2 - event.clientX) {
+                if (clientX <= thumbMin.getBoundingClientRect().left ||
+                    clientX - thumbMin.getBoundingClientRect().left - thumbMin.offsetWidth / 2 < thumbMax.getBoundingClientRect().left + thumbMax.offsetWidth / 2 - clientX) {
                     target = thumbMin
                 }
-                left = event.clientX - thumbMax.offsetWidth / 2 - elem.getBoundingClientRect().left
+                left = clientX - thumbMax.offsetWidth / 2 - elem.getBoundingClientRect().left
                 if (left < 0) left = 0
                 if (left > elem.offsetWidth - target.offsetWidth) {
                     left = elem.offsetWidth - target.offsetWidth
@@ -57,84 +91,22 @@ export function myRangeSlider(resultObj) {
             } else {
                 target = event.target
             }
-            document.addEventListener('mousemove', drag)
-            document.addEventListener('mouseup', (event) => {
-                document.removeEventListener('mousemove', drag)
-            })
-            function drag(event) {
-                left = event.clientX - thumbMax.offsetWidth / 2 - elem.getBoundingClientRect().left
-    
-                if (target == thumbMin) {
-                    if (left < 0) {
-                        left = 0
-                    }
-                    if (left > thumbMax.offsetLeft) {
-                        left = thumbMax.offsetLeft
-                    }
-                }
-    
-                if (target == thumbMax) {
-                    if (left < thumbMin.offsetLeft) {
-                        left = thumbMin.offsetLeft
-                    }
-                    if (left > sliderField.offsetWidth - target.offsetWidth) {
-                        left = sliderField.offsetWidth - target.offsetWidth
-                    }
-                }
-                renderFinallyValues(target, left)
-            }
-        })
-
-        elem.addEventListener('touchstart', function(event) {
-            event.preventDefault()
             
-            let target, left
-            if(event.target != thumbMin && event.target != thumbMax) {
-                if (event.targetTouches[0].clientX >= thumbMax.getBoundingClientRect().left ||
-                    thumbMax.getBoundingClientRect().left + thumbMax.offsetWidth / 2 - event.targetTouches[0].clientX <= event.targetTouches[0].clientX - thumbMin.getBoundingClientRect().left - thumbMin.offsetWidth / 2) {
-                        target = thumbMax
-                }
-                if (event.targetTouches[0].clientX <= thumbMin.getBoundingClientRect().left ||
-                    event.targetTouches[0].clientX - thumbMin.getBoundingClientRect().left - thumbMin.offsetWidth / 2 < thumbMax.getBoundingClientRect().left + thumbMax.offsetWidth / 2 - event.targetTouches[0].clientX) {
-                        target = thumbMin
-                }
-                left = event.targetTouches[0].clientX - thumbMax.offsetWidth / 2 - elem.getBoundingClientRect().left
-                if (left < 0) left = 0
-
-                if (left > elem.offsetWidth - target.offsetWidth) {
-                    left = elem.offsetWidth - target.offsetWidth
-                }
-                renderFinallyValues(target, left)
+            if (event.type === 'touchstart') {
+                document.addEventListener('touchmove', drag)
+                document.addEventListener('touchend', (event) => {
+                    document.removeEventListener('touchmove', drag)
+                })
             } else {
-                target = event.target
+                document.addEventListener('mousemove', drag)
+                document.addEventListener('mouseup', () => {
+                    document.removeEventListener('mousemove', drag)
+                })
             }
-            document.addEventListener('touchmove', drag)
-            document.addEventListener('touchend', (event) => {
-                document.removeEventListener('touchmove', drag)
-            })
-            function drag(event) {
-                left = event.targetTouches[0].clientX - thumbMax.offsetWidth / 2 - elem.getBoundingClientRect().left
-    
-                if (target == thumbMin) {
-                    if (left < 0) {
-                        left = 0
-                    }
-                    if (left > thumbMax.offsetLeft) {
-                        left = thumbMax.offsetLeft
-                    }
-                }
-    
-                if (target == thumbMax) {
-                    if (left < thumbMin.offsetLeft) {
-                        left = thumbMin.offsetLeft
-                    }
-                    if (left > sliderField.offsetWidth - target.offsetWidth) {
-                        left = sliderField.offsetWidth - target.offsetWidth
-                    }
-                }
-                renderFinallyValues(target, left)
-            }
-        })
+        }
+
+        elem.addEventListener('mousedown', handleClick)
+        elem.addEventListener('touchstart', handleClick)
     }
 
     moveSlider(sliderField)
